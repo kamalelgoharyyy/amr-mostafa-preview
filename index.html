@@ -1,0 +1,3389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amr Mostafa — Composer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link id="font-serif-link" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500&display=swap" rel="stylesheet">
+<link id="font-sans-link" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&display=swap" rel="stylesheet">
+<link id="font-arabic-link" href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<style>
+:root{
+  --bg:#0E0C0A; --bg-lift:#211C16; --ink:#F3EDE0; --mut:#A69C8A; --red:#9C2B2B;
+  --hair:rgba(243,237,224,.12);
+  --serif:"Fraunces",Georgia,serif;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,sans-serif;
+  --arabic:"Reem Kufi","Segoe UI",sans-serif;
+  --h1-size:5.4vw; --h1-weight:300; --h1-track:-0.018em; --h1-leading:1.02;
+  --grain-op:.035; --vignette:.58; --tally-op:.16;
+  --cov-sat:1; --cov-bright:1; --cov-sepia:0; --cov-radius:18px;
+  --ring-y:-58%;
+  --fg-size:78vh; --fg-x:0px; --fg-y:9vh; --fade-start:66%; --fade-end:92%; --floor-op:.62;
+  --rv-size:360; --rv-dwell:3.4; --rv-step:1.1;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--sans);
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none;}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
+:focus-visible{outline:1px solid var(--red);outline-offset:4px;}
+.ar{font-family:var(--arabic);}
+
+/* ============================ HERO ============================ */
+.page{
+  position:relative; display:flex; align-items:center; justify-content:center;
+  height:100vh; width:100%; overflow:hidden;
+  background:
+    repeating-radial-gradient(circle at 50% 44%,
+      rgba(243,237,224,.028) 0px, rgba(243,237,224,.028) 1px,
+      rgba(0,0,0,0) 1px, rgba(0,0,0,0) 4px),
+    radial-gradient(ellipse 70% 62% at 50% 44%, var(--bg-lift) 0%, #16120E 48%, var(--bg) 84%),
+    var(--bg);
+}
+.page::after{
+  content:""; position:absolute; inset:0; z-index:2; pointer-events:none;
+  background:radial-gradient(ellipse 78% 72% at 50% 48%,
+    rgba(0,0,0,0) 42%, rgba(0,0,0,var(--vignette)) 78%, rgba(0,0,0,.9) 100%);
+}
+.grain{
+  position:absolute; inset:-50%; z-index:3; pointer-events:none; opacity:var(--grain-op);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain 6s steps(5) infinite;
+}
+@keyframes grain{0%,100%{transform:translate(0,0)}20%{transform:translate(-3%,-6%)}
+40%{transform:translate(-8%,3%)}60%{transform:translate(4%,-4%)}80%{transform:translate(-2%,5%)}}
+.tally{
+  position:absolute; left:50%; bottom:-14vh; width:64vw; height:34vh;
+  transform:translateX(-50%); z-index:1; pointer-events:none;
+  background:radial-gradient(ellipse at 50% 100%,
+    rgba(156,43,43,var(--tally-op)) 0%,
+    rgba(156,43,43,calc(var(--tally-op)*.3)) 42%, rgba(156,43,43,0) 72%);
+}
+
+.topbar{
+  position:absolute; top:0; left:0; right:0; z-index:40;
+  display:grid; grid-template-columns:auto 1fr auto auto auto;
+  align-items:start; gap:clamp(20px,4vw,64px);
+  padding:26px clamp(20px,3.4vw,52px) 22px;
+}
+.topbar::after{
+  content:""; position:absolute; left:clamp(20px,3.4vw,52px);
+  right:clamp(20px,3.4vw,52px); bottom:0; height:1px; background:var(--hair);
+}
+.wordmark img{height:var(--wm-size,34px);width:auto;display:block;opacity:.94;}
+.wordmark .wm-text{font-family:var(--serif);font-size:21px;letter-spacing:.01em;}
+.wordmark .wm-text .dot{color:var(--red);}
+.meta{font-size:12.5px;line-height:1.55;white-space:nowrap;}
+.meta .k{color:var(--mut);display:block;}
+.meta .v{color:var(--ink);display:block;}
+.meta .v .accent{color:var(--red);}
+.navlinks{list-style:none;}
+.navlinks a{
+  display:block;font-size:13px;line-height:1.78;letter-spacing:.02em;
+  color:var(--ink);opacity:.82;position:relative;padding-left:11px;transition:opacity .25s;
+}
+.navlinks a::before{
+  content:"";position:absolute;left:0;top:50%;width:4px;height:4px;margin-top:-2px;
+  border-radius:50%;background:var(--red);opacity:0;transform:scale(.4);
+  transition:opacity .25s,transform .25s;
+}
+.navlinks a:hover{opacity:1;}
+.navlinks a:hover::before{opacity:1;transform:scale(1);}
+.pill{
+  display:inline-flex;align-items:center;gap:11px;padding:7px 20px 7px 8px;
+  border-radius:999px;border:1px solid var(--hair);font-size:13.5px;white-space:nowrap;
+  transition:border-color .3s,background .3s,transform .3s;
+}
+.pill .ico{
+  width:30px;height:30px;flex:none;border-radius:50%;background:var(--ink);color:var(--bg);
+  display:grid;place-items:center;transition:background .3s,color .3s;
+}
+.pill .ico svg{width:13px;height:13px;}
+.pill:hover{border-color:var(--red);background:rgba(156,43,43,.12);transform:translateY(-1px);}
+.pill:hover .ico{background:var(--red);color:var(--ink);}
+.pill--solid{border-color:transparent;background:var(--ink);color:var(--bg);padding:8px 24px 8px 9px;font-size:14px;}
+.pill--solid .ico{background:var(--bg);color:var(--ink);}
+.pill--solid:hover{background:var(--ink);border-color:var(--red);box-shadow:0 0 0 3px rgba(156,43,43,.22);}
+.pill--solid:hover .ico{background:var(--red);color:var(--ink);}
+.burger{display:none;width:38px;height:38px;position:relative;z-index:41;}
+.burger span{position:absolute;left:8px;right:8px;height:1.5px;background:var(--ink);transition:transform .3s,opacity .3s;}
+.burger span:nth-child(1){top:13px;} .burger span:nth-child(2){top:19px;} .burger span:nth-child(3){top:25px;}
+body.nav-open .burger span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+body.nav-open .burger span:nth-child(2){opacity:0;}
+body.nav-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+
+.ls-curved-carousel{
+  --viewport-height:46rem; --viewport-height-m:26rem;
+  --perspective:900px; --perspective-m:500px;
+  position:absolute;top:50%;left:0;transform:translateY(var(--ring-y));
+  width:100%;height:var(--viewport-height);
+  transform-style:preserve-3d;user-select:none;overflow:visible;z-index:4;
+}
+.ls-curved-carousel__stage{
+  perspective:var(--perspective);position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+}
+.ls-curved-carousel__ring{position:absolute;width:100%;height:100%;transform-style:preserve-3d;}
+.ls-curved-carousel__slide{
+  position:absolute;transform-style:preserve-3d;overflow:hidden;
+  border-radius:var(--cov-radius);box-shadow:0 24px 70px rgba(0,0,0,.6);
+}
+.ls-curved-carousel__media{
+  width:100%;height:100%;object-fit:cover;display:block;
+  filter:saturate(var(--cov-sat)) contrast(1.02) brightness(var(--cov-bright)) sepia(var(--cov-sepia));
+}
+.foreground{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%) translate(var(--fg-x),var(--fg-y));
+  z-index:10;height:var(--fg-size);width:auto;max-width:none;
+  -webkit-mask-image:linear-gradient(to bottom,#000 var(--fade-start),transparent var(--fade-end));
+          mask-image:linear-gradient(to bottom,#000 var(--fade-start),transparent var(--fade-end));
+}
+.floor{
+  position:absolute;left:50%;bottom:6vh;width:min(620px,56vw);height:90px;
+  transform:translateX(-50%);z-index:9;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 50%,
+    rgba(0,0,0,var(--floor-op)) 0%, rgba(0,0,0,calc(var(--floor-op)*.45)) 45%, rgba(0,0,0,0) 74%);
+  filter:blur(14px);
+}
+.copy{
+  position:absolute;left:clamp(20px,3.4vw,52px);bottom:clamp(38px,7vh,74px);
+  z-index:20;max-width:min(640px,50vw);
+}
+.eyebrow{font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--mut);margin-bottom:18px;}
+.eyebrow .sep{color:var(--red);margin:0 .35em;}
+.eyebrow .ar{font-family:var(--arabic);letter-spacing:0;font-size:13px;}
+h1{
+  font-family:var(--serif);font-weight:var(--h1-weight);
+  font-size:clamp(38px,var(--h1-size),84px);
+  line-height:var(--h1-leading);letter-spacing:var(--h1-track);margin-bottom:24px;
+}
+h1 em{font-style:italic;}
+h1 .amp{color:var(--mut);}
+.sub{font-size:13.5px;color:var(--mut);margin-bottom:26px;line-height:1.6;max-width:44ch;}
+.sub b{color:var(--ink);font-weight:500;}
+.quote{
+  position:absolute;right:clamp(20px,3.4vw,52px);bottom:clamp(38px,7vh,74px);
+  z-index:20;width:min(360px,30vw);
+}
+.quote p{font-family:var(--serif);font-weight:300;font-size:clamp(14px,1.16vw,17px);line-height:1.5;color:var(--mut);}
+.quote p strong{color:var(--ink);font-weight:500;}
+.sig{margin-top:20px;height:62px;display:flex;align-items:center;justify-content:flex-end;}
+.sig img{height:100%;width:auto;opacity:.9;display:block;}
+.sig .slot{
+  width:190px;height:100%;border:1px dashed rgba(243,237,224,.16);border-radius:4px;
+  display:grid;place-items:center;font-size:9.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:rgba(166,156,138,.5);
+}
+.scrollcue{
+  position:absolute;left:50%;bottom:16px;transform:translateX(-50%);
+  z-index:21;display:flex;flex-direction:column;align-items:center;gap:7px;
+  font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);opacity:.6;
+}
+.scrollcue .line{width:1px;height:26px;background:linear-gradient(to bottom,var(--mut),transparent);animation:cue 2.4s ease-in-out infinite;}
+@keyframes cue{0%,100%{opacity:.25;transform:scaleY(.6);transform-origin:top}50%{opacity:1;transform:scaleY(1)}}
+
+/* ============================ REVEAL ============================ */
+.reveal{
+  position:relative;min-height:100vh;
+  padding:clamp(70px,10vh,120px) 0 clamp(60px,8vh,100px);
+  display:flex;flex-direction:column;align-items:center;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 38%, #1A1611 0%, #100D0B 55%, var(--bg) 85%),
+    var(--bg);
+  overflow:hidden;
+}
+.reveal::before{
+  content:"";position:absolute;left:50%;top:0;width:1px;height:70px;
+  transform:translateX(-50%);background:linear-gradient(to bottom,var(--hair),transparent);
+}
+.rv-head{text-align:center;padding:0 24px;margin-bottom:clamp(20px,3vh,38px);z-index:5;}
+.rv-head .kicker{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--mut);margin-bottom:16px;
+}
+.rv-head .kicker .dot{
+  width:6px;height:6px;border-radius:50%;background:var(--red);
+  box-shadow:0 0 0 0 rgba(156,43,43,.6);animation:rec 2s ease-out infinite;
+}
+@keyframes rec{
+  0%{box-shadow:0 0 0 0 rgba(156,43,43,.55);opacity:1}
+  70%{box-shadow:0 0 0 9px rgba(156,43,43,0);opacity:.75}
+  100%{box-shadow:0 0 0 0 rgba(156,43,43,0);opacity:1}
+}
+.rv-head h2{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(28px,3.9vw,54px);line-height:1.08;letter-spacing:-.015em;margin-bottom:12px;
+}
+.rv-head h2 em{font-style:italic;}
+.rv-head p{font-size:13px;color:var(--mut);max-width:50ch;margin:0 auto;line-height:1.6;}
+
+/* stepping ring — same layout maths as the hero */
+.rv-stage-wrap{
+  position:relative;width:100%;
+  height:clamp(300px,42vh,460px);
+  display:flex;align-items:center;justify-content:center;
+  z-index:4;
+}
+.rv-carousel{
+  position:absolute;top:50%;left:0;transform:translateY(-50%);
+  width:100%;height:100%;transform-style:preserve-3d;user-select:none;overflow:visible;
+}
+.rv-stage{perspective:1150px;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);}
+.rv-ring{position:absolute;width:100%;height:100%;transform-style:preserve-3d;}
+.rv-slide{
+  position:absolute;transform-style:preserve-3d;overflow:hidden;
+  border-radius:12px;box-shadow:0 26px 70px rgba(0,0,0,.66);
+  transition:opacity .5s ease, filter .5s ease;
+  opacity:.58;
+}
+.rv-slide.is-active{opacity:1;}
+.rv-slide img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  filter:saturate(.95) brightness(.86);
+  transition:filter .5s ease;
+}
+.rv-slide.is-active img{filter:saturate(1) brightness(1) sepia(0);}
+/* tally frame on the active cover */
+.rv-slide::after{
+  content:"";position:absolute;inset:0;border-radius:12px;
+  border:1px solid rgba(156,43,43,0);transition:border-color .5s ease;pointer-events:none;
+}
+.rv-slide.is-active::after{border-color:rgba(156,43,43,.55);}
+
+/* credit stack */
+.rv-credit{
+  position:relative;z-index:6;text-align:center;padding:clamp(22px,4vh,40px) 24px 0;
+  min-height:210px;width:100%;max-width:620px;
+}
+.rv-title-ar{
+  font-family:var(--arabic);font-size:clamp(30px,4.4vw,56px);line-height:1.22;
+  margin-bottom:6px;direction:rtl;
+}
+.rv-title-en{
+  font-family:var(--serif);font-style:italic;font-weight:300;
+  font-size:clamp(14px,1.5vw,19px);color:var(--mut);margin-bottom:20px;
+}
+.rv-artist{
+  font-size:clamp(13px,1.35vw,16px);letter-spacing:.02em;margin-bottom:4px;
+}
+.rv-artist .who{color:var(--ink);}
+.rv-artist .role{color:var(--mut);}
+.rv-year{font-size:11px;letter-spacing:.16em;color:var(--mut);opacity:.7;margin-bottom:20px;}
+
+.rv-rule{
+  width:0;height:1px;background:var(--red);margin:0 auto 16px;
+}
+.rv-stamp{
+  display:inline-flex;align-items:baseline;gap:10px;flex-wrap:wrap;justify-content:center;
+}
+.rv-stamp .ar{font-family:var(--arabic);font-size:clamp(17px,2vw,24px);color:var(--ink);}
+.rv-stamp .en{
+  font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);
+}
+.rv-lyric{
+  margin-top:13px;font-size:11.5px;color:var(--mut);opacity:.72;
+}
+.rv-lyric .ar{font-family:var(--arabic);font-size:13px;}
+.rv-todo{
+  margin-top:13px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(166,156,138,.45);
+  border:1px dashed rgba(243,237,224,.14);border-radius:3px;
+  padding:5px 11px;display:inline-block;
+}
+
+/* controls */
+.rv-ctrl{
+  display:flex;align-items:center;gap:18px;justify-content:center;
+  margin-top:clamp(16px,3vh,30px);z-index:6;position:relative;
+}
+.rv-arrow{
+  width:38px;height:38px;border-radius:50%;border:1px solid var(--hair);
+  display:grid;place-items:center;transition:border-color .3s,background .3s;
+}
+.rv-arrow svg{width:13px;height:13px;}
+.rv-arrow:hover{border-color:var(--red);background:rgba(156,43,43,.14);}
+.rv-dots{display:flex;gap:7px;}
+.rv-dots button{
+  width:6px;height:6px;border-radius:50%;background:rgba(243,237,224,.22);
+  transition:background .3s,transform .3s;
+}
+.rv-dots button.on{background:var(--red);transform:scale(1.45);}
+
+
+
+/* ============================ CATALOGUE ============================ */
+.sec{
+  position:relative;
+  padding:clamp(70px,10vh,120px) clamp(20px,3.4vw,52px);
+  background:transparent;
+}
+.sec::before{
+  content:"";position:absolute;left:50%;top:0;width:1px;height:64px;
+  transform:translateX(-50%);
+  background:linear-gradient(to bottom,var(--hair),transparent);
+}
+.sec-head{max-width:1180px;margin:0 auto clamp(26px,4vh,46px);}
+.sec-head .kicker{
+  display:inline-flex;align-items:center;gap:9px;font-size:10.5px;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--mut);margin-bottom:15px;
+}
+.sec-head .kicker .bar{width:22px;height:1px;background:var(--red);}
+.sec-head h2{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(28px,3.7vw,50px);line-height:1.08;letter-spacing:-.015em;margin-bottom:12px;
+}
+.sec-head h2 em{font-style:italic;}
+.sec-head p{font-size:13px;color:var(--mut);max-width:58ch;line-height:1.65;}
+
+.stats{
+  max-width:1180px;margin:0 auto clamp(22px,3.5vh,38px);
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);
+}
+.stats div{padding:18px 4px;text-align:center;border-left:1px solid var(--hair);}
+.stats div:first-child{border-left:0;}
+.stats .n{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(28px,3.4vw,44px);line-height:1;letter-spacing:-.02em;display:block;
+}
+.stats .n .unit{font-size:.42em;color:var(--mut);margin-left:.18em;letter-spacing:0;}
+.stats .l{display:block;margin-top:8px;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);}
+
+/* ---- controls: a view switch and a search, nothing else ---- */
+.cat-bar{
+  max-width:1180px;margin:0 auto 4px;
+  display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+  padding-bottom:12px;border-bottom:1px solid var(--hair);
+}
+.seg{display:inline-flex;border:1px solid var(--hair);border-radius:999px;overflow:hidden;}
+.seg button{
+  padding:7px 16px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--mut);transition:color .25s,background .25s;
+}
+.seg button.on{color:var(--ink);background:rgba(156,43,43,.2);}
+.seg button:hover{color:var(--ink);}
+.cat-search{flex:1;min-width:200px;position:relative;}
+.cat-search input{
+  width:100%;background:transparent;color:var(--ink);
+  border:0;border-bottom:1px solid transparent;padding:7px 2px;
+  font:inherit;font-size:13px;transition:border-color .25s;
+}
+.cat-search input::placeholder{color:rgba(166,156,138,.5);}
+.cat-search input:focus{outline:0;border-bottom-color:var(--red);}
+.cat-tally{
+  font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);white-space:nowrap;
+}
+.cat-tally b{color:var(--ink);font-weight:500;}
+
+/* ---- accordion ---- */
+.cat-list{
+  max-width:1180px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:0 30px;align-items:start;
+}
+.grp-h{
+  width:100%;display:grid;grid-template-columns:1fr auto 40px;
+  gap:10px;align-items:center;text-align:left;
+  padding:11px 8px 11px 4px;position:relative;transition:background .2s;
+  border-bottom:1px solid rgba(243,237,224,.07);
+}
+.grp-h::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--red);
+  transform:scaleY(0);transition:transform .25s;
+}
+.grp-h:hover{background:rgba(243,237,224,.03);}
+.grp-h:hover::before,.grp-h.open::before{transform:scaleY(1);}
+.grp-h.open{background:rgba(156,43,43,.08);}
+.grp-i{font-size:10px;color:var(--mut);opacity:.5;font-variant-numeric:tabular-nums;}
+.grp-n{min-width:0;}
+.grp-n .en{font-size:13px;color:var(--ink);display:block;line-height:1.3;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.grp-n .ar{font-family:var(--arabic);font-size:11px;color:var(--mut);display:block;
+  margin-top:1px;direction:rtl;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.grp-n .self{color:var(--red);font-size:9px;letter-spacing:.14em;text-transform:uppercase;margin-left:8px;}
+/* per-row mini waveform, sized to the count */
+.grp-w{display:none;}
+.grp-y{display:none;}
+.grp-c{
+  font-size:11px;color:var(--mut);font-variant-numeric:tabular-nums;text-align:right;
+  display:flex;align-items:center;justify-content:flex-end;gap:7px;
+}
+.grp-h.open .grp-c{color:var(--ink);}
+.grp-c .chev{
+  width:7px;height:7px;border-right:1px solid var(--mut);border-bottom:1px solid var(--mut);
+  transform:rotate(45deg);transition:transform .3s;flex:none;margin-top:-3px;
+}
+.grp-h.open .grp-c .chev{transform:rotate(-135deg);margin-top:2px;}
+
+.grp-body{
+  display:none;grid-column:1 / -1;
+  padding:16px 4px 22px;margin-bottom:6px;
+  border-bottom:1px solid var(--hair);
+  background:rgba(243,237,224,.018);
+}
+.grp-body.open{display:block;}
+.grp-body .bhead{
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--red);margin-bottom:12px;padding-left:4px;
+}
+.song-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1px 28px;}
+.song{
+  display:grid;grid-template-columns:1fr auto;gap:12px;align-items:baseline;
+  padding:7px 8px 7px 0;border-bottom:1px solid rgba(243,237,224,.045);
+}
+.song:hover{background:rgba(243,237,224,.03);}
+.song .t{min-width:0;}
+.song .t .ar{font-family:var(--arabic);font-size:13.5px;display:block;direction:rtl;line-height:1.5;}
+.song .t .en{font-family:var(--serif);font-style:italic;font-size:11.5px;color:var(--mut);display:block;}
+.song .t .who{font-size:11px;color:var(--mut);display:block;margin-top:1px;}
+.song .y{font-size:10.5px;color:var(--mut);font-variant-numeric:tabular-nums;opacity:.75;}
+.cat-empty{padding:46px 0;text-align:center;color:var(--mut);font-size:13px;}
+
+@media (max-width:900px){
+  .stats{grid-template-columns:1fr;}
+  .stats div{border-left:0;border-top:1px solid var(--hair);}
+  .stats div:first-child{border-top:0;}
+  .cat-list{grid-template-columns:1fr;}
+  .grp-h{grid-template-columns:1fr auto 30px;gap:8px;}
+  .grp-i,.grp-w{display:none;}
+  .grp-body{padding-left:8px;}
+}
+
+/* ============================ THE TRACK RAIL ============================ */
+.rail{
+  position:fixed;left:0;top:0;bottom:0;width:60px;z-index:45;
+  display:none;flex-direction:column;align-items:center;
+  padding:22px 0;pointer-events:none;
+  border-right:1px solid rgba(243,237,224,.06);
+  background:linear-gradient(to right, rgba(0,0,0,.3), rgba(0,0,0,0));
+}
+.rail .cap{
+  font-size:8px;letter-spacing:.16em;color:var(--mut);opacity:.45;
+  font-variant-numeric:tabular-nums;flex:none;
+}
+.rail svg{flex:1;width:100%;overflow:visible;pointer-events:auto;margin:9px 0;}
+.rail .tick{fill:var(--ink);opacity:.14;}
+.rail .tick-lit{fill:var(--ink);opacity:.5;}
+.rail .hit{fill:transparent;cursor:pointer;}
+.rail .hit:hover ~ .tickgroup{opacity:1;}
+.rail .axis{stroke:rgba(243,237,224,.09);stroke-width:.5;}
+.rail .head{stroke:var(--red);stroke-width:.8;opacity:.85;}
+.rail .headdot{fill:var(--red);}
+.rail .secmark{stroke:rgba(243,237,224,.22);stroke-width:.5;}
+.rail .seclab{
+  fill:var(--mut);font-size:7px;letter-spacing:.1em;
+  text-transform:uppercase;opacity:.5;
+}
+.rail .seclab.on{fill:var(--red);opacity:1;}
+
+.rail-tip{
+  position:fixed;left:68px;z-index:46;transform:translateY(-50%);
+  background:#16120E;border:1px solid rgba(243,237,224,.14);
+  border-left:2px solid var(--red);border-radius:3px;padding:6px 10px;
+  font-size:11px;color:var(--ink);white-space:nowrap;pointer-events:none;
+  opacity:0;transition:opacity .16s;font-variant-numeric:tabular-nums;
+}
+.rail-tip.on{opacity:1;}
+.rail-tip b{color:var(--red);font-weight:500;}
+.rail-tip span{color:var(--mut);}
+
+@media (min-width:1180px){
+  .rail{display:flex;}
+  body{padding-left:60px;}
+}
+
+/* one continuous surface */
+body{
+  background:
+    radial-gradient(ellipse 120% 40% at 50% 0%, #1A1611 0%, rgba(14,12,10,0) 60%),
+    var(--bg);
+}
+.collab,.arc{background:transparent;}
+.pagegrain{
+  position:fixed;inset:-50%;z-index:1;pointer-events:none;
+  opacity:calc(var(--grain-op) * .8);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain 6s steps(5) infinite;
+}
+@media (prefers-reduced-motion:reduce){.pagegrain{animation:none;}}
+
+
+
+/* ============================ COLLABORATORS ============================ */
+.collab{
+  background:
+    radial-gradient(ellipse 66% 60% at 50% 42%, #16120E 0%, rgba(14,12,10,0) 72%);
+}
+.cloud{
+  max-width:1180px;margin:0 auto;
+  display:flex;flex-wrap:wrap;align-items:baseline;
+  gap:6px 26px;
+}
+.cloud a{
+  font-family:var(--serif);font-weight:300;line-height:1.16;
+  color:var(--ink);opacity:.62;position:relative;
+  transition:opacity .25s ease,color .25s ease;
+  white-space:nowrap;
+}
+.cloud a:hover{opacity:1;color:var(--ink);}
+.cloud a sup{
+  font-family:var(--sans);font-size:9.5px;font-weight:400;
+  color:var(--red);margin-left:5px;top:-.9em;letter-spacing:.04em;
+  opacity:.85;
+}
+.cloud a.is-self{font-style:italic;color:var(--mut);}
+.cloud-note{
+  max-width:1180px;margin:clamp(26px,4vh,44px) auto 0;
+  font-size:11.5px;color:var(--mut);opacity:.75;line-height:1.6;
+  padding-top:18px;border-top:1px solid var(--hair);
+}
+
+
+/* ============================ ON AIR ============================ */
+.onair{
+  position:relative;z-index:22;
+  max-width:1180px;margin:0 auto;
+  padding:26px clamp(20px,3.4vw,52px) 0;
+  display:flex;align-items:center;gap:clamp(16px,3vw,44px);flex-wrap:wrap;
+}
+.onair-tag{
+  display:inline-flex;align-items:center;gap:9px;flex:none;
+  font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--mut);
+}
+.onair-tag .led{
+  width:7px;height:7px;border-radius:50%;background:var(--red);
+  box-shadow:0 0 0 0 rgba(156,43,43,.6);animation:led 2.2s ease-out infinite;
+}
+@keyframes led{
+  0%{box-shadow:0 0 0 0 rgba(156,43,43,.5);opacity:1}
+  70%{box-shadow:0 0 0 10px rgba(156,43,43,0);opacity:.7}
+  100%{box-shadow:0 0 0 0 rgba(156,43,43,0);opacity:1}
+}
+.onair-line{
+  flex:1;min-width:220px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+  font-size:13px;color:var(--mut);
+}
+.onair-line b{color:var(--ink);font-weight:500;}
+.onair-line .ar{font-family:var(--arabic);font-size:14px;color:var(--ink);}
+.onair-line .dot{color:var(--red);}
+.onair-go{
+  flex:none;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--mut);border-bottom:1px solid transparent;transition:color .25s,border-color .25s;
+}
+.onair-go:hover{color:var(--ink);border-bottom-color:var(--red);}
+
+/* ============================ TITLE BAND ============================ */
+.band{
+  position:relative;padding:clamp(34px,6vh,64px) 0;
+  overflow:hidden;
+  border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);
+}
+.band-row{
+  display:flex;width:max-content;gap:34px;align-items:center;
+  will-change:transform;
+}
+.band-row.a{animation:bandL 64s linear infinite;}
+.band-row.b{animation:bandR 78s linear infinite;margin-top:14px;}
+@keyframes bandL{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes bandR{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.band:hover .band-row{animation-play-state:paused;}
+.band-row span{
+  font-family:var(--arabic);font-size:clamp(20px,2.5vw,34px);
+  color:var(--ink);opacity:.24;white-space:nowrap;direction:rtl;
+  transition:opacity .3s,color .3s;cursor:default;
+}
+.band-row span:hover{opacity:.85;}
+.band-row i{
+  width:5px;height:5px;border-radius:50%;background:var(--red);
+  opacity:.4;flex:none;font-style:normal;
+}
+.band::before,.band::after{
+  content:"";position:absolute;top:0;bottom:0;width:16%;z-index:2;pointer-events:none;
+}
+.band::before{left:0;background:linear-gradient(to right,var(--bg),rgba(14,12,10,0));}
+.band::after{right:0;background:linear-gradient(to left,var(--bg),rgba(14,12,10,0));}
+.band-cap{
+  position:absolute;left:50%;bottom:9px;transform:translateX(-50%);
+  font-size:9px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mut);opacity:.4;z-index:3;
+}
+@media (prefers-reduced-motion:reduce){
+  .band-row{animation:none;}
+  .onair-tag .led{animation:none;}
+}
+
+
+/* ============================ TIMELINE ============================ */
+.arc{position:relative;background:transparent;}
+.tl-runway{position:relative;height:210vh;}
+.tl-runway.open{height:auto;}
+.tl-pin{
+  position:sticky;top:0;height:100vh;
+  display:flex;align-items:center;overflow:hidden;
+}
+.tl-runway.open .tl-pin{position:static;height:auto;padding:10px 0 4px;overflow:visible;}
+
+.tl-viewport{position:relative;width:100%;}
+.tl-runway.open .tl-viewport{
+  overflow-x:auto;scroll-snap-type:x proximity;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+  padding-bottom:10px;
+}
+.tl-runway.open .tl-viewport::-webkit-scrollbar{display:none;}
+
+.tl-track{
+  position:relative;display:flex;align-items:flex-start;
+  gap:var(--tl-gap,54px);
+  padding:0 clamp(20px,3.4vw,52px);
+  width:max-content;
+  will-change:transform;
+}
+/* the axis itself, running the length of the track */
+.tl-track::before{
+  content:"";position:absolute;left:0;right:0;
+  top:var(--tl-axis,244px);height:1px;
+  background:linear-gradient(to right,transparent,var(--hair) 3%,var(--hair) 97%,transparent);
+}
+
+.tl-item{
+  flex:none;width:var(--tl-w,300px);
+  scroll-snap-align:center;
+  opacity:0;transform:translateY(22px);
+  transition:opacity .6s ease,transform .7s cubic-bezier(.22,1,.36,1);
+}
+.tl-item.in{opacity:1;transform:none;}
+
+/* photo sits above the line */
+.tl-shot{
+  height:var(--tl-shot,208px);
+  display:flex;align-items:flex-end;justify-content:center;
+  margin-bottom:12px;
+}
+.tl-frame{
+  background:#EFE9DC;padding:8px;border-radius:2px;
+  box-shadow:0 14px 34px rgba(0,0,0,.6),0 2px 4px rgba(0,0,0,.45);
+  transform:rotate(calc(var(--rot,0deg) * var(--tl-tilt,1)));
+  transition:transform .5s cubic-bezier(.22,1,.36,1),box-shadow .4s;
+  position:relative;
+}
+body.frames-polaroid .tl-frame{padding-bottom:30px;}
+body.frames-print .tl-frame{padding:7px;}
+body.frames-print .tl-cap{display:none;}
+.tl-item:hover .tl-frame{transform:rotate(0deg) translateY(-6px);box-shadow:0 22px 48px rgba(0,0,0,.7);}
+.tl-photo{position:relative;width:var(--tl-ph,150px);overflow:hidden;background:#1A1712;aspect-ratio:var(--ar,4/5);}
+.tl-photo .ph{
+  position:absolute;inset:0;
+  background:
+    repeating-linear-gradient(45deg,rgba(243,237,224,.028) 0 2px,rgba(0,0,0,0) 2px 7px),
+    linear-gradient(150deg,#2A241C 0%,#1C1813 60%,#15120E 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+}
+.tl-photo .ph .n{font-family:var(--serif);font-size:20px;font-weight:300;color:rgba(243,237,224,.2);line-height:1;}
+.tl-photo .ph .t{font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:rgba(166,156,138,.4);}
+.tl-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+.tl-cap{
+  position:absolute;left:0;right:0;bottom:8px;text-align:center;padding:0 8px;
+  font-family:var(--serif);font-style:italic;font-size:10.5px;color:#4A4038;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+
+/* the node on the axis */
+.tl-node{
+  height:34px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+  position:relative;
+}
+.tl-node .dot{
+  width:9px;height:9px;border-radius:50%;background:var(--bg);
+  border:1px solid var(--red);margin-top:-4px;
+  transition:background .35s,box-shadow .35s;
+}
+.tl-item.in .tl-node .dot{background:var(--red);box-shadow:0 0 0 4px rgba(156,43,43,.16);}
+.tl-node .yr{
+  margin-top:9px;font-family:var(--serif);font-size:15px;color:var(--ink);
+  font-variant-numeric:tabular-nums;letter-spacing:.02em;
+}
+
+/* text below the line */
+.tl-text{text-align:center;padding:8px 6px 0;}
+.tl-text h3{
+  font-family:var(--serif);font-weight:300;font-size:16.5px;line-height:1.24;
+  margin-bottom:7px;
+}
+.tl-text p{font-size:11.5px;line-height:1.62;color:var(--mut);}
+
+.tl-ctrl{
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  padding:clamp(18px,3vh,34px) 20px 0;flex-wrap:wrap;
+}
+.tl-btn{
+  display:inline-flex;align-items:center;gap:9px;padding:10px 22px;border-radius:999px;
+  border:1px solid var(--hair);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--mut);transition:border-color .25s,color .25s,background .25s,opacity .3s;
+}
+.tl-btn:hover{border-color:var(--red);color:var(--ink);background:rgba(156,43,43,.12);}
+.tl-btn.primary{border-color:rgba(156,43,43,.5);color:var(--ink);}
+.tl-btn.gone{opacity:0;pointer-events:none;}
+.tl-hint{
+  font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);opacity:.45;
+}
+
+@media (max-width:900px){
+  .tl-runway{height:180vh;}
+  .tl-track{--tl-w:236px;--tl-gap:30px;--tl-ph:126px;--tl-shot:178px;--tl-axis:212px;}
+  .tl-text p{font-size:11px;}
+}
+@media (prefers-reduced-motion:reduce){
+  .tl-runway{height:auto;}
+  .tl-pin{position:static;height:auto;}
+  .tl-item{opacity:1;transform:none;}
+}
+
+/* ============================ ANATOMY ============================ */
+.anat{
+  position:relative;
+  background:linear-gradient(180deg, rgba(34,28,21,0) 0%, #221C15 8%, #241E17 50%, #1B160F 92%, rgba(27,22,15,0) 100%);
+  border-top:1px solid rgba(243,237,224,.06);
+  border-bottom:1px solid rgba(243,237,224,.06);
+}
+.anat-grid{max-width:1180px;margin:0 auto;display:grid;gap:clamp(22px,3vw,40px);}
+.anat-card{
+  border:1px solid rgba(243,237,224,.09);border-radius:4px;
+  background:rgba(14,12,10,.32);
+  padding:clamp(18px,2.4vw,30px);
+}
+.anat-top{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:20px;}
+.anat-title .ar{font-family:var(--arabic);font-size:clamp(21px,2.5vw,31px);display:block;direction:rtl;line-height:1.35;}
+.anat-title .en{font-family:var(--serif);font-style:italic;font-size:12.5px;color:var(--mut);display:block;margin-top:2px;}
+.anat-meta{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);white-space:nowrap;}
+
+.layer{
+  display:grid;grid-template-columns:104px 1fr auto;gap:14px;align-items:center;
+  padding:9px 0;border-bottom:1px solid rgba(243,237,224,.055);
+}
+.layer:last-child{border-bottom:0;}
+.layer .role{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);}
+.layer .track{height:7px;border-radius:99px;background:rgba(243,237,224,.07);position:relative;overflow:hidden;}
+.layer .track i{
+  position:absolute;inset:0;width:0;border-radius:99px;
+  background:rgba(243,237,224,.22);
+  transition:width 1.1s cubic-bezier(.22,1,.36,1);
+}
+.layer .who{font-size:12px;color:var(--mut);white-space:nowrap;}
+.layer .who .ar{font-family:var(--arabic);font-size:13px;}
+.layer.his .role{color:var(--red);}
+.layer.his .track i{background:linear-gradient(90deg,var(--red),#C4453F);}
+.layer.his .who{color:var(--ink);}
+.layer.tbd .who{opacity:.4;font-style:italic;}
+.anat.in .layer .track i{width:var(--w,60%);}
+
+.anat-foot{
+  max-width:1180px;margin:clamp(24px,4vh,40px) auto 0;
+  padding-top:18px;border-top:1px solid rgba(243,237,224,.09);
+  font-size:12px;color:var(--mut);line-height:1.7;
+}
+.anat-foot b{color:var(--ink);font-weight:500;}
+@media (min-width:900px){ .anat-grid{grid-template-columns:1fr 1fr;} .anat-card:first-child{grid-column:1 / -1;} }
+@media (max-width:620px){ .layer{grid-template-columns:82px 1fr;} .layer .who{grid-column:1/-1;} }
+
+
+/* ============================ SPOTIFY LINKS ============================ */
+a.song{color:inherit;text-decoration:none;cursor:pointer;}
+a.song .sp{
+  width:15px;height:15px;flex:none;opacity:.3;color:var(--mut);
+  transition:opacity .25s,color .25s;margin-left:10px;align-self:center;
+}
+a.song .sp.direct{opacity:.55;}
+a.song:hover .sp{opacity:1;color:#1ED760;}
+a.song .yw{display:flex;align-items:center;}
+
+
+
+
+/* ============================ ON THE CHARTS ============================ */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+#charts{--cx-heavy:"Inter",system-ui,sans-serif;--cx-up:#7FB069;--cx-down:#C8463F;}
+.cx-head{max-width:1180px;margin:0 auto clamp(30px,5vh,52px);
+  display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;}
+.cx-head .kicker{display:inline-flex;align-items:center;gap:9px;font-size:10.5px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--mut);margin-bottom:12px;}
+.cx-head .kicker .bar{width:22px;height:1px;background:var(--red);}
+.cx-title{font-family:var(--cx-heavy);font-weight:900;font-size:clamp(46px,7vw,104px);
+  line-height:.86;letter-spacing:-.045em;text-transform:uppercase;}
+.cx-title .ar{display:block;font-family:var(--arabic);font-weight:500;text-transform:none;
+  letter-spacing:0;font-size:.36em;line-height:1.3;color:var(--mut);margin-top:12px;direction:rtl;text-align:left;}
+.cx-stats{display:flex;gap:0;border:1px solid var(--hair);}
+.cx-stats li{list-style:none;padding:14px 20px;border-left:1px solid var(--hair);min-width:120px;}
+.cx-stats li:first-child{border-left:0;}
+.cx-stats b{display:block;font-family:var(--cx-heavy);font-weight:900;font-size:40px;line-height:.9;
+  letter-spacing:-.04em;font-variant-numeric:tabular-nums;}
+.cx-stats span{display:block;margin-top:8px;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);}
+
+/* ---- the number one: an original certified plaque ---- */
+.cx-hero{max-width:1180px;margin:0 auto clamp(46px,7vh,76px);
+  display:grid;grid-template-columns:minmax(0,440px) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:center;}
+.cx-plq{margin:0;}
+.cx-plq-frame{
+  padding:14px;border-radius:3px;
+  background:linear-gradient(145deg,#2A2622 0%,#0B0A09 38%,#1A1714 62%,#050404 100%);
+  box-shadow:0 40px 90px rgba(0,0,0,.7),0 0 0 1px rgba(243,237,224,.08),inset 0 1px 0 rgba(243,237,224,.14);
+  position:relative;
+}
+.cx-plq-frame::after{   /* glass reflection */
+  content:"";position:absolute;inset:14px;pointer-events:none;border-radius:1px;
+  background:linear-gradient(120deg,rgba(255,255,255,.07) 0%,rgba(255,255,255,0) 32%,rgba(255,255,255,0) 70%,rgba(255,255,255,.03) 100%);
+}
+.cx-plq-mat{background:#0D0C0B;padding:26px 24px 18px;border:1px solid rgba(243,237,224,.06);}
+.cx-plq-art{position:relative;width:74%;aspect-ratio:1;margin:0 0 0 2%;}
+.cx-plq-disc{
+  position:absolute;top:4%;left:26%;width:92%;aspect-ratio:1;border-radius:50%;
+  background:
+    radial-gradient(circle,#9C2B2B 0 16%,#7A2020 16.5% 17%,rgba(0,0,0,0) 17.5%),
+    repeating-radial-gradient(circle,#0A0908 0 1px,#191512 1px 2.4px);
+  box-shadow:0 10px 26px rgba(0,0,0,.6);
+  transition:transform 1.2s cubic-bezier(.22,1,.36,1);
+}
+.cx-plq-disc::after{content:"";position:absolute;left:50%;top:50%;width:3%;aspect-ratio:1;border-radius:50%;
+  transform:translate(-50%,-50%);background:#0A0908;}
+.cx-plq:hover .cx-plq-disc{transform:translateX(9%) rotate(40deg);}
+.cx-plq-cover{position:relative;width:100%;height:100%;object-fit:cover;display:block;
+  box-shadow:6px 8px 24px rgba(0,0,0,.65);}
+.cx-plq-cover.mono{display:grid;place-items:center;background:linear-gradient(150deg,#2A241C,#15120E);
+  font-family:var(--arabic);font-size:64px;color:rgba(243,237,224,.55);}
+.cx-plq-plate{margin-top:22px;display:grid;grid-template-columns:1fr auto;border:1px solid rgba(243,237,224,.14);}
+.cx-plq-info{padding:11px 14px;background:linear-gradient(180deg,#EFE7D6,#D8CCB4);color:#1B1612;}
+.cx-plq-info .c{display:block;font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:#6B5E4C;margin-bottom:4px;}
+.cx-plq-info .t{display:block;font-family:var(--cx-heavy);font-weight:800;font-size:15px;letter-spacing:-.01em;}
+.cx-plq-info .a{display:block;font-size:11px;color:#4B4034;margin-top:1px;}
+.cx-plq-rank{background:var(--red);color:var(--ink);display:grid;place-items:center;padding:0 16px;
+  font-family:var(--cx-heavy);font-weight:900;font-size:40px;letter-spacing:-.05em;line-height:1;min-width:88px;}
+.cx-plq-rank .h{font-size:.5em;vertical-align:.42em;margin-right:1px;}
+.cx-plq-foot{display:flex;justify-content:space-between;margin-top:12px;font-size:8.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(166,156,138,.6);}
+
+.cx-story .eyebrow2{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--red);margin-bottom:14px;}
+.cx-story h3{font-family:var(--cx-heavy);font-weight:900;font-size:clamp(40px,5vw,72px);line-height:.9;
+  letter-spacing:-.04em;}
+.cx-story .ar{display:block;font-family:var(--arabic);font-size:clamp(24px,2.6vw,34px);color:var(--mut);
+  margin-top:10px;direction:rtl;text-align:left;}
+.cx-story .by{margin-top:18px;font-size:14px;color:var(--ink);}
+.cx-story .by span{color:var(--mut);}
+.cx-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;}
+.cx-chip{display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border:1px solid var(--hair);
+  border-radius:999px;font-size:11.5px;color:var(--ink);}
+.cx-chip.up{border-color:rgba(127,176,105,.45);color:var(--cx-up);}
+.cx-story .note{margin-top:20px;font-size:13px;color:var(--mut);line-height:1.65;max-width:46ch;}
+
+/* ---- the chart ---- */
+.cx-bar{max-width:1180px;margin:0 auto 6px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;}
+.cx-filters{display:flex;gap:6px;flex-wrap:wrap;}
+.cx-filters button{padding:8px 15px;border:1px solid var(--hair);border-radius:2px;
+  font-family:var(--cx-heavy);font-weight:700;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--mut);transition:color .2s,border-color .2s,background .2s;}
+.cx-filters button:hover{color:var(--ink);border-color:rgba(243,237,224,.3);}
+.cx-filters button[aria-pressed="true"]{color:var(--bg);background:var(--ink);border-color:var(--ink);}
+.cx-count{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);}
+
+.cx-wrap{max-width:1180px;margin:0 auto;border-top:2px solid var(--ink);}
+.cx-table{width:100%;border-collapse:collapse;}
+.cx-table th{text-align:left;font-family:var(--cx-heavy);font-weight:700;font-size:9.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--mut);padding:11px 10px;border-bottom:1px solid var(--hair);}
+.cx-row td{padding:14px 10px;border-bottom:1px solid rgba(243,237,224,.08);vertical-align:middle;}
+.cx-row{transition:background .2s;}
+.cx-row.has-note{cursor:pointer;}
+.cx-row:hover{background:rgba(243,237,224,.035);}
+.cx-rank{font-family:var(--cx-heavy);font-weight:900;font-size:40px;line-height:.9;letter-spacing:-.05em;
+  font-variant-numeric:tabular-nums;width:72px;}
+.cx-rank .h{font-size:.42em;vertical-align:.95em;color:var(--mut);margin-right:1px;letter-spacing:0;}
+.cx-row.t-official .cx-rank.one{color:var(--red);}
+.cx-row.t-official .cx-rank.one .h{color:var(--red);}
+.cx-row.t-platform .cx-rank,.cx-row.t-sales .cx-rank{color:var(--mut);font-weight:700;}
+.cx-rank-text{display:block;font-family:var(--cx-heavy);font-weight:800;font-size:12px;letter-spacing:-.01em;
+  line-height:1.2;max-width:12ch;color:var(--ink);}
+.cx-move{width:54px;font-family:var(--cx-heavy);font-weight:800;font-size:11px;white-space:nowrap;}
+.cx-move.up{color:var(--cx-up);} .cx-move.down{color:var(--cx-down);} .cx-move.none{color:rgba(166,156,138,.4);}
+.cx-art{width:64px;}
+.cx-art img,.cx-art .mono{width:52px;height:52px;display:block;object-fit:cover;border-radius:2px;
+  box-shadow:0 4px 12px rgba(0,0,0,.5);}
+.cx-art .mono{display:grid;place-items:center;background:linear-gradient(150deg,#2A241C,#15120E);
+  font-family:var(--arabic);font-size:20px;color:rgba(243,237,224,.55);}
+.cx-t .en{display:block;font-family:var(--cx-heavy);font-weight:800;font-size:15.5px;letter-spacing:-.01em;color:var(--ink);}
+.cx-t .ar{display:block;font-family:var(--arabic);font-size:14px;color:var(--mut);margin-top:1px;direction:rtl;text-align:left;}
+.cx-t .who{display:block;font-size:12px;color:var(--mut);margin-top:3px;}
+.cx-c .nm{display:block;font-size:12.5px;color:var(--ink);margin-bottom:6px;}
+.cx-label{display:block;font-size:11px;color:var(--mut);margin-top:4px;max-width:24ch;line-height:1.35;}
+.cx-d{font-size:12px;color:var(--mut);white-space:nowrap;font-variant-numeric:tabular-nums;}
+.cx-w{font-family:var(--cx-heavy);font-weight:800;font-size:13px;white-space:nowrap;}
+.cx-table.no-wks .cx-wk{display:none;}
+.cx-w small{display:block;font-weight:400;font-size:9px;letter-spacing:.14em;color:var(--mut);}
+
+.cx-tier{display:inline-block;font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;padding:4px 8px;
+  border-radius:2px;white-space:nowrap;line-height:1.2;font-family:var(--cx-heavy);font-weight:700;}
+.cx-tier.official{background:var(--red);color:var(--ink);}
+.cx-tier.platform{border:1px solid var(--hair);color:var(--mut);font-weight:400;}
+.cx-tier.sales{border:1px dashed rgba(166,156,138,.45);color:var(--mut);font-weight:400;}
+.cx-src{font-size:11px;color:var(--mut);text-decoration:none;white-space:nowrap;border-bottom:1px solid transparent;}
+.cx-src:hover,.cx-src:focus-visible{color:var(--ink);border-bottom-color:var(--red);}
+.cx-tog{width:28px;height:28px;border-radius:50%;border:1px solid var(--hair);display:grid;place-items:center;}
+.cx-tog::before{content:"";width:6px;height:6px;border-right:1px solid var(--mut);border-bottom:1px solid var(--mut);
+  transform:rotate(45deg);margin-top:-3px;transition:transform .3s;}
+.cx-tog[aria-expanded="true"]{border-color:var(--red);}
+.cx-tog[aria-expanded="true"]::before{transform:rotate(-135deg);margin-top:3px;}
+.cx-note[hidden]{display:none;}
+.cx-note td{padding:0 10px 16px 146px;}
+.cx-note td{border-bottom:1px solid rgba(243,237,224,.08);font-size:12.5px;color:var(--mut);line-height:1.6;}
+.cx-note td .inner{border-left:2px solid var(--red);padding:3px 0 3px 13px;max-width:72ch;}
+.cx-empty td{padding:34px 10px;text-align:center;color:var(--mut);}
+.cx-foot{max-width:1180px;margin:22px auto 0;font-size:11px;color:var(--mut);opacity:.75;line-height:1.6;}
+
+.cx-rise{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .8s cubic-bezier(.22,1,.36,1);}
+.cx-rise.in{opacity:1;transform:none;}
+
+@media (max-width:900px){ .cx-hero{grid-template-columns:1fr;} .cx-plq{max-width:420px;} }
+@media (max-width:760px){
+  .cx-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+  .cx-table,.cx-table tbody{display:block;}
+  .cx-row{display:grid;grid-template-columns:52px 52px minmax(0,1fr) 30px;column-gap:12px;row-gap:8px;
+    grid-template-areas:"rank art t tog" "move . c c" ". . d src";padding:14px 0;
+    border-bottom:1px solid rgba(243,237,224,.08);}
+  .cx-row td{display:block;padding:0;border:0;width:auto;}
+  .cx-row .cx-rank{grid-area:rank;font-size:32px;} .cx-row .cx-move-cell{grid-area:move;}
+  .cx-row .cx-art{grid-area:art;} .cx-row .cx-t{grid-area:t;} .cx-row .cx-c{grid-area:c;}
+  .cx-row .cx-d{grid-area:d;} .cx-row .cx-wk{display:none;} .cx-row .cx-s{grid-area:src;justify-self:end;}
+  .cx-row .cx-g{grid-area:tog;}
+  .cx-note{display:block;} .cx-note td{display:block;padding:0 0 14px 64px;}
+  .cx-note[hidden]{display:none !important;}
+  .cx-move.none{display:none;}
+  .cx-stats li{min-width:0;padding:12px 14px;} .cx-stats b{font-size:30px;}
+}
+@media (prefers-reduced-motion:reduce){ .cx-rise{opacity:1;transform:none;transition:none;} .cx-plq-disc{transition:none;} }
+
+
+/* ============================ CHARTS · LIFE ============================ */
+#charts{position:relative;overflow:hidden;isolation:isolate;}
+
+/* stage lights: sweeping beams, dust, floor haze */
+.cx-stage{position:absolute;inset:0;z-index:-2;pointer-events:none;overflow:hidden;}
+.cx-stage .beam{
+  /* the wedge is the light itself: a conic fan from a point at the top, soft-edged by its own stops,
+     faded out downwards by a mask. No clipping, so no hard edges. */
+  position:absolute;top:-4%;left:var(--l);width:70%;height:112%;margin-left:-35%;
+  transform-origin:50% 0;will-change:transform;mix-blend-mode:screen;
+  background:conic-gradient(from 0deg at 50% 0%,
+    rgba(255,200,155,0) 0deg 169deg, rgba(255,200,155,var(--k,.085)) 177deg 183deg, rgba(255,200,155,0) 191deg 360deg);
+  -webkit-mask-image:linear-gradient(to bottom,#000 0%,rgba(0,0,0,.55) 50%,rgba(0,0,0,0) 90%);
+          mask-image:linear-gradient(to bottom,#000 0%,rgba(0,0,0,.55) 50%,rgba(0,0,0,0) 90%);
+  animation:cxSway 15s ease-in-out infinite alternate;
+}
+.cx-stage .beam.b1{--l:14%;--a:-16deg;--b:9deg;}
+.cx-stage .beam.b2{--l:50%;--a:-10deg;--b:12deg;--k:.11;animation-duration:19s;animation-direction:alternate-reverse;
+  background:conic-gradient(from 0deg at 50% 0%,
+    rgba(210,72,64,0) 0deg 169deg, rgba(210,72,64,var(--k)) 177deg 183deg, rgba(210,72,64,0) 191deg 360deg);}
+.cx-stage .beam.b3{--l:84%;--a:14deg;--b:-9deg;animation-duration:17s;}
+@keyframes cxSway{from{transform:rotate(var(--a))}to{transform:rotate(var(--b))}}
+.cx-stage .haze{
+  position:absolute;left:-10%;right:-10%;bottom:-20%;height:55%;
+  background:radial-gradient(ellipse at 50% 100%,rgba(200,70,63,.12),rgba(200,70,63,0) 65%);
+  animation:cxHaze 11s ease-in-out infinite alternate;
+}
+@keyframes cxHaze{from{transform:translateX(-4%)}to{transform:translateX(4%)}}
+.cx-stage .mote{
+  position:absolute;width:2px;height:2px;border-radius:50%;background:rgba(255,226,190,.7);
+  box-shadow:0 0 6px rgba(255,226,190,.8);opacity:0;animation:cxMote linear infinite;
+}
+@keyframes cxMote{
+  0%{transform:translate(0,0);opacity:0} 15%{opacity:.8} 85%{opacity:.5}
+  100%{transform:translate(var(--dx,20px),-160px);opacity:0}
+}
+/* the glow that follows the hovered song, in that song's colour */
+.cx-amb{
+  position:absolute;width:880px;height:420px;margin:-210px 0 0 -440px;border-radius:50%;
+  background:radial-gradient(closest-side,var(--amb,rgb(156,43,43)),rgba(0,0,0,0));
+  filter:blur(46px);z-index:-1;pointer-events:none;opacity:0;mix-blend-mode:screen;
+  transition:opacity .55s ease,top .55s cubic-bezier(.22,1,.36,1),left .55s cubic-bezier(.22,1,.36,1);
+}
+.cx-amb.on{opacity:.36;}
+
+/* chart-show ticker */
+.cx-ticker{
+  margin:0 calc(-1 * clamp(20px,3.4vw,52px)) clamp(34px,5vh,54px);
+  border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);
+  background:rgba(10,9,8,.6);overflow:hidden;padding:11px 0;
+}
+.cx-tk-track{display:flex;width:max-content;animation:cxTk 55s linear infinite;}
+.cx-ticker:hover .cx-tk-track{animation-play-state:paused;}
+.cx-tk-run{display:flex;align-items:center;gap:22px;padding-right:22px;}
+.cx-tk-item{font-family:var(--cx-heavy);font-weight:800;font-size:12px;letter-spacing:.05em;white-space:nowrap;color:var(--ink);}
+.cx-tk-item b{color:var(--red);margin-right:4px;}
+.cx-tk-item em{font-style:normal;font-weight:400;color:var(--mut);}
+.cx-tk-item .up{color:var(--cx-up);}
+.cx-tk-item small{font-weight:400;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin-left:4px;}
+.cx-tk-dot{width:5px;height:5px;border-radius:50%;background:var(--red);flex:none;}
+@keyframes cxTk{to{transform:translateX(-50%)}}
+
+/* plaque: tilts under the cursor, glare follows */
+.cx-plq{perspective:1100px;}
+.cx-plq-frame{transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .3s ease-out;transform-style:preserve-3d;}
+.cx-plq-frame::before{
+  content:"";position:absolute;inset:14px;pointer-events:none;z-index:3;opacity:0;transition:opacity .3s;
+  background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.16),rgba(255,255,255,0) 45%);
+}
+.cx-plq:hover .cx-plq-frame::before{opacity:1;}
+
+/* the ladder: 100 -> 1 */
+.cx-ladder{max-width:1180px;margin:0 auto clamp(44px,7vh,70px);}
+.cx-lad-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px;}
+.cx-lad-head h3{font-family:var(--cx-heavy);font-weight:900;font-size:20px;letter-spacing:-.02em;text-transform:uppercase;}
+.cx-lad-head p{font-size:11px;color:var(--mut);}
+.cx-lad-field{position:relative;height:190px;margin:0 16px;}
+.cx-lad-axis{position:absolute;left:0;right:0;bottom:30px;height:2px;
+  background:linear-gradient(90deg,rgba(243,237,224,.08),rgba(243,237,224,.35));}
+.cx-lad-tick{position:absolute;bottom:0;transform:translateX(-50%);font-family:var(--cx-heavy);font-weight:800;
+  font-size:10px;color:var(--mut);letter-spacing:.04em;}
+.cx-lad-tick::before{content:"";position:absolute;left:50%;bottom:17px;width:1px;height:9px;background:rgba(243,237,224,.25);}
+.cx-lad-tick.top{color:var(--red);}
+.cx-lad-svg{position:absolute;left:0;right:0;top:0;bottom:30px;width:100%;height:calc(100% - 30px);overflow:visible;pointer-events:none;}
+.cx-lad-svg path{fill:none;stroke:var(--cx-up);stroke-width:1.5;stroke-dasharray:4 5;vector-effect:non-scaling-stroke;
+  opacity:0;transition:opacity .4s;}
+.cx-ladder.climbed .cx-lad-svg path{opacity:.8;}
+.cx-climb-lbl{position:absolute;transform:translate(-50%,-50%);font-family:var(--cx-heavy);font-weight:900;font-size:13px;
+  color:var(--cx-up);opacity:0;transition:opacity .5s .9s;white-space:nowrap;}
+.cx-ladder.climbed .cx-climb-lbl{opacity:1;}
+.cx-dot{
+  position:absolute;left:var(--x);bottom:calc(38px + var(--lv) * 22px);width:15px;height:15px;margin-left:-7.5px;
+  border-radius:50%;padding:0;cursor:pointer;transform:scale(0);
+  transition:left 1.7s cubic-bezier(.22,1,.36,1),bottom 1.7s cubic-bezier(.22,1,.36,1),
+             transform .45s cubic-bezier(.34,1.56,.64,1),opacity .3s;
+  transition-delay:0s,0s,var(--d,0s),0s;
+}
+.cx-ladder.in .cx-dot{transform:scale(1);}
+.cx-dot.official{background:var(--red);box-shadow:0 0 0 4px rgba(156,43,43,.2),0 0 18px rgba(200,70,63,.6);}
+.cx-dot.platform{background:var(--bg);border:1.5px solid var(--ink);}
+.cx-dot.sales{background:var(--bg);border:1.5px dashed var(--mut);}
+.cx-ladder.in .cx-dot:hover,.cx-ladder.in .cx-dot.hl,.cx-ladder.in .cx-dot:focus-visible{transform:scale(1.55);z-index:5;}
+.cx-dot.dim{opacity:.15;}
+.cx-dot::after{
+  content:attr(data-tip);position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%) scale(.645);
+  transform-origin:50% 100%;white-space:nowrap;background:#16120E;border:1px solid rgba(243,237,224,.16);
+  border-left:2px solid var(--red);padding:6px 10px;border-radius:3px;font-size:11px;color:var(--ink);
+  opacity:0;pointer-events:none;transition:opacity .2s;font-family:var(--sans);
+}
+.cx-dot.r::after{left:auto;right:-6px;transform:scale(.645);transform-origin:100% 100%;}
+.cx-dot:hover::after,.cx-dot.hl::after,.cx-dot:focus-visible::after{opacity:1;}
+
+/* rows cascade in; hovered/linked rows light up */
+.cx-wrap.pre .cx-row{opacity:0;}
+.cx-wrap.live .cx-row{animation:cxRow .6s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(var(--i,0) * 55ms);}
+@keyframes cxRow{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.cx-row.hl{background:rgba(243,237,224,.05);}
+.cx-row.hl .cx-rank{text-shadow:0 0 22px rgba(200,70,63,.55);}
+
+@media (max-width:760px){
+  .cx-lad-field{height:170px;margin:0 8px;}
+  .cx-stage .beam{width:130%;margin-left:-65%;}
+}
+@media (prefers-reduced-motion:reduce){
+  .cx-stage .beam,.cx-stage .haze,.cx-stage .mote,.cx-tk-track{animation:none;}
+  .cx-stage .mote{display:none;}
+  .cx-dot{transition:none;transform:scale(1);}
+  .cx-wrap.pre .cx-row{opacity:1;} .cx-wrap.live .cx-row{animation:none;}
+  .cx-plq-frame{transition:none;}
+}
+
+/* ============================ AWARDS WALL ============================ */
+.awards-sec{
+  background:
+    radial-gradient(ellipse 80% 55% at 50% 0%, rgba(214,178,128,.07), rgba(214,178,128,0) 70%),
+    linear-gradient(180deg,#14100D,#100D0A);
+  border-top:1px solid rgba(243,237,224,.06);
+}
+.wall{
+  max-width:1180px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,286px));
+  justify-content:center;gap:60px clamp(28px,4vw,56px);
+  padding-top:34px;
+}
+.plaque{margin:0;position:relative;transform-origin:50% -34px;
+  opacity:0;transform:rotate(-4deg) translateY(-10px);
+  transition:opacity .7s ease, transform 1.3s cubic-bezier(.34,1.56,.64,1);}
+.plaque.hung{opacity:1;transform:rotate(0) translateY(0);}
+.plaque:nth-child(even){margin-top:30px;}
+.plaque:hover{transform:rotate(.9deg);}
+
+/* nail + string */
+.plaque .nail{
+  position:absolute;left:50%;top:-34px;width:8px;height:8px;margin-left:-4px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#8A7E6E,#2E2821 70%);
+  box-shadow:0 2px 3px rgba(0,0,0,.6);z-index:2;
+}
+.plaque .string{position:absolute;left:0;top:-32px;width:100%;height:34px;overflow:visible;pointer-events:none;}
+.plaque .string line{stroke:rgba(243,237,224,.22);stroke-width:1;}
+/* light from above */
+.plaque::before{
+  content:"";position:absolute;left:50%;top:-140px;width:190%;height:160%;
+  transform:translateX(-50%);pointer-events:none;z-index:-1;
+  background:radial-gradient(ellipse 44% 40% at 50% 46%, rgba(255,226,184,.085), rgba(255,226,184,0) 62%);
+}
+
+.frame{
+  position:relative;
+  background:linear-gradient(145deg,#1F1A14,#110E0B);
+  padding:20px 20px 16px;
+  border:1px solid rgba(243,237,224,.1);
+  box-shadow:0 26px 60px rgba(0,0,0,.6),
+             inset 0 0 0 7px #0E0B09, inset 0 0 0 8px rgba(243,237,224,.09);
+}
+.disc-wrap{position:relative;width:100%;aspect-ratio:1;}
+.disc{
+  position:absolute;inset:0;border-radius:50%;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 62%, rgba(243,237,224,.05) 63%, rgba(0,0,0,0) 64%),
+    repeating-radial-gradient(circle at 50% 50%, #0A0908 0 1px, #15120E 1px 2.3px),
+    #0C0A08;
+  box-shadow:0 14px 32px rgba(0,0,0,.65), inset 0 0 0 2px rgba(243,237,224,.05);
+}
+.plaque:hover .disc{animation:spin 1.8s linear infinite;}   /* 33 1/3 rpm */
+@keyframes spin{to{transform:rotate(360deg)}}
+/* the light stays put while the record turns under it */
+.sheen{
+  position:absolute;inset:0;border-radius:50%;pointer-events:none;
+  background:conic-gradient(from 0deg,
+    rgba(243,237,224,0) 0deg, rgba(243,237,224,.11) 24deg, rgba(243,237,224,0) 52deg,
+    rgba(243,237,224,0) 180deg, rgba(243,237,224,.08) 204deg, rgba(243,237,224,0) 232deg);
+  animation:sheen 14s linear infinite;
+}
+@keyframes sheen{to{transform:rotate(360deg)}}
+
+.label{
+  position:absolute;left:50%;top:50%;width:45%;aspect-ratio:1;
+  transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(circle at 34% 28%, #BE4A43, #9C2B2B 52%, #6E1C1C);
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.3);
+}
+.plaque.nom .label{background:radial-gradient(circle at 34% 28%, #F4EEE2, #DDD3C1 55%, #BBAE96);}
+.label svg{position:absolute;inset:0;width:100%;height:100%;}
+.label text{font-family:var(--sans);font-size:9.5px;letter-spacing:1px;fill:rgba(243,237,224,.9);}
+.plaque.nom .label text{fill:rgba(31,27,22,.8);}
+.label .yr{
+  position:absolute;left:0;right:0;top:28%;text-align:center;
+  font-family:var(--serif);font-weight:400;font-size:clamp(14px,1.35vw,17px);color:var(--ink);
+}
+.plaque.nom .label .yr{color:#1F1B16;}
+.label .res{
+  position:absolute;left:0;right:0;bottom:29%;text-align:center;
+  font-family:var(--sans);font-size:6.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(243,237,224,.75);
+}
+.plaque.nom .label .res{color:rgba(31,27,22,.65);}
+.label .hole{
+  position:absolute;left:50%;top:50%;width:7%;aspect-ratio:1;border-radius:50%;
+  transform:translate(-50%,-50%);background:#0A0908;
+  box-shadow:inset 0 1px 1px rgba(0,0,0,.8);
+}
+
+.plate{
+  margin-top:18px;padding:11px 12px 10px;text-align:center;
+  background:linear-gradient(180deg,#ECE4D3,#CDC2AB);color:#241E17;border-radius:2px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.45), inset 0 -1px 0 rgba(0,0,0,.12), 0 3px 6px rgba(0,0,0,.45);
+}
+.plate h3{font-family:var(--serif);font-weight:500;font-size:14px;line-height:1.25;margin-bottom:4px;}
+.plate .by{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#5A4F42;}
+.plate .for{display:block;margin-top:6px;font-family:var(--serif);font-style:italic;font-size:12px;color:#3A3128;}
+.plate .unv{display:block;margin-top:6px;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:#8A7C6A;}
+
+/* reserved frames */
+.plaque.empty .disc{
+  background:none;box-shadow:none;border:1px dashed rgba(243,237,224,.16);
+}
+.plaque.empty .disc-wrap::after{
+  content:"";position:absolute;left:50%;top:50%;width:6%;aspect-ratio:1;border-radius:50%;
+  transform:translate(-50%,-50%);background:rgba(243,237,224,.12);
+}
+.plaque.empty .plate{background:rgba(243,237,224,.05);box-shadow:none;border:1px dashed rgba(243,237,224,.14);}
+.plaque.empty .plate h3{color:var(--mut);font-weight:300;}
+.plaque.empty .plate .by{color:rgba(166,156,138,.6);}
+
+@media (prefers-reduced-motion:reduce){
+  .sheen,.bt-status .led{animation:none;}
+  .plaque:hover .disc{animation:none;}
+  .plaque{opacity:1;transform:none;transition:none;}
+  .fl.flip{animation:none;}
+}
+
+
+/* ============================ LIFE PASS ============================ */
+/* ---- paper: the cream of the palette, used as a surface ---- */
+.paper{
+  --p-bg:#EFE8DA; --p-ink:#1B1612; --p-mut:#6E6252; --p-hair:rgba(27,22,18,.12);
+  background:var(--p-bg) !important;
+  color:var(--p-ink);
+  border-top:0 !important;border-bottom:0 !important;
+  isolation:isolate;
+}
+/* tactile paper grain, multiplied into the cream */
+.paper::after{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .42  0 0 0 0 .35  0 0 0 0 .27  0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23p)'/%3E%3C/svg%3E");
+}
+.paper::before{background:linear-gradient(to bottom,rgba(27,22,18,.16),transparent) !important;}
+.paper .sec-head .kicker{color:var(--p-mut);}
+.paper .sec-head h2{color:var(--p-ink);}
+.paper .sec-head h2 .amp{color:var(--red);}
+.paper .sec-head h2 em{color:var(--p-ink);}
+.paper .sec-head p{color:var(--p-mut);}
+
+/* centred header variant — breaks the left-kicker rhythm */
+.centred .sec-head{text-align:center;}
+.centred .sec-head .kicker{justify-content:center;}
+.centred .sec-head .kicker .bar{display:none;}
+.centred .sec-head h2{font-size:clamp(38px,5.4vw,76px);letter-spacing:-.025em;}
+.centred .sec-head p{margin-left:auto;margin-right:auto;}
+
+/* anatomy as a magazine spread */
+.paper .anat-card{
+  background:#F9F4EA;border:1px solid rgba(27,22,18,.09);border-radius:3px;
+  box-shadow:0 1px 0 rgba(255,255,255,.7) inset, 0 18px 40px rgba(70,48,24,.10);
+}
+.paper .anat-title .ar{color:var(--p-ink);}
+.paper .anat-title .en,.paper .anat-meta{color:var(--p-mut);}
+.paper .layer{border-bottom-color:rgba(27,22,18,.08);}
+.paper .layer .role{color:var(--p-mut);}
+.paper .layer .track{background:rgba(27,22,18,.07);}
+.paper .layer .track i{background:rgba(27,22,18,.26);}
+.paper .layer.his .role{color:var(--red);}
+.paper .layer.his .track i{background:linear-gradient(90deg,#9C2B2B,#C8463F);}
+.paper .layer .who{color:var(--p-mut);}
+.paper .layer.his .who{color:var(--p-ink);font-weight:500;}
+.paper .anat-foot{color:var(--p-mut);border-top-color:rgba(27,22,18,.12);}
+.paper .anat-foot b{color:var(--p-ink);}
+
+/* awards: dark frames on a cream gallery wall */
+.paper.awards-sec{padding-bottom:clamp(90px,12vh,140px);}
+.paper .plaque::before{display:none;}
+.paper .plaque .string line{stroke:rgba(27,22,18,.42);}
+.paper .frame{
+  box-shadow:0 26px 50px rgba(55,36,18,.30), 0 6px 14px rgba(55,36,18,.18),
+             inset 0 0 0 7px #0E0B09, inset 0 0 0 8px rgba(243,237,224,.09);
+}
+
+/* ---- numbers count up ---- */
+.stats .n{font-variant-numeric:tabular-nums;}
+
+/* ---- a warm light that follows the cursor ---- */
+.glow{
+  position:fixed;left:0;top:0;width:680px;height:680px;margin:-340px 0 0 -340px;
+  border-radius:50%;pointer-events:none;z-index:3;
+  background:radial-gradient(circle,rgba(255,198,150,.085) 0%,rgba(255,198,150,.03) 34%,rgba(255,198,150,0) 64%);
+  mix-blend-mode:screen;opacity:0;transition:opacity .7s ease;will-change:transform;
+}
+.glow.on{opacity:1;}
+@media (hover:none),(prefers-reduced-motion:reduce){.glow{display:none;}}
+
+/* ============================ PANEL ============================ */
+#tweakDot{
+  position:fixed;left:14px;bottom:14px;z-index:9998;width:11px;height:11px;border-radius:50%;
+  background:var(--red);opacity:.5;cursor:pointer;transition:opacity .2s,transform .2s;
+}
+#tweakDot:hover{opacity:1;transform:scale(1.25);}
+#panel{
+  position:fixed;top:0;right:0;bottom:0;z-index:9999;width:330px;max-width:92vw;
+  background:#141210;border-left:1px solid rgba(243,237,224,.13);color:#E8E2D6;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;
+  overflow-y:auto;overscroll-behavior:contain;transform:translateX(100%);
+  transition:transform .28s cubic-bezier(.4,0,.2,1);padding-bottom:40px;
+}
+#panel.open{transform:translateX(0);}
+#panel .phead{
+  position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;
+  padding:13px 14px;background:#141210;border-bottom:1px solid rgba(243,237,224,.13);
+}
+#panel .phead b{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;}
+#panel .phead .x{cursor:pointer;opacity:.5;font-size:15px;line-height:1;}
+#panel .phead .x:hover{opacity:1;}
+#panel details{border-bottom:1px solid rgba(243,237,224,.08);}
+#panel summary{
+  padding:10px 14px;cursor:pointer;list-style:none;letter-spacing:.09em;
+  text-transform:uppercase;font-size:10px;color:#A69C8A;user-select:none;
+}
+#panel summary::-webkit-details-marker{display:none;}
+#panel summary::before{content:"+ ";color:var(--red);}
+#panel details[open] summary::before{content:"− ";}
+#panel details[open] summary{color:#E8E2D6;}
+#panel .body{padding:2px 14px 14px;}
+#panel .row{margin-bottom:9px;}
+#panel label{display:block;margin-bottom:3px;color:#8E8472;font-size:10px;letter-spacing:.04em;}
+#panel .lbl{display:flex;justify-content:space-between;margin-bottom:3px;color:#8E8472;font-size:10px;}
+#panel .lbl i{font-style:normal;color:#E8E2D6;}
+#panel input[type=text],#panel textarea,#panel select{
+  width:100%;background:#0D0B09;color:#E8E2D6;border:1px solid rgba(243,237,224,.14);
+  border-radius:3px;padding:5px 7px;font:inherit;font-size:11px;
+}
+#panel textarea{resize:vertical;min-height:42px;line-height:1.4;}
+#panel input[type=range]{width:100%;accent-color:#9C2B2B;}
+#panel input[type=color]{
+  width:100%;height:26px;background:none;border:1px solid rgba(243,237,224,.14);
+  border-radius:3px;padding:1px;cursor:pointer;
+}
+#panel .grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+#panel .btn{
+  width:100%;padding:7px;margin-top:4px;background:#0D0B09;
+  border:1px solid rgba(243,237,224,.18);border-radius:3px;cursor:pointer;
+  font:inherit;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#E8E2D6;
+}
+#panel .btn:hover{border-color:var(--red);background:rgba(156,43,43,.15);}
+#panel .hint{color:#6E6558;line-height:1.45;font-size:9.5px;margin-top:6px;}
+#panel #exportOut{min-height:150px;font-size:9.5px;}
+
+/* ============================ MOBILE ============================ */
+@media (max-width:900px){
+  .topbar{grid-template-columns:1fr auto;align-items:center;padding:18px 20px 16px;}
+  .burger{display:block;justify-self:end;}
+  .topbar .meta,.topbar .pill{display:none;}
+  .navlinks{
+    position:fixed;inset:0;background:rgba(14,12,10,.97);z-index:39;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:8px;opacity:0;pointer-events:none;transition:opacity .3s;
+  }
+  body.nav-open .navlinks{opacity:1;pointer-events:auto;}
+  .navlinks a{font-family:var(--serif);font-size:30px;padding:12px 0;opacity:1;}
+  .navlinks a::before{display:none;}
+  .ls-curved-carousel{height:var(--viewport-height-m);transform:translateY(-72%);}
+  .ls-curved-carousel__stage{perspective:var(--perspective-m);}
+  .foreground{--fg-size:54vh;--fg-y:2vh;}
+  .floor{width:70vw;bottom:16vh;}
+  .copy{left:20px;right:20px;bottom:46px;max-width:none;}
+  h1{font-size:clamp(30px,10vw,44px);margin-bottom:18px;}
+  .sub{font-size:12.5px;margin-bottom:20px;}
+  .quote,.scrollcue{display:none;}
+  .rv-stage{perspective:700px;}
+  .rv-stage-wrap{height:clamp(220px,32vh,300px);}
+  .rv-credit{min-height:190px;}
+  #panel{width:100vw;}
+}
+@media (prefers-reduced-motion:reduce){
+  .grain,.rv-head .kicker .dot,.scrollcue .line{animation:none;}
+  html{scroll-behavior:auto;}
+}
+</style>
+</head>
+<body>
+
+<!-- ======================= HERO ======================= -->
+<div class="page" id="top">
+  <div class="tally"></div>
+  <div class="ls-curved-carousel" id="carousel">
+    <div class="ls-curved-carousel__stage"><div class="ls-curved-carousel__ring" id="ring"></div></div>
+  </div>
+  <div class="floor"></div>
+  <img class="foreground" id="foreground" src="" alt="Amr Mostafa" style="opacity:0;transition:opacity .6s ease-out;">
+  <div class="grain"></div>
+
+  <header class="topbar">
+    <a class="wordmark" id="wordmark" href="#top" aria-label="Amr Mostafa">
+      <img id="wordmarkImg" src="wordmark.webp" alt="Amr Mostafa">
+      <span class="wm-text" id="wordmarkText" style="display:none">Amr Mostafa<span class="dot">.</span></span>
+    </a>
+    <div class="meta"><span class="k" id="meta1k">Melodies</span><span class="v" id="meta1v">265 songs <span class="accent">·</span> 66 voices</span></div>
+    <div class="meta"><span class="k" id="meta2k">Based in</span><span class="v" id="meta2v">Cairo, Egypt</span></div>
+    <nav><ul class="navlinks" id="navlinks">
+      <li><a href="#reveal">Work</a></li>
+      <li><a href="#years">Years</a></li>
+      <li><a href="#catalog">Catalogue</a></li>
+      <li><a href="#collaborators">Collaborators</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul></nav>
+    <a class="pill" href="#contact">
+      <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
+      <span id="navPillLabel">Start a project</span>
+    </a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </header>
+
+  <div class="copy">
+    <p class="eyebrow" id="eyebrow"><span class="ar">ملحّن</span> <span class="sep">·</span> Composer <span class="sep">·</span> Producer</p>
+    <h1 id="headline">It starts as<br>a <em>hum</em><span class="amp">.</span></h1>
+    <p class="sub" id="sub">The words are someone else's. The voice is someone else's. <b>The melody is mine</b> — 265 times over.</p>
+    <a class="pill pill--solid" href="#reveal">
+      <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
+      <span id="ctaLabel">Hear what you already know</span>
+    </a>
+  </div>
+
+  <div class="quote">
+    <p id="quoteText">&ldquo;I do not write songs. I <strong>hum something</strong> until it will not leave me alone — then I hand it to the right voice.&rdquo;</p>
+    <div class="sig">
+      <!-- SWAP: replace with <img src="signature.png"> -->
+      <div class="slot">Signature</div>
+    </div>
+  </div>
+
+  <a class="scrollcue" href="#reveal"><span>Scroll</span><span class="line"></span></a>
+</div>
+
+
+<!-- ======================= ON AIR ======================= -->
+<div class="onair" id="onair">
+  <span class="onair-tag"><span class="led"></span> On air</span>
+  <p class="onair-line" id="onairLine"></p>
+  <a class="onair-go" href="#catalog">See the catalogue &rarr;</a>
+</div>
+
+<!-- ======================= REVEAL ======================= -->
+<section class="reveal" id="reveal">
+  <div class="rv-head">
+    <p class="kicker"><span class="dot"></span> You already know these</p>
+    <h2>You know the song.<br>You know the voice.<br><em>Now meet the melody.</em></h2>
+    <p>Every one of these started as a hum in a room in Cairo. Someone else wrote the words. Someone else sang them.</p>
+  </div>
+
+  <div class="rv-stage-wrap">
+    <div class="rv-carousel" id="rvCarousel">
+      <div class="rv-stage"><div class="rv-ring" id="rvRing"></div></div>
+    </div>
+  </div>
+
+  <div class="rv-credit" id="rvCredit">
+    <h3 class="rv-title-ar" id="rvTitleAr"></h3>
+    <p class="rv-title-en" id="rvTitleEn"></p>
+    <p class="rv-artist" id="rvArtist"></p>
+    <p class="rv-year" id="rvYear"></p>
+    <div class="rv-rule" id="rvRule"></div>
+    <div class="rv-stamp" id="rvStamp"></div>
+    <p class="rv-lyric" id="rvLyric"></p>
+  </div>
+
+  <div class="rv-ctrl">
+    <button class="rv-arrow" id="rvPrev" aria-label="Previous">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H6M12 19l-7-7 7-7"/></svg>
+    </button>
+    <div class="rv-dots" id="rvDots"></div>
+    <button class="rv-arrow" id="rvNext" aria-label="Next">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+</section>
+
+
+
+
+
+<!-- ======================= TITLE BAND ======================= -->
+<section class="band" id="band" aria-hidden="true">
+  <div class="band-row a" id="bandA"></div>
+  <div class="band-row b" id="bandB"></div>
+  <span class="band-cap">265 titles, in his own hand</span>
+</section>
+
+
+<!-- ======================= ANATOMY ======================= -->
+<section class="sec anat paper" id="anatomy">
+  <div class="sec-head">
+    <p class="kicker"><span class="bar"></span> What a ملحّن actually does</p>
+    <h2>Four people make a song.<br><em>He makes the part you hum.</em></h2>
+    <p>A record is layers. The words belong to a lyricist, the performance to a singer, the production to an arranger. The melody underneath all of it is the composer's — and it is the layer nobody sees.</p>
+  </div>
+  <div class="anat-grid" id="anatGrid"></div>
+  <p class="anat-foot" id="anatFoot"></p>
+</section>
+
+<!-- ======================= TIMELINE ======================= -->
+<section class="sec arc" id="years">
+  <div class="sec-head">
+    <p class="kicker"><span class="bar"></span> Through the years</p>
+    <h2>Twenty-seven years,<br><em>on one line.</em></h2>
+    <p>Scroll to walk the first few. Then open the whole line.</p>
+  </div>
+
+  <div class="tl-runway" id="tlRunway">
+    <div class="tl-pin">
+      <div class="tl-viewport" id="tlViewport">
+        <div class="tl-track" id="tlTrack"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tl-ctrl">
+    <button class="tl-btn primary" id="tlMore">See all ten</button>
+    <span class="tl-hint" id="tlHint">Scroll to advance</span>
+  </div>
+</section>
+
+<!-- ======================= CATALOGUE ======================= -->
+<section class="sec" id="catalog">
+  <div class="sec-head">
+    <p class="kicker"><span class="bar"></span> The catalogue</p>
+    <h2>265 melodies,<br><em>filed by the voice that carried them.</em></h2>
+    <p>Open a name to hear what he gave them. Or switch to years and walk it chronologically.</p>
+  </div>
+
+  <div class="stats">
+    <div><span class="n">265</span><span class="l">Songs</span></div>
+    <div><span class="n">66</span><span class="l">Voices</span></div>
+    <div><span class="n">27<span class="unit">yrs</span></span><span class="l">1999 — 2026</span></div>
+  </div>
+
+  <div class="cat-bar">
+    <div class="seg" id="catSeg">
+      <button data-v="voice" class="on">By voice</button>
+      <button data-v="time">By year</button>
+    </div>
+    <div class="cat-search">
+      <input type="text" id="catQ" placeholder="Search a title or a name, in Arabic or Latin…" autocomplete="off">
+    </div>
+    <p class="cat-tally" id="catTally"></p>
+  </div>
+
+  <div class="cat-list" id="catList"></div>
+</section>
+
+
+
+
+
+<!-- ======================= CHARTS ======================= -->
+<section class="sec" id="charts" aria-labelledby="cxTitle">
+  <div class="cx-stage" aria-hidden="true"><i class="beam b1"></i><i class="beam b2"></i><i class="beam b3"></i><i class="haze"></i><span class="mote" style="left:8%;top:72%;animation-duration:9s;animation-delay:-1s;--dx:18px"></span><span class="mote" style="left:15%;top:58%;animation-duration:12s;animation-delay:-4s;--dx:-14px"></span><span class="mote" style="left:22%;top:80%;animation-duration:10s;animation-delay:-7s;--dx:22px"></span><span class="mote" style="left:34%;top:64%;animation-duration:13s;animation-delay:-2s;--dx:-20px"></span><span class="mote" style="left:41%;top:86%;animation-duration:8s;animation-delay:-5s;--dx:16px"></span><span class="mote" style="left:48%;top:70%;animation-duration:11s;animation-delay:-8s;--dx:-12px"></span><span class="mote" style="left:57%;top:60%;animation-duration:14s;animation-delay:-3s;--dx:24px"></span><span class="mote" style="left:63%;top:82%;animation-duration:9s;animation-delay:-6s;--dx:-18px"></span><span class="mote" style="left:71%;top:66%;animation-duration:12s;animation-delay:-9s;--dx:14px"></span><span class="mote" style="left:79%;top:78%;animation-duration:10s;animation-delay:-2s;--dx:-22px"></span><span class="mote" style="left:86%;top:62%;animation-duration:13s;animation-delay:-5s;--dx:20px"></span><span class="mote" style="left:92%;top:84%;animation-duration:11s;animation-delay:-7s;--dx:-16px"></span></div>
+  <div class="cx-amb" id="cxAmb" aria-hidden="true"></div>
+  <div class="cx-head">
+    <div>
+      <p class="kicker"><span class="bar"></span> Chart history</p>
+      <h2 class="cx-title" id="cxTitle">On the Charts<span class="ar" lang="ar" dir="rtl">على القوائم</span></h2>
+    </div>
+    <ul class="cx-stats" id="cxStats" aria-label="Chart statistics"></ul>
+  </div>
+
+  <div class="cx-ticker" id="cxTicker" aria-hidden="true"></div>
+  <div class="cx-hero" id="cxHero"></div>
+  <div class="cx-ladder" id="cxLadder" role="group" aria-labelledby="cxLadTitle"></div>
+
+  <div class="cx-bar">
+    <div class="cx-filters" id="cxFilters" role="group" aria-label="Filter chart entries">
+      <button type="button" data-f="all" aria-pressed="true">All</button>
+      <button type="button" data-f="billboard" aria-pressed="false">Billboard Arabia</button>
+      <button type="button" data-f="platform" aria-pressed="false">Streaming platforms</button>
+      <button type="button" data-f="sales" aria-pressed="false">Sales</button>
+    </div>
+    <p class="cx-count" id="cxCount" aria-live="polite"></p>
+  </div>
+
+  <div class="cx-wrap">
+    <table class="cx-table">
+      <caption class="sr-only">Every documented chart appearance of songs composed by Amr Mostafa</caption>
+      <thead><tr>
+        <th scope="col">Peak</th><th scope="col"><span class="sr-only">Movement</span></th>
+        <th scope="col"><span class="sr-only">Cover</span></th><th scope="col">Title</th>
+        <th scope="col">Chart</th><th scope="col">Date</th><th scope="col" class="cx-wk">Wks</th>
+        <th scope="col">Source</th><th scope="col"><span class="sr-only">Details</span></th>
+      </tr></thead>
+      <tbody id="cxBody"></tbody>
+    </table>
+  </div>
+
+  <p class="cx-foot">Billboard Arabia's charts launched in December 2023. Earlier hits are recognized through awards and sales rather than chart positions.
+    Chart names are cited for reference; this site is not affiliated with or endorsed by any chart publisher.</p>
+</section>
+
+<!-- ======================= AWARDS ======================= -->
+<section class="sec awards-sec paper centred" id="awards">
+  <div class="sec-head">
+    <p class="kicker"><span class="bar"></span> Recognition</p>
+    <h2>Hung on the wall<span class="amp">.</span></h2>
+    <p>Red label for a win, cream for a nomination. Hover a record to set it spinning.</p>
+  </div>
+  <div class="wall" id="awardsWall"></div>
+</section>
+
+<!-- ======================= COLLABORATORS ======================= -->
+<section class="sec collab" id="collaborators">
+  <div class="sec-head">
+    <p class="kicker"><span class="bar"></span> The voices</p>
+    <h2>66 singers.<br><em>One composer.</em></h2>
+    <p>Sized by how many of his melodies they carried. Tap any name to filter the catalogue.</p>
+  </div>
+  <div class="cloud" id="collabCloud"></div>
+  <p class="cloud-note" id="cloudNote"></p>
+</section>
+
+
+<!-- ======================= PANEL ======================= -->
+
+<!-- ======================= THE TRACK RAIL ======================= -->
+
+
+<div class="pagegrain" aria-hidden="true"></div>
+<aside class="rail" id="rail" aria-label="Career waveform">
+  <span class="cap" id="railTop">1999</span>
+  <svg id="railSvg" preserveAspectRatio="none" aria-hidden="true"></svg>
+  <span class="cap" id="railBot">2026</span>
+</aside>
+<div class="rail-tip" id="railTip"></div>
+
+<div id="tweakDot" title="Tweak panel  (`)"></div>
+<aside id="panel" aria-label="Tweak panel">
+  <div class="phead"><b>Tweak</b><span class="x" id="panelClose">✕</span></div>
+
+  <details open><summary>Type</summary><div class="body">
+    <div class="row"><label>Display / serif</label><select id="fSerif"></select></div>
+    <div class="row"><label>UI / sans</label><select id="fSans"></select></div>
+    <div class="row"><label>Arabic</label><select id="fArabic"></select></div>
+    <div class="row"><div class="lbl"><span>Headline size</span><i id="vH1"></i></div><input type="range" id="h1Size" min="2.5" max="9" step="0.1"></div>
+    <div class="row"><div class="lbl"><span>Headline weight</span><i id="vH1w"></i></div><input type="range" id="h1Weight" min="200" max="700" step="100"></div>
+    <div class="row"><div class="lbl"><span>Tracking</span><i id="vH1t"></i></div><input type="range" id="h1Track" min="-0.06" max="0.04" step="0.002"></div>
+    <div class="row"><div class="lbl"><span>Leading</span><i id="vH1l"></i></div><input type="range" id="h1Lead" min="0.85" max="1.5" step="0.01"></div>
+    <p class="hint">Arabic face drives the song titles in the reveal section too.</p>
+  </div></details>
+
+  <details><summary>Hero text</summary><div class="body">
+    <div class="row"><label>Wordmark</label><select id="wmMode"><option value="img">Signature image</option><option value="text">Set in type</option></select></div>
+    <div class="row"><div class="lbl"><span>Wordmark size</span><i id="vWm"></i></div><input type="range" id="wmSize" min="18" max="70" step="1"></div>
+    <div class="row"><label>Eyebrow</label><input type="text" id="tEyebrow"></div>
+    <div class="row"><label>Headline (newline = break)</label><textarea id="tHeadline"></textarea></div>
+    <div class="row"><label>Subheading</label><textarea id="tSub"></textarea></div>
+    <div class="row"><label>CTA label</label><input type="text" id="tCta"></div>
+    <div class="row"><label>Nav pill label</label><input type="text" id="tNavPill"></div>
+    <div class="grid2">
+      <div class="row"><label>Meta 1 label</label><input type="text" id="tM1k"></div>
+      <div class="row"><label>Meta 1 value</label><input type="text" id="tM1v"></div>
+      <div class="row"><label>Meta 2 label</label><input type="text" id="tM2k"></div>
+      <div class="row"><label>Meta 2 value</label><input type="text" id="tM2v"></div>
+    </div>
+    <div class="row"><label>Nav links (comma separated)</label><input type="text" id="tNav"></div>
+    <div class="row"><label>Quote</label><textarea id="tQuote"></textarea></div>
+    <p class="hint">Headline and quote accept HTML — &lt;em&gt;, &lt;strong&gt;, &lt;span class="ar"&gt;.</p>
+  </div></details>
+
+  <details><summary>Reveal section</summary><div class="body">
+    <div class="row"><label>Kicker</label><input type="text" id="tRvKicker"></div>
+    <div class="row"><label>Heading (newline = break)</label><textarea id="tRvHead"></textarea></div>
+    <div class="row"><label>Standfirst</label><textarea id="tRvSub"></textarea></div>
+    <div class="row"><div class="lbl"><span>Cover size</span><i id="vRvS"></i></div><input type="range" id="rvSize" min="200" max="520" step="10"></div>
+    <div class="row"><div class="lbl"><span>Hold per song</span><i id="vRvD"></i></div><input type="range" id="rvDwell" min="1.5" max="9" step="0.2"></div>
+    <div class="row"><div class="lbl"><span>Step duration</span><i id="vRvT"></i></div><input type="range" id="rvStep" min="0.4" max="2.4" step="0.1"></div>
+    <button class="btn" id="btnRvToggle">Pause / play</button>
+    <p class="hint">Two covers still need identifying — they show a dashed marker instead of a credit.</p>
+  </div></details>
+
+  <details><summary>Colour</summary><div class="body">
+    <div class="grid2">
+      <div class="row"><label>Background</label><input type="color" id="cBg"></div>
+      <div class="row"><label>Backdrop lift</label><input type="color" id="cLift"></div>
+      <div class="row"><label>Text</label><input type="color" id="cInk"></div>
+      <div class="row"><label>Muted</label><input type="color" id="cMut"></div>
+    </div>
+    <div class="row"><label>Accent</label><input type="color" id="cRed"></div>
+    <div class="row"><div class="lbl"><span>Vignette</span><i id="vVig"></i></div><input type="range" id="sVig" min="0" max="1" step="0.02"></div>
+    <div class="row"><div class="lbl"><span>Grain</span><i id="vGrain"></i></div><input type="range" id="sGrain" min="0" max="0.12" step="0.005"></div>
+    <div class="row"><div class="lbl"><span>Tally glow</span><i id="vTally"></i></div><input type="range" id="sTally" min="0" max="0.5" step="0.01"></div>
+  </div></details>
+
+  <details><summary>Hero carousel</summary><div class="body">
+    <div class="row"><div class="lbl"><span>Cover size</span><i id="vSize"></i></div><input type="range" id="cSize" min="240" max="900" step="10"></div>
+    <div class="row"><div class="lbl"><span>Radius</span><i id="vRad"></i></div><input type="range" id="cRad" min="600" max="2400" step="20"></div>
+    <div class="row"><div class="lbl"><span>Speed</span><i id="vSpd"></i></div><input type="range" id="cSpd" min="0" max="0.4" step="0.005"></div>
+    <div class="row"><label>Direction</label><select id="cDir"><option value="1">Clockwise</option><option value="-1">Anticlockwise</option></select></div>
+    <div class="row"><div class="lbl"><span>Ring height</span><i id="vRingY"></i></div><input type="range" id="cRingY" min="-110" max="0" step="1"></div>
+    <div class="row"><div class="lbl"><span>Corner radius</span><i id="vCovR"></i></div><input type="range" id="cCovR" min="0" max="50" step="1"></div>
+    <div class="row"><div class="lbl"><span>Saturation</span><i id="vSat"></i></div><input type="range" id="cSat" min="0" max="1.4" step="0.02"></div>
+    <div class="row"><div class="lbl"><span>Brightness</span><i id="vBri"></i></div><input type="range" id="cBri" min="0.4" max="1.3" step="0.02"></div>
+    <div class="row"><div class="lbl"><span>Warmth</span><i id="vSep"></i></div><input type="range" id="cSep" min="0" max="0.5" step="0.01"></div>
+    <button class="btn" id="btnSquare">Lock covers square</button>
+  </div></details>
+
+  <details><summary>Portrait</summary><div class="body">
+    <div class="row"><div class="lbl"><span>Height</span><i id="vFgS"></i></div><input type="range" id="fgS" min="35" max="115" step="1"></div>
+    <div class="row"><div class="lbl"><span>Nudge X</span><i id="vFgX"></i></div><input type="range" id="fgX" min="-300" max="300" step="2"></div>
+    <div class="row"><div class="lbl"><span>Nudge Y</span><i id="vFgY"></i></div><input type="range" id="fgY" min="-25" max="35" step="0.5"></div>
+    <div class="row"><div class="lbl"><span>Fade start</span><i id="vFdS"></i></div><input type="range" id="fdS" min="20" max="100" step="1"></div>
+    <div class="row"><div class="lbl"><span>Fade end</span><i id="vFdE"></i></div><input type="range" id="fdE" min="30" max="100" step="1"></div>
+    <div class="row"><div class="lbl"><span>Contact shadow</span><i id="vFlr"></i></div><input type="range" id="flr" min="0" max="1" step="0.02"></div>
+  </div></details>
+
+
+  <details><summary>Through the years</summary><div class="body">
+    <div class="row"><label>Frame style</label><select id="arcStyle">
+      <option value="polaroid">Polaroid (deep chin)</option>
+      <option value="print">Photo print (date stamp)</option></select></div>
+    <div class="row"><div class="lbl"><span>Scatter</span><i id="vArcS"></i></div>
+      <input type="range" id="arcScatter" min="0" max="3" step="0.1"></div>
+    <div class="row"><div class="lbl"><span>Tilt</span><i id="vArcR"></i></div>
+      <input type="range" id="arcRot" min="0" max="2.5" step="0.1"></div>
+    <button class="btn" id="btnArcReplay">Jump to the pile</button>
+    <p class="hint">Cards are placeholders — set <b>photo:</b> on an ARCHIVE entry to drop a real image in. Below 900px it becomes a swipe strip.</p>
+  </div></details>
+
+  <details><summary>Save / export</summary><div class="body">
+    <button class="btn" id="btnExport">Generate code</button>
+    <button class="btn" id="btnReset">Reset to defaults</button>
+    <div class="row" style="margin-top:9px"><textarea id="exportOut" placeholder="Press Generate code."></textarea></div>
+    <p class="hint">Tweaks persist in this browser. Export bakes them in permanently.</p>
+  </div></details>
+</aside>
+
+<script>
+/* =========================== ASSETS =========================== */
+const FG_IMAGE = "portrait-cutout.webp";
+const IMAGES = [
+  "00-samira-said-youm-wara-youm.webp",
+  "01-amr-diab-khatfoony.webp",
+  "02-amr-mostafa-seneeny.webp",
+  "03-be3teeny-leh-redbull.webp",
+  "04-amr-mostafa-liebt-maa-al-asad.webp",
+  "05-amr-mostafa-ayamy.webp",
+  "06-amr-mostafa-aayesheen.webp",
+  "07-UNIDENTIFIED-hayaty.webp",
+  "08-amr-mostafa-alama-fi-hayatak.webp",
+  "09-sherine-mafish-marra.webp",
+  "10-mohamed-mounir-ya-ahl-el-arab.webp",
+  "11-UNIDENTIFIED-monochrome.webp"
+];
+
+/* =========================== CATALOGUE DATA ===========================
+   Each entry maps a cover in IMAGES[] to its credit.
+   `i` is the index in IMAGES. Covers identified visually from the artwork.
+   TWO COVERS ARE UNIDENTIFIED (i:7 and i:11) — they render a dashed
+   marker until filled in. Do not guess these; confirm with Amr.
+   `role`: 'for' = composed for another artist, 'own' = he performs it too.
+   `lyricist` left empty where not confirmed — the line hides itself.
+   ====================================================================== */
+const SONGS = [
+  { i:0,  titleAr:'يوم ورا يوم', titleEn:'Youm Wara Youm',
+    artistAr:'سميرة سعيد', artistEn:'Samira Said', year:'2002', role:'for', lyricist:'' },
+  { i:1,  titleAr:'خطفوني', titleEn:'Khatfoony',
+    artistAr:'عمرو دياب', artistEn:'Amr Diab', year:'2025', role:'for', lyricist:'تامر حسين' },
+  { i:9,  titleAr:'مافيش مرة', titleEn:'Mafish Marra',
+    artistAr:'شيرين', artistEn:'Sherine', year:'2005', role:'for', lyricist:'' },
+  { i:10, titleAr:'يا أهل العرب والطرب', titleEn:'Ya Ahl El Arab Wel Tarab',
+    artistAr:'محمد منير', artistEn:'Mohamed Mounir', year:'2003', role:'for', lyricist:'' },
+  { i:3,  titleAr:'بعتيني ليه', titleEn:'Be3teeny Leh',
+    artistAr:'زياد ظاظا', artistEn:'ZIAD ZAZA', year:'2025', role:'for', lyricist:'' },
+  { i:7,  titleAr:'', titleEn:'', artistAr:'', artistEn:'', year:'', role:'todo', lyricist:'' },
+  { i:2,  titleAr:'سنيني', titleEn:'Seneeny',
+    artistAr:'عمرو مصطفى', artistEn:'Amr Mostafa', year:'', role:'own', lyricist:'' },
+  { i:6,  titleAr:'عايشين', titleEn:'Aayesheen',
+    artistAr:'عمرو مصطفى', artistEn:'Amr Mostafa', year:'2024', role:'own', lyricist:'عز الدين' },
+  { i:4,  titleAr:'لعبت مع الأسد', titleEn:"Liebt Ma'a Al-Asad",
+    artistAr:'عمرو مصطفى', artistEn:'Amr Mostafa', year:'2019', role:'own', lyricist:'' },
+  { i:8,  titleAr:'علامة في حياتك', titleEn:'Alama Fe Hayatak',
+    artistAr:'عمرو مصطفى', artistEn:'Amr Mostafa', year:'2008', role:'own', lyricist:'' },
+  { i:5,  titleAr:'أيامي', titleEn:'Ayamy',
+    artistAr:'عمرو مصطفى', artistEn:'Amr Mostafa', year:'2007', role:'own', lyricist:'' },
+  { i:11, titleAr:'', titleEn:'', artistAr:'', artistEn:'', year:'', role:'todo', lyricist:'' }
+];
+
+const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* =========================== HERO RING (original engine) =========================== */
+const carouselConfig = {
+  slideHeight:560, slidesInRing:IMAGES.length, slideSpacing:1, radius:1300,
+  initialRotation:180, autoRotate:!REDUCED, rotationSpeed:0.08, rotationDirection:1,
+  pauseOnHover:true, resumeDelay:0, pauseEaseDuration:0.6,
+  entranceDuration:1.6, entranceStagger:0.08
+};
+
+function buildSlides(){
+  const ring = document.getElementById('ring');
+  IMAGES.forEach(src => {
+    const slide = document.createElement('div');
+    slide.className = 'ls-curved-carousel__slide';
+    const img = document.createElement('img');
+    img.className = 'ls-curved-carousel__media';
+    img.src = src; img.alt = '';
+    slide.appendChild(img); ring.appendChild(slide);
+  });
+}
+
+let carouselAPI = null;
+
+function initCarousel(){
+  buildSlides();
+  const ring = document.getElementById('ring');
+  const slides = document.querySelectorAll('.ls-curved-carousel__slide');
+  const stage = document.querySelector('.ls-curved-carousel__stage');
+  const anglePerSlide = 360 / carouselConfig.slidesInRing;
+
+  function applyLayout(){
+    const arc = (anglePerSlide - carouselConfig.slideSpacing) * (Math.PI/180) * carouselConfig.radius;
+    stage.style.width = arc + 'px';
+    stage.style.height = carouselConfig.slideHeight + 'px';
+    slides.forEach((slide,index) => {
+      slide.style.width = arc + 'px';
+      slide.style.height = carouselConfig.slideHeight + 'px';
+      gsap.set(slide,{
+        rotateY:index * -anglePerSlide,
+        transformOrigin:'50% 50% ' + carouselConfig.radius + 'px',
+        z:-carouselConfig.radius, backfaceVisibility:'hidden'
+      });
+    });
+  }
+  function radiusForSquare(size){
+    return size / ((anglePerSlide - carouselConfig.slideSpacing) * (Math.PI/180));
+  }
+
+  let autoRotate = carouselConfig.autoRotate;
+  let targetRotationSpeed = carouselConfig.rotationSpeed;
+  let rotationDirection = carouselConfig.rotationDirection;
+  let autoRotateTimeout, lastUpdateTime = Date.now();
+  let updateRotationFunction, speedTween;
+  let speedController = { value:0 };
+  let paused = false;
+
+  const tl = gsap.timeline();
+  tl.set(ring,{ rotationY:carouselConfig.initialRotation });
+  applyLayout();
+  tl.from('.ls-curved-carousel__slide',{
+    opacity:0, duration:carouselConfig.entranceDuration,
+    stagger:carouselConfig.entranceStagger, ease:'power2.out'
+  }).add(() => startAutoRotation());
+
+  function updateRotation(){
+    const s = speedController.value;
+    if (s === 0) return;
+    const now = Date.now(), dt = now - lastUpdateTime;
+    lastUpdateTime = now;
+    gsap.set(ring,{ rotationY:'+=' + ((dt/16.67) * s * rotationDirection) });
+  }
+  function startAutoRotation(){
+    if (!autoRotate) return;
+    paused = false; lastUpdateTime = Date.now();
+    updateRotationFunction = updateRotation;
+    gsap.ticker.add(updateRotationFunction);
+    if (speedTween) speedTween.kill();
+    speedTween = gsap.to(speedController,{ value:targetRotationSpeed,
+      duration:carouselConfig.pauseEaseDuration, ease:'power1.out' });
+  }
+  function stopAutoRotation(){
+    paused = true;
+    if (speedTween) speedTween.kill();
+    speedTween = gsap.to(speedController,{ value:0,
+      duration:carouselConfig.pauseEaseDuration, ease:'power1.in',
+      onComplete:() => { if (updateRotationFunction){
+        gsap.ticker.remove(updateRotationFunction); updateRotationFunction = null; } }});
+  }
+  function resumeAutoRotation(){
+    if (autoRotateTimeout) clearTimeout(autoRotateTimeout);
+    autoRotateTimeout = setTimeout(() => {
+      if (carouselConfig.autoRotate) startAutoRotation();
+    }, carouselConfig.resumeDelay);
+  }
+  if (carouselConfig.pauseOnHover){
+    const el = document.getElementById('carousel');
+    el.addEventListener('mouseenter',()=>{ if(autoRotateTimeout) clearTimeout(autoRotateTimeout); stopAutoRotation(); });
+    el.addEventListener('mouseleave',resumeAutoRotation);
+    el.addEventListener('touchstart',()=>{ if(autoRotateTimeout) clearTimeout(autoRotateTimeout); stopAutoRotation(); },{passive:true});
+    el.addEventListener('touchend',resumeAutoRotation);
+  }
+
+  carouselAPI = {
+    setSize(size,lockSquare){
+      carouselConfig.slideHeight = size;
+      if (lockSquare) carouselConfig.radius = radiusForSquare(size);
+      applyLayout();
+    },
+    setRadius(r){ carouselConfig.radius = r; applyLayout(); },
+    setSpeed(v){
+      targetRotationSpeed = v; carouselConfig.rotationSpeed = v;
+      if (!paused){ if (speedTween) speedTween.kill();
+        speedTween = gsap.to(speedController,{ value:v, duration:.3, ease:'power1.out' }); }
+    },
+    setDirection(d){ rotationDirection = d; carouselConfig.rotationDirection = d; },
+    radiusForSquare
+  };
+}
+
+/* =========================== REVEAL RING ===========================
+   Same layout maths as the hero ring, but stepped: it tweens to bring
+   each cover to dead centre, holds, and reveals the credit stack.
+   =================================================================== */
+const RV = {
+  size:360, dwell:3.4, step:1.1,
+  n:SONGS.length, angle:360 / SONGS.length, spacing:1,
+  index:0, radius:0, slides:[], timer:null, playing:false, built:false
+};
+
+function rvRadiusForSquare(size){
+  return size / ((RV.angle - RV.spacing) * (Math.PI/180));
+}
+
+function rvBuild(){
+  const ring = document.getElementById('rvRing');
+  ring.innerHTML = '';
+  RV.slides = SONGS.map(song => {
+    const s = document.createElement('div');
+    s.className = 'rv-slide';
+    const img = document.createElement('img');
+    img.src = IMAGES[song.i]; img.alt = '';
+    s.appendChild(img); ring.appendChild(s);
+    return s;
+  });
+
+  const dots = document.getElementById('rvDots');
+  dots.innerHTML = '';
+  SONGS.forEach((_, k) => {
+    const b = document.createElement('button');
+    b.setAttribute('aria-label','Song ' + (k+1));
+    b.addEventListener('click',()=>{ rvGo(k); rvPause(); });
+    dots.appendChild(b);
+  });
+
+  RV.built = true;
+  rvLayout();
+}
+
+function rvLayout(){
+  const stage = document.querySelector('.rv-stage');
+  RV.radius = rvRadiusForSquare(RV.size);
+  const arc = (RV.angle - RV.spacing) * (Math.PI/180) * RV.radius;
+  stage.style.width = arc + 'px';
+  stage.style.height = RV.size + 'px';
+  RV.slides.forEach((s,index) => {
+    s.style.width = arc + 'px';
+    s.style.height = RV.size + 'px';
+    gsap.set(s,{
+      rotateY:index * -RV.angle,
+      transformOrigin:'50% 50% ' + RV.radius + 'px',
+      z:-RV.radius, backfaceVisibility:'hidden'
+    });
+  });
+  gsap.set(document.getElementById('rvRing'),{ rotationY:RV.index * RV.angle });
+}
+
+function rvRenderCredit(song){
+  const $ = id => document.getElementById(id);
+  const stamp = $('rvStamp'), lyric = $('rvLyric'), rule = $('rvRule');
+
+  if (song.role === 'todo'){
+    $('rvTitleAr').textContent = '';
+    $('rvTitleEn').textContent = '';
+    $('rvArtist').innerHTML = '';
+    $('rvYear').textContent = '';
+    stamp.innerHTML = '<span class="rv-todo">Cover not yet identified</span>';
+    lyric.textContent = '';
+    gsap.set(rule,{ width:0 });
+    gsap.fromTo(stamp,{opacity:0},{opacity:1,duration:.5});
+    return;
+  }
+
+  $('rvTitleAr').textContent = song.titleAr;
+  $('rvTitleEn').textContent = song.titleEn;
+  $('rvArtist').innerHTML = song.role === 'own'
+    ? '<span class="role">Composed &amp; performed by </span><span class="who">' + song.artistEn + '</span>'
+    : '<span class="role">Sung by </span><span class="who">' + song.artistEn + '</span>';
+  $('rvYear').textContent = song.year || '';
+  stamp.innerHTML =
+    '<span class="ar">ألحان عمرو مصطفى</span>' +
+    '<span class="en">Melody · Amr Mostafa</span>';
+  lyric.innerHTML = song.lyricist
+    ? '<span>Words &nbsp;·&nbsp; </span><span class="ar">' + song.lyricist + '</span>'
+    : '';
+
+  // staged reveal: title -> artist -> rule draws -> credit stamp
+  const tl = gsap.timeline();
+  tl.fromTo('#rvTitleAr',{opacity:0,y:14},{opacity:1,y:0,duration:.55,ease:'power2.out'})
+    .fromTo('#rvTitleEn',{opacity:0},{opacity:1,duration:.4},'-=0.3')
+    .fromTo('#rvArtist',{opacity:0,y:8},{opacity:1,y:0,duration:.45,ease:'power2.out'},'-=0.15')
+    .fromTo('#rvYear',{opacity:0},{opacity:1,duration:.35},'-=0.25')
+    .fromTo(rule,{width:0},{width:54,duration:.5,ease:'power2.inOut'},'+=0.1')
+    .fromTo(stamp,{opacity:0,y:10},{opacity:1,y:0,duration:.5,ease:'power2.out'},'-=0.1')
+    .fromTo(lyric,{opacity:0},{opacity:.72,duration:.4},'-=0.25');
+}
+
+function rvGo(k){
+  RV.index = ((k % RV.n) + RV.n) % RV.n;
+  gsap.to(document.getElementById('rvRing'),{
+    rotationY:RV.index * RV.angle,
+    duration:RV.step, ease:'power2.inOut'
+  });
+  RV.slides.forEach((s,j) => s.classList.toggle('is-active', j === RV.index));
+  document.querySelectorAll('#rvDots button')
+    .forEach((b,j) => b.classList.toggle('on', j === RV.index));
+  rvRenderCredit(SONGS[RV.index]);
+}
+
+function rvNext(){ rvGo(RV.index + 1); }
+function rvPrev(){ rvGo(RV.index - 1); }
+
+function rvPlay(){
+  if (REDUCED) return;
+  rvPause();
+  RV.playing = true;
+  RV.timer = setInterval(rvNext, (RV.dwell + RV.step) * 1000);
+}
+function rvPause(){
+  RV.playing = false;
+  if (RV.timer){ clearInterval(RV.timer); RV.timer = null; }
+}
+
+function initReveal(){
+  rvBuild();
+  rvGo(0);
+
+  document.getElementById('rvNext').addEventListener('click',()=>{ rvNext(); rvPause(); });
+  document.getElementById('rvPrev').addEventListener('click',()=>{ rvPrev(); rvPause(); });
+
+  const wrap = document.getElementById('rvCarousel');
+  wrap.addEventListener('mouseenter', rvPause);
+  wrap.addEventListener('mouseleave',()=>{ if (!REDUCED) rvPlay(); });
+
+  // only run while the section is on screen
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting){ if (!REDUCED) rvPlay(); }
+      else rvPause();
+    });
+  },{ threshold:0.35 });
+  io.observe(document.getElementById('reveal'));
+
+  window.addEventListener('resize', () => { if (RV.built) rvLayout(); });
+}
+
+
+
+/* =========================== CATALOGUE ===========================
+   265 rows is a wall, so nothing is listed flat by default: the page
+   shows 66 voices or 28 years, collapsed, and you open what you want.
+   Search bypasses the accordion and returns matches directly.
+   ================================================================= */
+const CAT = [["Morgan Ahmed Morgan","مرجان أحمد مرجان","Adel Imam","عادل إمام",2007,"2007-07-04",1],["Halawet El Bedayat","حلاوة البدايات","Administrative Capital For Urban Development","شركة العاصمة الإدارية للتنمية العمراني",2026,"2026-02-23",1],["Andy Bel Donya","عندي بالدنيا","Ahmed El Attar","أحمد العطار",2003,"2003-00-00",1],["Lamma Habibty Hatekbar","لما حبيبتي هتكبر","Ahmed Helmy","أحمد حلمي",2006,"2006-12-03",1],["9:30","تسعة ونص","Ahmed Saad","أحمد سعد",2026,"2026-08-05",1],["Ya Wala Ya Wala","يا ولا يا ولا","Ahmed Saad","أحمد سعد",2026,"2026-08-05",1],["Edeili","إدعيلي","Amal Hijazi","أمل حجازي",2002,"2002-07-08",1],["Law Kan Bekhatry","لو كان بخاطري","Amal Maher","آمال ماهر",2021,"2021-06-25",1],["Ma Khalas","ما خلاص","Amal Maher","آمال ماهر",2019,"2019-01-10",1],["Hekaia Teiesh","حكاية تعيش","Amal Maher","آمال ماهر",2019,"2019-01-10",1],["Agmal Hob","أجمل حب","Amal Maher","آمال ماهر",2019,"2019-01-10",1],["Asl El Ehsas","أصل الإحساس","Amal Maher","آمال ماهر",2019,"2019-01-10",1],["Albak Keber (Malha)","قلبك كبير (مالها)","Amal Maher","آمال ماهر",2019,"2019-01-10",1],["Ediny Forsa","إديني فرصة","Amal Maher","آمال ماهر",2019,"2019-01-10",1],["Touba Fo2 Touba","طوبة فوق طوبة","Amal Maher","آمال ماهر",2015,"2015-04-24",1],["Gait Ala Bali","جيت على بالي","Amer Mounib","عامر منيب",2008,"2008-08-19",1],["We Baool","وبقول","Amer Mounib","عامر منيب",2008,"2008-08-19",1],["Amel Eih Fe Hayatak","عامل إيه في حياتك","Amer Mounib","عامر منيب",2008,"2008-08-19",1],["Hazi Men El Sama","حظي من السما","Amer Mounib","عامر منيب",2008,"2008-08-19",1],["Habeitek","حبيتِك","Amr Diab","عمرو دياب",2026,"2026-07-22",1],["Eta’khar Etabna","إتأخر عتابنا","Amr Diab","عمرو دياب",2026,"2026-07-22",1],["Ana Maak","أنا معاك","Amr Diab","عمرو دياب",2026,"2026-07-22",1],["Aktar W Aktar","أكتر وأكتر","Amr Diab","عمرو دياب",2026,"2026-02-19",1],["Na2sak El Aada","نقصاك القعدة","Amr Diab","عمرو دياب",2026,"2026-02-19",1],["Ebtadena","ابتدينا","Amr Diab","عمرو دياب",2025,"2025-07-03",1],["Khatfoony","خطفوني","Amr Diab","عمرو دياب",2025,"2025-07-03",1],["Gamda Bas","جامدة بس","Amr Diab","عمرو دياب",2020,"2020-02-12",1],["Helwa El Bedayat","حلوة البدايات","Amr Diab","عمرو دياب",2020,"2020-02-12",1],["Hayeish Yeftekerni","هيعيش يفتكرني","Amr Diab","عمرو دياب",2020,"2020-02-12",1],["Ya Agmal Eyoun (Remix)","يا أجمل عيون (ريمكس)","Amr Diab","عمرو دياب",2019,"2019-12-22",1],["Yetalemo (Remix)","يتعلموا (ريمكس)","Amr Diab","عمرو دياب",2019,"2019-12-22",1],["Ma’darsh Al Nesyan","مقدرش عالنسيان","Amr Diab","عمرو دياب",2019,"2019-04-08",1],["Bahebak Ana","بحبك أنا","Amr Diab","عمرو دياب",2018,"2018-10-08",1],["Bayen Habeit (Inspired by Amr Diab)","باين حبيت (رؤية عمرو دياب)","Amr Diab","عمرو دياب",2018,"2018-09-30",1],["Malak Elhosn","ملاك الحسن","Amr Diab","عمرو دياب",2018,"2018-09-30",1],["Ya Saher","يا ساحر","Amr Diab","عمرو دياب",2018,"2018-09-30",1],["Bayen Habeit","باين حبيت","Amr Diab","عمرو دياب",2018,"2018-09-26",1],["Yetalemo","يتعلموا","Amr Diab","عمرو دياب",2018,"2018-09-18",1],["Ta’ali","تعالي","Amr Diab","عمرو دياب",2018,"2018-08-08",1],["El Farha El Leila","الفرحة الليلة","Amr Diab","عمرو دياب",2017,"2017-10-08",1],["Ya Agmal Eyoun","يا أجمل عيون","Amr Diab","عمرو دياب",2017,"2017-08-14",1],["Alby Etmannah","قلبي إتمناه","Amr Diab","عمرو دياب",2017,"2017-08-14",1],["Halla Halla","هللا هللا","Amr Diab","عمرو دياب",2011,"2011-09-28",1],["Einy Wana Shayfo","عيني وأنا شايفه","Amr Diab","عمرو دياب",2009,"2009-06-27",1],["Wayah","وياه","Amr Diab","عمرو دياب",2009,"2009-06-27",1],["Allah Ala Hobak","الله على حبك","Amr Diab","عمرو دياب",2009,"2009-06-27",1],["Ba’adem Alby","بقدم قلبي","Amr Diab","عمرو دياب",2009,"2009-06-27",1],["Makontsh Nawy","ما كنتش ناوي","Amr Diab","عمرو دياب",2009,"2009-00-00",1],["Ne’oul Aih","نقول إيه","Amr Diab","عمرو دياب",2007,"2007-07-11",1],["We Fehmt Einak","وفهمت عينيك","Amr Diab","عمرو دياب",2007,"2007-07-11",1],["El Lilady","الليلادي","Amr Diab","عمرو دياب",2007,"2007-07-11",1],["Betkhaby Leih","بتخبي ليه","Amr Diab","عمرو دياب",2005,"2005-11-21",1],["Odam Oyoonak","قدام عيونك","Amr Diab","عمرو دياب",2005,"2005-11-21",1],["We Maloh","وماله","Amr Diab","عمرو دياب",2005,"2005-11-21",1],["Allah La Yehremmy Minak","الله لا يحرمني منك","Amr Diab","عمرو دياب",2005,"2005-11-21",1],["Sebtk","سبتك","Amr Diab","عمرو دياب",2005,"2005-00-00",1],["Wahashtiny","وحشتيني","Amr Diab","عمرو دياب",2004,"2004-06-26",1],["Lealy Nahary","ليلي نهاري","Amr Diab","عمرو دياب",2004,"2004-06-26",1],["Qusad Einy","قصاد عيني","Amr Diab","عمرو دياب",2004,"2004-06-26",1],["Illa Heya","إلا هي","Amr Diab","عمرو دياب",2004,"2004-06-26",1],["Ana Ayesh","أنا عايش","Amr Diab","عمرو دياب",2003,"2003-02-04",1],["Kollohom","كلهم","Amr Diab","عمرو دياب",2003,"2003-02-04",1],["Ahebek Akrahek","أحبك أكرهك","Amr Diab","عمرو دياب",2001,"2001-07-25",1],["Aktar Wahed","أكتر واحد","Amr Diab","عمرو دياب",2001,"2001-07-25",1],["Ya Habebi La","يا حبيبي لا","Amr Diab","عمرو دياب",2001,"2001-07-25",1],["Kolt Eih","قلت إيه","Amr Diab","عمرو دياب",2001,"2001-07-25",1],["Sadakny Khalas","صدقني خلاص","Amr Diab","عمرو دياب",2001,"2001-07-25",1],["Aamel Eih","أعمل إيه","Amr Diab","عمرو دياب",2000,"2000-07-08",1],["El Alem Allah","العالم الله","Amr Diab","عمرو دياب",2000,"2000-07-08",1],["Baateref","بعترف","Amr Diab","عمرو دياب",2000,"2000-07-08",1],["Khalek Fakerny","خليك فاكرني","Amr Diab","عمرو دياب",1999,"1999-07-28",1],["Track 06*","","Amr Mostafa","عمرو مصطفى",2026,"2026-00-00",1],["Awla Beya","أولى بيا","Amr Mostafa","عمرو مصطفى",2024,"2024-12-04",1],["Ma3refsh Yensany","معرفش ينساني","Amr Mostafa","عمرو مصطفى",2024,"2024-09-20",1],["Leah Feya","ليها فيا","Amr Mostafa","عمرو مصطفى",2024,"2024-07-17",1],["Hahkilak Oddam","هحكيلك قدام","Amr Mostafa","عمرو مصطفى",2023,"2023-04-21",1],["Sebooh","سيبوه","Amr Mostafa","عمرو مصطفى",2022,"2022-10-14",1],["Ella Ana","إلا أنا","Amr Mostafa","عمرو مصطفى",2022,"2022-07-22",1],["El Kebeer Kebeer","الكبير كبير","Amr Mostafa","عمرو مصطفى",2009,"2009-12-18",1],["Lamastak","لمستك","Amr Mostafa","عمرو مصطفى",2007,"2007-01-30",1],["Bartah Ma’ak","برتاح معاك","Amr Mostafa","عمرو مصطفى",2007,"2007-01-30",1],["Yally Dayman Ghaly","يا اللي دايمًا غالي","Amr Mostafa","عمرو مصطفى",2003,"2003-11-26",1],["Arfa Eimty","عارفة قيمتي","Angham","أنغام",2022,"2022-08-09",1],["Bardo Betewhashni","برضه بتوحشني","Angham","أنغام",2021,"2021-07-20",1],["Arod Leh","أرد ليه","Assala","أصالة",2006,"2006-07-10",1],["Ayez Al Haq","عايز الحق","Assala","أصالة",2003,"2003-00-00",1],["Dengesiz","","Ayşe Hatun Önal","",2017,"2017-02-17",1],["Law Yigi El Leil","لو يجي الليل","Aziz Abdo","عزيز عبدو",2024,"2024-01-11",1],["Cigara","سيجارة","Bahaa Sultan","بهاء سلطان",2021,"2021-12-27",1],["Ta3ala","تعالى","Bahaa Sultan","بهاء سلطان",2011,"2011-06-03",1],["Rawa2any","روقاني","Carmen Soliman","كارمن سليمان",2023,"2023-09-27",1],["Ragalak","راجعالك","Carole Samaha","كارول سماحة",2009,"2009-12-03",1],["Nadeit","ناديت","Carole Samaha","كارول سماحة",2009,"2009-12-03",1],["(Leh) Inshallah","","Cheb Mami","",2006,"2006-11-13",1],["Tigi Tigi","","Cheb Mami","",2006,"2006-00-00",1],["El Rehla","الرحلة","Donia Samir Ghanem","دنيا سمير غانم",2025,"2025-03-25",1],["Yama Nefsy Aoulak","ياما نفسي أقولك","Donia Samir Ghanem","دنيا سمير غانم",2025,"2025-03-17",1],["Hakhod Forsety","هاخد فرصتي","Donia Samir Ghanem","دنيا سمير غانم",2025,"2025-03-16",1],["Aysha El Door","عايشة الدور","Donia Samir Ghanem","دنيا سمير غانم",2025,"2025-03-15",1],["Mesh Mehtaga Had","مش محتاجة حد","Donia Samir Ghanem","دنيا سمير غانم",2023,"2023-04-18",1],["El Gamal Mo’amla","الجمال معاملة","Donia Samir Ghanem","دنيا سمير غانم",2023,"2023-04-16",1],["Erqsoloh","إرقصوله","Donia Samir Ghanem","دنيا سمير غانم",2023,"2023-04-09",1],["Aseeb Nafsi We Aghanni","أسيب نفسي وأغني","Donia Samir Ghanem","دنيا سمير غانم",2022,"2022-07-29",1],["Mesh Adra Asadda2","مش قادرة أصدق","Donia Samir Ghanem","دنيا سمير غانم",2005,"2005-03-17",1],["Kam Youm","كام يوم","Ehab Tawfik","إيهاب توفيق",2005,"2005-07-08",1],["Oul Keda","قول كده","Ehab Tawfik","إيهاب توفيق",2003,"2003-07-03",1],["Lelaty","ليلاتي","Ehab Tawfik","إيهاب توفيق",2002,"2002-06-24",1],["Ma Khalas","ما خلاص","Fadel Chaker","فضل شاكر",2003,"2003-00-00",1],["Benheb Baad","بنحب بعض","Fares (EGY)","فارس",2001,"2001-00-00",1],["Hamer","","Funky G","",2005,"2005-00-00",1],["Şıkır Şıkır","","Gülben Ergen","",2011,"2011-08-11",1],["Şıkır Şıkır (Düet)","","Gülben Ergen","",2011,"2011-06-06",1],["Habibi Ana","حبيبي أنا","Haifa Wehbe","هيفاء وهبي",2008,"2008-07-04",1],["Bahibak Hob","بحبك حب","Haifa Wehbe","هيفاء وهبي",2005,"2005-01-17",1],["Akher Wahed","آخر واحد","Heba","هبة",2005,"2005-02-16",1],["Eftah Albak","إفتح قلبك","Hisham Abbas","هشام عباس",2007,"2007-07-20",1],["Amalty Eih","عملتي إيه","Hisham Abbas","هشام عباس",2004,"2004-06-06",1],["Sebha Tehebbak","سيبها تحبك","Hisham Abbas","هشام عباس",2004,"2004-06-06",1],["Oul Alaya Magnon","قول عليا مجنون","Hisham Abbas","هشام عباس",2004,"2004-06-06",1],["Kolt Eih","قولت إيه","Hisham Abbas","هشام عباس",2004,"2004-06-06",1],["Agmal Qesset Hob","أجمل قصة حب","Hossam Habib","حسام حبيب",2006,"2006-10-02",1],["Alby Sa’alny Aleik","قلبي سألني عليك","Hossam Habib","حسام حبيب",2006,"2006-10-02",1],["Boushret Kheir","بشرة خير","Hussain Al Jassmi","حسين الجسمي",2014,"2014-05-15",1],["Oh My!","","Jana Diab","",2026,"2026-02-06",1],["Saban Alay","صعبان علي","Katia Harb","كاتيا حرب",2004,"2004-00-00",1],["Itallah","الطلة","Katia Harb","كاتيا حرب",2004,"2004-00-00",1],["Ήλιος Ή Βροχή (Ilios I Vrohi)","","Katy Garbi","",2003,"2003-10-15",1],["Doktor","","Kenan Doğulu","",2012,"2012-07-06",1],["MAHASH FAR2A","ماهيش فارقة","Lella Fadda","للّا فضة",2026,"2026-07-11",1],["Hane’sh W Nshoof","هنعيش ونشوف","Lena Chamamyan","لينا شاماميان",2020,"2020-03-09",1],["Aftkerlak Eih","أفتكرلك إيه","Mai Farouk","مي فاروق",2023,"2023-05-29",1],["Aamel Eh Fe Hayatak","عامل إيه في حياتك","Mariam Amer Mounib","مريم عامر منيب",2019,"2019-11-27",1],["Gaey Ala Nafsak","جاي على نفسك","Medhat Saleh","مدحت صالح",2005,"2005-00-00",1],["Hely Hely","حلي حلي","Mohamed Hamaki","محمد حماقي",2026,"2026-05-29",1],["Khallina","خلينا","Mohamed Hamaki","محمد حماقي",2026,"2026-05-29",1],["Betesaalouny Leeh","بتسألوني ليه","Mohamed Hamaki","محمد حماقي",2026,"2026-05-29",1],["Sammaouny","سمّعوني","Mohamed Hamaki","محمد حماقي",2026,"2026-05-29",1],["Mesheety","مشيتي","Mohamed Hamaki","محمد حماقي",2026,"2026-05-29",1],["Habeitak Be Hayaty","حبيتك بحياتي","Mohamed Hamaki","محمد حماقي",2026,"2026-05-29",1],["Aalo Anni Eih","قالوا عني إيه","Mohamed Hamaki","محمد حماقي",2026,"2026-05-21",1],["Keberti Awam","كبرتي قوام","Mohamed Hamaki","محمد حماقي",2026,"2026-04-16",1],["Ella Oleely","الا قوليلي","Mohamed Hamaki","محمد حماقي",2026,"2026-04-09",1],["Alby Habak Gedan","قلبي حبك جداً","Mohamed Hamaki","محمد حماقي",2022,"2022-08-17",1],["Ayzak Tesmaany","عايزك تسمعني","Mohamed Hamaki","محمد حماقي",2021,"2021-10-06",1],["Leilet El Omr","ليلة العمر","Mohamed Hamaki","محمد حماقي",2021,"2021-09-30",1],["Tak","تك","Mohamed Hamaki","محمد حماقي",2021,"2021-08-19",1],["Dah Waatoh","ده وقته","Mohamed Hamaki","محمد حماقي",2021,"2021-04-14",1],["Hayatak Fi Sora","حياتك في صورة","Mohamed Hamaki","محمد حماقي",2021,"2021-03-16",1],["Howa Da Habiby","هو ده حبيبي","Mohamed Hamaki","محمد حماقي",2020,"2020-08-04",1],["Adreen Ne3melha","قادرين نعملها","Mohamed Hamaki","محمد حماقي",2019,"2019-05-19",1],["Aash Min Shafak","عاش من شافك","Mohamed Hamaki","محمد حماقي",2019,"2019-01-24",1],["Kefaya Holoul Wasat","كفاية حلول وسط","Mohamed Hamaki","محمد حماقي",2019,"2019-01-24",1],["Oddam El Nas","قدام الناس","Mohamed Hamaki","محمد حماقي",2019,"2019-01-24",1],["Khodni Eleik","خدني إليك","Mohamed Hamaki","محمد حماقي",2019,"2019-01-24",1],["Mel Bedaya","م البداية","Mohamed Hamaki","محمد حماقي",2019,"2019-01-24",1],["Baeit Maah","بقيت معاه","Mohamed Hamaki","محمد حماقي",2019,"2019-01-24",1],["Yzalzel","يزلزل","Mohamed Hamaki","محمد حماقي",2019,"2019-01-24",1],["Omroh Ma Yeghib","عمره ما يغيب","Mohamed Hamaki","محمد حماقي",2015,"2015-08-12",1],["Elly Ekhtaroh Albi","اللي إختاره قلبي","Mohamed Hamaki","محمد حماقي",2015,"2015-08-12",1],["El Ghaly Nasiny","الغالي ناسيني","Mohamed Hamaki","محمد حماقي",2015,"2015-08-12",1],["Kan We Kan","كان وكان","Mohamed Hamaki","محمد حماقي",2015,"2015-08-12",1],["Mayni","مايني","Mohamed Hamaki","محمد حماقي",2015,"2015-08-12",1],["Neseit","نسيت","Mohamed Hamaki","محمد حماقي",2015,"2015-08-12",1],["Agmal Youm","أجمل يوم","Mohamed Hamaki","محمد حماقي",2015,"2015-08-11",1],["Nefsi Aba’a Ganbo","نفسي أبقى جنبه","Mohamed Hamaki","محمد حماقي",2012,"2012-08-30",1],["Gara Eh","جرى إيه","Mohamed Hamaki","محمد حماقي",2012,"2012-08-30",1],["Ahla Haga Feeki","أحلى حاجة فيكي","Mohamed Hamaki","محمد حماقي",2006,"2006-08-06",1],["Baaet Aadah","بقت عادة","Mohamed Hamaki","محمد حماقي",2006,"2006-08-06",1],["Ahla Haga Feeki (Remix)","أحلى حاجة فيكي (ريمكس)","Mohamed Hamaki","محمد حماقي",2006,"2006-08-06",1],["Khallina Neysh","خلينا نعيش","Mohamed Hamaki","محمد حماقي",2003,"2003-03-18",1],["Aan El Awaan","آن الأوان","Mohamed Hamaki","محمد حماقي",2003,"2003-03-18",1],["Fawzy Al Andaleeb","فوزي العندليب","Mohamed Henedy","محمد هنيدي",2007,"2007-07-10",1],["Meen Habib Baba","مين حبيب بابا","Mohamed Henedy","محمد هنيدي",2007,"2007-07-10",1],["Bet3ally","بتعلي","Mohamed Mounir","محمد منير",2026,"2026-01-10",1],["Ebky","إبكي","Mohamed Mounir","محمد منير",2003,"2003-08-13",1],["Banat","بنات","Mohamed Mounir","محمد منير",2003,"2003-08-13",1],["Okalo","عوكلو","Mohamed Saad (Actor)","محمد سعد (ممثل)",2004,"2004-07-06",1],["Lesa Habaib","لسه حبايب","Moustafa Amar","مصطفى قمر",2006,"2006-11-06",1],["Habieb Alby","حبيب قلبي","Moustafa Amar","مصطفى قمر",2003,"2003-08-18",1],["Rohi Feek","روحي فيك","Moustafa Amar","مصطفى قمر",2003,"2003-08-13",1],["Hen Ya","حن يا","Moustafa Amar","مصطفى قمر",2003,"2003-08-13",1],["Meen Gheirak","مين غيرك","Moustafa Amar","مصطفى قمر",2003,"2003-08-13",1],["Getlak","جيتلك","Moustafa Amar","مصطفى قمر",2003,"2003-08-13",1],["Law Kont Ghaly","لو كنت غالي","Moustafa Amar","مصطفى قمر",2002,"2002-08-14",1],["Monaya","منايا","Moustafa Amar","مصطفى قمر",2002,"2002-08-14",1],["Rah We Ghab Anni","راح وغاب عليا","Moustafa Amar","مصطفى قمر",2002,"2002-08-14",1],["Haollak Eih","هقولك إيه","Moustafa Amar","مصطفى قمر",2002,"2002-08-14",1],["Ana Bardo Elly Fein","أنا برضه اللي فين","Moustafa Amar","مصطفى قمر",2002,"2002-08-14",1],["Habeb Hayaty","حبيب حياتي","Moustafa Amar","مصطفى قمر",2001,"2001-07-21",1],["Bi’ Git Bakalım","","Mustafa Sandal","",2012,"2012-06-11",1],["Bin Parça","","Mustafa Sandal","",2009,"2009-07-08",1],["Demo","","Mustafa Sandal","",2009,"2009-07-08",1],["La Ay Ay","لا أي أي","Nabil","نبيل",2021,"2021-12-21",1],["Lesa Bagi Ala Balak","لسه باجي على بالك","Nawal El Zoghbi","نوال الزغبي",2022,"2022-03-04",1],["Mosh Khayfa","مش خايفة","Nawal El Zoghbi","نوال الزغبي",2019,"2019-02-14",1],["Gowa Albo","جوة قلبه","Nawal El Zoghbi","نوال الزغبي",2019,"2019-02-14",1],["Keda Bye","كده باي","Nawal El Zoghbi","نوال الزغبي",2019,"2019-02-06",1],["El Nas El Ozaz","الناس العزاز","Nawal El Zoghbi","نوال الزغبي",2017,"2017-05-16",1],["Rouhi Ya Rouhi","روحي يا روحي","Nawal El Zoghbi","نوال الزغبي",2006,"2006-07-26",1],["Khod Albi","خد قلبي","Nawal El Zoghbi","نوال الزغبي",2004,"2004-01-31",1],["Be Eynak","بعينك","Nawal El Zoghbi","نوال الزغبي",2004,"2004-01-31",1],["Elly Etmanetoh","اللي إتمنيته","Nawal El Zoghbi","نوال الزغبي",2002,"2002-00-00",1],["Kam Layla","كم ليلة","Nawal El Zoghbi","نوال الزغبي",2001,"2001-00-00",1],["Toul Omry","طول عمري","Nawal El Zoghbi","نوال الزغبي",2001,"2001-00-00",1],["Karrart","قررت","Nicole Saba","نيكول سابا",2015,"2015-11-05",1],["Ashaak","عاشقاك","Nicole Saba","نيكول سابا",2004,"2004-06-06",1],["Wehliftlak Belghaly","وحلفتلك بالغالي","Nicole Saba","نيكول سابا",2004,"2004-06-06",1],["Ya Shaghilny","يا شاغلني","Nicole Saba","نيكول سابا",2004,"2004-06-06",1],["Saharouny El Leil","سهروني الليل","Ragheb Alama","راغب علامة",2001,"2001-02-18",1],["Kul Dah Gowak","كل ده جواك","Raja Belmalih","رجاء بلمليح",2001,"2001-10-14",1],["Ya Alby Ertah","يا قلبي إرتاح","Randa Hafez","راندا حافظ",2009,"2009-10-13",1],["Masebtelosh Forsa","ماسبتلوش فرصة","Randa Hafez","راندا حافظ",2009,"2009-10-13",1],["Shayef Nafsak","شايف نفسك","Rania Kurdi","رانيا الكردي",2006,"2006-00-00",1],["Kallemtak Kitir","كلمتك كتير","Rania Kurdi","رانيا الكردي",2005,"2005-00-00",1],["Ala Da El Hal","على ده الحال","Rola Saad","رولا سعد",2004,"2004-00-00",1],["ZANN","زن","Samira Said","سميرة سعيد",2024,"2024-07-29",1],["Kaddab","كداب","Samira Said","سميرة سعيد",2024,"2024-05-02",1],["Rayha Gaya","رايحة جاية","Samira Said","سميرة سعيد",2024,"2024-03-30",1],["Fan El Taghafol","فن التغافل","Samira Said","سميرة سعيد",2024,"2024-02-15",1],["Kan","كان","Samira Said","سميرة سعيد",2024,"2024-02-11",1],["Gehaz Tasgeel","جهاز تسجيل","Samira Said","سميرة سعيد",2022,"2022-03-05",1],["Wana Maak","وأنا معاك","Samira Said","سميرة سعيد",2008,"2008-04-01",1],["Nefsee Atkalem","نفسي أتكلم","Samira Said","سميرة سعيد",2008,"2008-04-01",1],["Kefaaya Keda","كفاية كده","Samira Said","سميرة سعيد",2008,"2008-04-01",1],["Shaat El Zourof","شاءت الظروف","Samira Said","سميرة سعيد",2008,"2008-04-01",1],["Aweni Beek","قويني بيك","Samira Said","سميرة سعيد",2004,"2004-09-06",1],["Bel Salama","بالسلامة","Samira Said","سميرة سعيد",2004,"2004-09-06",1],["Ma Khalass","ما خلاص","Samira Said","سميرة سعيد",2004,"2004-09-06",1],["Saab Allaya","صعب عليا","Samira Said","سميرة سعيد",2004,"2004-09-06",1],["La Bina Helm","لا بينا حلم","Samira Said","سميرة سعيد",2002,"2002-06-16",1],["Kol El Awkat","كل الأوقات","Samira Said","سميرة سعيد",2002,"2002-06-16",1],["Youm Wara Youm","يوم ورا يوم","Samira Said","سميرة سعيد",2002,"2002-06-16",1],["Alah Yesahilak","الله يسهلك","Samira Said","سميرة سعيد",2002,"2002-06-16",1],["Lialy Zaman","ليالي زمان","Samira Said","سميرة سعيد",2002,"2002-06-16",1],["Moushta’Alak","مشتقالك","Samira Said","سميرة سعيد",2000,"2000-12-20",1],["Habeitak","حبيتك","Samo Zaen","سامو زين",2010,"2010-07-11",1],["Malosh Kilma","مالوش كلمة","Sandy (EGY)","ساندي",2012,"2012-08-14",1],["Bargaa Beomry","برجع بعمري","Shaza","شذى",2008,"2008-05-28",1],["El Layali","الليالي","Shaza","شذى",2008,"2008-05-28",1],["Ghalia Alena","غالية علينا","Sherine","شيرين",2025,"2025-09-10",1],["El Metro","المترو","Sherine","شيرين",2022,"2022-10-01",1],["3eshra W Meshwar","عِشرة ومشوار","Sherine","شيرين",2021,"2021-05-04",1],["Heya El Donia","هي الدنيا","Sherine","شيرين",2021,"2021-03-21",1],["Rooh Ensan","روح إنسان","Sherine","شيرين",2019,"2019-02-12",1],["Fe Leila","في ليلة","Sherine","شيرين",2014,"2014-01-15",1],["Masherbtesh Men Nelha","ما شربتش من نيلها","Sherine","شيرين",2006,"2006-00-00",1],["Mafish Marra","مفيش مرة","Sherine","شيرين",2005,"2005-05-18",1],["Tammen Alby","طمن قلبي","Sherine","شيرين",2005,"2005-05-18",1],["Enta Akher Wahed","إنت آخر واحد","Sherine","شيرين",2005,"2005-05-18",1],["Wala Leila","ولا ليلة","Sherine Wagdy","شيرين وجدي",2002,"2002-00-00",1],["Law Bena Eih","لو بينا إيه","Sherine Wagdy","شيرين وجدي",2001,"2001-00-00",1],["Baheb Feik","بحب فيك","Sofia El Marikh","صوفيا المريخ",2007,"2007-00-00",1],["Dehket Leya Seniny","ضحكت ليا سنيني","Soma (EGY)","سوما",2006,"2006-02-18",1],["Elly Ghadar Beya","اللي غدر بيا","Soma (EGY)","سوما",2006,"2006-02-18",1],["Entaq","إنطق","Tamer Ashour","تامر عاشور",2014,"2014-10-28",1],["Ayzek Tew3ediny","عايزك توعديني","Tamer Hosny","تامر حسني",2026,"2026-07-21",1],["Ba3eesh Ala El Zekra","بعيش على الذكرى","Tamer Hosny","تامر حسني",2026,"2026-07-21",1],["Bent Meen?","بنت مين؟","Tamer Hosny","تامر حسني",2026,"2026-07-21",1],["Ya Khosaretna","يا خسارتنا","Tamer Hosny","تامر حسني",2026,"2026-07-21",1],["Elly Rah","اللي راح","Tamer Hosny","تامر حسني",2013,"2013-03-06",1],["Law Kona Benhebaha","لو كنا بنحبها","Tamer Hosny","تامر حسني",2005,"2005-00-00",1],["Ban Aleik","بان عليك","Wael Jassar","وائل جسار",2008,"2008-00-00",1],["Ya Ghaly Alaya","يا غالي عليا","WAMA","واما",2005,"2005-00-00",1],["Bahebbak Mot","بحبك موت","Yuri Mrakadi","يوري مرقدي",2004,"2004-00-00",1],["Be3teeny Leh","بعتيني ليه","ZIAD ZAZA","زياد ظاظا",2025,"2025-11-27",1]];
+const CLOUD = [["Amr Diab","عمرو دياب",52],["Mohamed Hamaki","محمد حماقي",38],["Samira Said","سميرة سعيد",20],["Moustafa Amar","مصطفى قمر",12],["Amr Mostafa","عمرو مصطفى",11],["Nawal El Zoghbi","نوال الزغبي",11],["Sherine","شيرين",10],["Donia Samir Ghanem","دنيا سمير غانم",9],["Amal Maher","آمال ماهر",8],["Tamer Hosny","تامر حسني",6],["Hisham Abbas","هشام عباس",5],["Amer Mounib","عامر منيب",4],["Nicole Saba","نيكول سابا",4],["Ehab Tawfik","إيهاب توفيق",3],["Mohamed Mounir","محمد منير",3],["Mustafa Sandal","",3],["Ahmed Saad","أحمد سعد",2],["Angham","أنغام",2],["Assala","أصالة",2],["Bahaa Sultan","بهاء سلطان",2],["Carole Samaha","كارول سماحة",2],["Cheb Mami","",2],["Gülben Ergen","",2],["Haifa Wehbe","هيفاء وهبي",2],["Hossam Habib","حسام حبيب",2],["Katia Harb","كاتيا حرب",2],["Mohamed Henedy","محمد هنيدي",2],["Randa Hafez","راندا حافظ",2],["Rania Kurdi","رانيا الكردي",2],["Shaza","شذى",2],["Sherine Wagdy","شيرين وجدي",2],["Soma (EGY)","سوما",2],["Adel Imam","عادل إمام",1],["Administrative Capital For Urban Development","شركة العاصمة الإدارية للتنمية العمراني",1],["Ahmed El Attar","أحمد العطار",1],["Ahmed Helmy","أحمد حلمي",1],["Amal Hijazi","أمل حجازي",1],["Ayşe Hatun Önal","",1],["Aziz Abdo","عزيز عبدو",1],["Carmen Soliman","كارمن سليمان",1],["Fadel Chaker","فضل شاكر",1],["Fares (EGY)","فارس",1],["Funky G","",1],["Heba","هبة",1],["Hussain Al Jassmi","حسين الجسمي",1],["Jana Diab","",1],["Katy Garbi","",1],["Kenan Doğulu","",1],["Lella Fadda","للّا فضة",1],["Lena Chamamyan","لينا شاماميان",1],["Mai Farouk","مي فاروق",1],["Mariam Amer Mounib","مريم عامر منيب",1],["Medhat Saleh","مدحت صالح",1],["Mohamed Saad (Actor)","محمد سعد (ممثل)",1],["Nabil","نبيل",1],["Ragheb Alama","راغب علامة",1],["Raja Belmalih","رجاء بلمليح",1],["Rola Saad","رولا سعد",1],["Samo Zaen","سامو زين",1],["Sandy (EGY)","ساندي",1],["Sofia El Marikh","صوفيا المريخ",1],["Tamer Ashour","تامر عاشور",1],["WAMA","واما",1],["Wael Jassar","وائل جسار",1],["Yuri Mrakadi","يوري مرقدي",1],["ZIAD ZAZA","زياد ظاظا",1]];
+const SELF = 'Amr Mostafa';
+
+const catState = { view:'voice', q:'', open:new Set() };
+
+function catGroups(){
+  const map = new Map();
+  if (catState.view === 'voice'){
+    CAT.forEach(r => {
+      if (!map.has(r[2])) map.set(r[2], { key:r[2], en:r[2], ar:r[3], rows:[] });
+      map.get(r[2]).rows.push(r);
+    });
+    return [...map.values()].sort((a,b) => b.rows.length - a.rows.length || a.en.localeCompare(b.en));
+  }
+  CAT.forEach(r => {
+    const k = String(r[4] || '—');
+    if (!map.has(k)) map.set(k, { key:k, en:k, ar:'', rows:[] });
+    map.get(k).rows.push(r);
+  });
+  return [...map.values()].sort((a,b) => b.key.localeCompare(a.key));
+}
+
+function songHTML(r, showWho){
+  const sp = spotifyFor(r[0], r[2]);
+  return '<a class="song" href="' + sp.url + '" target="_blank" rel="noopener"' +
+    ' title="' + (sp.direct ? 'Play on Spotify' : 'Search Spotify') + '"><div class="t">' +
+    (r[1] ? '<span class="ar">' + r[1] + '</span>' : '') +
+    '<span class="en">' + r[0] + '</span>' +
+    (showWho ? '<span class="who">' + r[2] + '</span>' : '') +
+    '</div><div class="yw"><span class="y">' + (r[4] || '—') + '</span>' +
+    '<span class="sp' + (sp.direct ? ' direct' : '') + '">' + SPOTIFY_ICON + '</span></div></a>';
+}
+
+function catRender(){
+  const list = document.getElementById('catList');
+  const tally = document.getElementById('catTally');
+  const q = catState.q.trim().toLowerCase();
+
+  if (q){
+    const hits = CAT.filter(r =>
+      (r[0] + ' ' + r[1] + ' ' + r[2] + ' ' + r[3]).toLowerCase().includes(q));
+    tally.innerHTML = '<b>' + hits.length + '</b> of 265';
+    list.innerHTML = hits.length
+      ? '<div class="grp-body open" style="grid-column:1/-1;background:none;border:0"><div class="song-grid">' +
+        hits.sort((a,b) => (b[5]||'').localeCompare(a[5]||'')).map(r => songHTML(r, true)).join('') +
+        '</div></div>'
+      : '<p class="cat-empty" style="grid-column:1/-1">Nothing matches that.</p>';
+    return;
+  }
+
+  const groups = catGroups();
+  const maxN = Math.max(...groups.map(g => g.rows.length));
+  tally.innerHTML = '<b>' + groups.length + '</b> ' +
+    (catState.view === 'voice' ? 'voices' : 'years');
+
+  list.innerHTML = groups.map((g, i) => {
+    const n = g.rows.length;
+    const open = catState.open.has(g.key);
+    const isSelf = catState.view === 'voice' && g.en === SELF;
+    const sorted = g.rows.slice().sort((a,b) => (b[5]||'').localeCompare(a[5]||''));
+    const yrs = g.rows.map(r => r[4]).filter(Boolean);
+    const span = yrs.length
+      ? (Math.min(...yrs) === Math.max(...yrs) ? String(Math.min(...yrs))
+         : Math.min(...yrs) + '–' + Math.max(...yrs))
+      : '';
+    return (
+      '<button class="grp-h' + (open ? ' open' : '') + '" data-k="' + g.key + '" aria-expanded="' + open + '">' +
+        '<span class="grp-n"><span class="en">' + g.en +
+          (isSelf ? '<span class="self">himself</span>' : '') + '</span>' +
+          (g.ar ? '<span class="ar">' + g.ar + '</span>' : '') + '</span>' +
+        '<span class="grp-c">' + n + '<span class="chev"></span></span>' +
+      '</button>' +
+      '<div class="grp-body' + (open ? ' open' : '') + '" data-b="' + g.key + '">' +
+        '<p class="bhead">' + g.en + (span ? ' &nbsp;·&nbsp; ' + span : '') +
+          ' &nbsp;·&nbsp; ' + n + (n === 1 ? ' song' : ' songs') + '</p>' +
+        '<div class="song-grid">' +
+          sorted.map(r => songHTML(r, catState.view === 'time')).join('') +
+        '</div>' +
+      '</div>'
+    );
+  }).join('');
+
+  list.querySelectorAll('.grp-h').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const k = btn.dataset.k;
+      catState.open.has(k) ? catState.open.delete(k) : catState.open.add(k);
+      catRender();
+      if (catState.open.has(k)){
+        const el = document.querySelector('.grp-h[data-k="' + CSS.escape(k) + '"]');
+        if (el) el.scrollIntoView({ behavior:'smooth', block:'nearest' });
+      }
+    });
+  });
+}
+
+/* open one group by key, switching view if needed */
+function catOpen(view, key){
+  catState.view = view; catState.q = '';
+  catState.open = new Set([String(key)]);
+  document.getElementById('catQ').value = '';
+  document.querySelectorAll('#catSeg button')
+    .forEach(b => b.classList.toggle('on', b.dataset.v === view));
+  catRender();
+  document.getElementById('catalog').scrollIntoView({ behavior:'smooth', block:'start' });
+  setTimeout(() => {
+    const el = document.querySelector('.grp-h[data-k="' + CSS.escape(String(key)) + '"]');
+    if (el) el.scrollIntoView({ behavior:'smooth', block:'center' });
+  }, 650);
+}
+
+function catInit(){
+  document.querySelectorAll('#catSeg button').forEach(b => {
+    b.addEventListener('click', () => {
+      catState.view = b.dataset.v;
+      catState.open.clear();
+      document.querySelectorAll('#catSeg button')
+        .forEach(x => x.classList.toggle('on', x === b));
+      catRender();
+    });
+  });
+  const qi = document.getElementById('catQ');
+  qi.addEventListener('input', () => { catState.q = qi.value; catRender(); });
+  catRender();
+}
+
+
+/* =========================== THE TRACK RAIL ===========================
+   A real waveform, not a bar chart: ~240 hairlines whose amplitude is
+   interpolated across the per-year song counts, with deterministic jitter
+   so it reads as audio. Played/unplayed is one clip rect, so scrolling
+   updates a single attribute rather than 240 elements.
+   ====================================================================== */
+const RAIL = { years:[], ticks:240, built:false, VH:1000, VW:100 };
+
+function railSeed(i){                    // deterministic pseudo-jitter
+  const x = Math.sin(i * 12.9898 + 4.233) * 43758.5453;
+  return x - Math.floor(x);
+}
+
+function railBuild(){
+  const svg = document.getElementById('railSvg');
+  if (!svg || typeof CAT === 'undefined') return;
+
+  const counts = {};
+  CAT.forEach(r => { if (r[4]) counts[r[4]] = (counts[r[4]] || 0) + 1; });
+  const ys = Object.keys(counts).map(Number).sort((a,b) => a-b);
+  const y0 = ys[0], y1 = ys[ys.length-1];
+  RAIL.years = [];
+  for (let y = y0; y <= y1; y++) RAIL.years.push(counts[y] || 0);
+  const maxN = Math.max(...RAIL.years);
+
+  document.getElementById('railTop').textContent = y0;
+  document.getElementById('railBot').textContent = y1;
+
+  const { VW, VH, ticks } = RAIL;
+  const mid = VW / 2;
+  const step = VH / ticks;
+  const tickH = 1.15;
+  const maxAmp = VW * 0.42;
+
+  let body = '';
+  for (let i = 0; i < ticks; i++){
+    const f = i / (ticks - 1) * (RAIL.years.length - 1);
+    const a = Math.floor(f), b = Math.min(RAIL.years.length - 1, a + 1);
+    const env = RAIL.years[a] + (RAIL.years[b] - RAIL.years[a]) * (f - a);
+    const jit = 0.42 + railSeed(i) * 0.58;          // jagged, but stable
+    const amp = Math.max(0.9, (env / maxN) * maxAmp * jit);
+    const y = i * step + step / 2;
+    body += '<rect x="' + (mid - amp).toFixed(2) + '" y="' + (y - tickH/2).toFixed(2) +
+            '" width="' + (amp * 2).toFixed(2) + '" height="' + tickH + '" rx="' + (tickH/2) + '"/>';
+  }
+
+  svg.setAttribute('viewBox', '0 0 ' + VW + ' ' + VH);
+  svg.innerHTML =
+    '<defs><clipPath id="railPlayed"><rect id="railClip" x="0" y="0" width="' + VW + '" height="0"/></clipPath></defs>' +
+    '<line class="axis" x1="' + mid + '" y1="0" x2="' + mid + '" y2="' + VH + '"/>' +
+    '<g class="tick">' + body + '</g>' +
+    '<g class="tick-lit" clip-path="url(#railPlayed)">' + body + '</g>' +
+    '<g id="railSecs"></g>' +
+    '<line class="head" id="railHead" x1="3" y1="0" x2="' + (VW-3) + '" y2="0"/>' +
+    '<circle class="headdot" id="railDot" cx="' + mid + '" cy="0" r="2.6"/>' +
+    '<g id="railHits"></g>';
+
+  // invisible hit areas, one per year, for the tooltip and the jump
+  const hits = svg.querySelector('#railHits');
+  const slot = VH / RAIL.years.length;
+  const tip = document.getElementById('railTip');
+  RAIL.years.forEach((n, i) => {
+    const r = document.createElementNS('http://www.w3.org/2000/svg','rect');
+    r.setAttribute('class','hit');
+    r.setAttribute('x', 0); r.setAttribute('y', i * slot);
+    r.setAttribute('width', VW); r.setAttribute('height', slot);
+    const year = y0 + i;
+    r.addEventListener('mousemove', e => {
+      tip.innerHTML = '<b>' + year + '</b> &nbsp;<span>' +
+        (n === 0 ? 'nothing on record' : n + (n === 1 ? ' song' : ' songs')) + '</span>';
+      tip.style.top = e.clientY + 'px';
+      tip.classList.add('on');
+    });
+    r.addEventListener('mouseleave', () => tip.classList.remove('on'));
+    r.addEventListener('click', () => { if (n > 0) catOpen('time', year); });
+    hits.appendChild(r);
+  });
+
+  RAIL.built = true;
+  railSections();
+  railFrame();
+}
+
+const RAIL_SECTIONS = [
+  ['top','Hero'], ['reveal','Reveal'], ['anatomy','Anatomy'], ['years','Years'],
+  ['catalog','Catalogue'], ['charts','Charts'], ['awards','Awards'], ['collaborators','Voices']
+];
+
+/* place section marks using real document offsets */
+function railSections(){
+  const g = document.getElementById('railSecs');
+  if (!g) return;
+  const docH = (document.documentElement.scrollHeight - window.innerHeight) || 1;
+  g.innerHTML = RAIL_SECTIONS.map(([id, name]) => {
+    const el = document.getElementById(id);
+    if (!el) return '';
+    const top = el.getBoundingClientRect().top + window.scrollY;
+    const f = Math.min(1, Math.max(0, top / docH));
+    const y = f * RAIL.VH;
+    return '<line class="secmark" x1="0" y1="' + y.toFixed(1) + '" x2="' + RAIL.VW + '" y2="' + y.toFixed(1) + '"/>' +
+           '<text class="seclab" data-id="' + id + '" x="3" y="' + (y - 3).toFixed(1) + '">' + name + '</text>';
+  }).join('');
+}
+
+function railFrame(){
+  if (!RAIL.built) return;
+  const docH = (document.documentElement.scrollHeight - window.innerHeight) || 1;
+  const p = Math.min(1, Math.max(0, window.scrollY / docH));
+  const y = p * RAIL.VH;
+
+  const clip = document.getElementById('railClip');
+  const head = document.getElementById('railHead');
+  const dot  = document.getElementById('railDot');
+  if (clip) clip.setAttribute('height', y);
+  if (head){ head.setAttribute('y1', y); head.setAttribute('y2', y); }
+  if (dot) dot.setAttribute('cy', y);
+
+  // light the section label you are currently inside
+  let active = '';
+  for (const [id] of RAIL_SECTIONS){
+    const el = document.getElementById(id);
+    if (!el) continue;
+    const r = el.getBoundingClientRect();
+    if (r.top <= innerHeight * 0.5 && r.bottom >= innerHeight * 0.5) active = id;
+  }
+  document.querySelectorAll('#railSecs .seclab')
+    .forEach(t => t.classList.toggle('on', t.dataset.id === active));
+}
+
+function railInit(){
+  railBuild();
+  let ticking = false;
+  addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { railFrame(); ticking = false; });
+  }, { passive:true });
+  let rt;
+  addEventListener('resize', () => {
+    clearTimeout(rt);
+    rt = setTimeout(() => { railSections(); railFrame(); }, 150);
+  });
+  // sections move as accordions open, so re-measure after interaction
+  document.addEventListener('click', () => setTimeout(() => { railSections(); railFrame(); }, 420));
+}
+
+/* =========================== COLLABORATORS =========================== */
+function collabInit(){
+  const max = Math.max(...CLOUD.map(c => c[2]));
+  const min = Math.min(...CLOUD.map(c => c[2]));
+  const el = document.getElementById('collabCloud');
+
+  el.innerHTML = CLOUD.map(([en, ar, n]) => {
+    // perceptual scale: sqrt keeps the long tail readable
+    const t = (Math.sqrt(n) - Math.sqrt(min)) / (Math.sqrt(max) - Math.sqrt(min) || 1);
+    const size = (1.05 + t * 3.5).toFixed(2);   // rem
+    const self = en === SELF ? ' is-self' : '';
+    return '<a class="cloud-name' + self + '" href="#catalog" data-artist="' + en + '"' +
+           ' style="font-size:' + size + 'rem" title="' + n + ' songs">' +
+           en + '<sup>' + n + '</sup></a>';
+  }).join('');
+
+  el.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      catOpen('voice', a.dataset.artist);
+    });
+  });
+
+  const top = CLOUD.slice(0,2);
+  const share = Math.round((top.reduce((s,c) => s + c[2], 0) / CAT.length) * 100);
+  document.getElementById('cloudNote').innerHTML =
+    top[0][0] + ' and ' + top[1][0] + ' alone account for <b style="color:var(--ink)">' +
+    share + '%</b> of the catalogue — ' + top[0][2] + ' and ' + top[1][2] +
+    ' songs. The remaining ' + (CLOUD.length - 2) + ' voices share the rest.';
+}
+
+
+
+
+
+/* =========================== TIMELINE ===========================
+   A real timeline: axis with year ticks, photo above the line, caption
+   below it. The first PINNED entries arrive on a short forced scroll;
+   "See all" releases the pin and turns the track into a swipe strip.
+   ================================================================ */
+const ARCHIVE = [
+  { year:'1999', ar:'4/5', photo:'', cap:'the first one',
+    title:'The first credit',
+    body:'PLACEHOLDER — the first melody of his to be recorded. Ask him how the session came about and who put him in the room.' },
+  { year:'2002', ar:'1/1', photo:'', cap:'Samira sessions',
+    title:'Five songs, one album',
+    body:'PLACEHOLDER — a run of compositions landing on a single record. Replace with his account of that stretch.' },
+  { year:'2003', ar:'5/4', photo:'', cap:'with Mounir',
+    title:'A different register',
+    body:'PLACEHOLDER — writing for a voice unlike anything else in the catalogue.' },
+  { year:'2004', ar:'4/5', photo:'',  cap:'',
+    title:'The year that would not slow down',
+    body:'PLACEHOLDER — one of the densest years on record, across several artists at once.' },
+  { year:'2006', ar:'1/1', photo:'', cap:'Hamaki',
+    title:'A partnership begins',
+    body:'PLACEHOLDER — the start of what becomes 38 songs, the second largest body of work in the catalogue.' },
+  { year:'2008', ar:'4/5', photo:'', cap:'his own record',
+    title:'Stepping to the front',
+    body:'PLACEHOLDER — he releases under his own name and it takes an album of the year. Ask what made him want to sing them himself.' },
+  { year:'2014', ar:'5/4', photo:'', cap:'بشرة خير',
+    title:'Boushret Kheir',
+    body:"Sung by Hussain Al Jassmi, words by Ayman Bahgat Qamar, arranged by Toma. It passed 10 million YouTube views in its first 12 days, and YouTube later named it the most-viewed video in the Arab world. The official audio has since passed 776 million views." },
+  { year:'2019', ar:'4/5', photo:'', cap:'',
+    title:'Back to his own voice',
+    body:'PLACEHOLDER — another record under his own name, after a decade spent mostly behind other people.' },
+  { year:'2023', ar:'1/1', photo:'', cap:'',
+    title:'Six tracks, no filler',
+    body:'PLACEHOLDER — a short record released on his own terms.' },
+  { year:'2026', ar:'4/5', photo:'', cap:'still going',
+    title:'Still the first call',
+    body:'PLACEHOLDER — the most recent run, more than two decades after the first credit.' }
+];
+
+const TL = { pinned:4, open:false, built:false, step:0, cards:[] };
+const TL_ROT = [-3.2, 2.4, -1.8, 3.0, -2.6, 1.9, -3.4, 2.2, -1.5, 2.8];
+
+function tlCardHTML(e, k){
+  const photo = e.photo
+    ? '<img src="' + e.photo + '" alt="">'
+    : '<div class="ph"><span class="n">' + String(k+1).padStart(2,'0') +
+      '</span><span class="t">Photo</span></div>';
+  return (
+    '<div class="tl-item" data-k="' + k + '" style="--rot:' + TL_ROT[k % TL_ROT.length] + 'deg">' +
+      '<div class="tl-shot"><div class="tl-frame">' +
+        '<div class="tl-photo" style="--ar:' + e.ar + '">' + photo + '</div>' +
+        (e.cap ? '<div class="tl-cap">' + e.cap + '</div>' : '') +
+      '</div></div>' +
+      '<div class="tl-node"><span class="dot"></span><span class="yr">' + e.year + '</span></div>' +
+      '<div class="tl-text"><h3>' + e.title + '</h3><p>' + e.body + '</p></div>' +
+    '</div>');
+}
+
+function tlBuild(){
+  const track = document.getElementById('tlTrack');
+  if (!track) return;
+  track.innerHTML = ARCHIVE.map(tlCardHTML).join('');
+  TL.cards = Array.from(track.querySelectorAll('.tl-item'));
+  // only the pinned run exists until the user opens the rest
+  TL.cards.forEach((c, k) => { if (k >= TL.pinned) c.style.display = 'none'; });
+  TL.built = true;
+  tlMeasure();
+}
+
+function tlMeasure(){
+  if (!TL.built) return;
+  const first = TL.cards[0];
+  if (!first) return;
+  const w = first.getBoundingClientRect().width;
+  const cs = getComputedStyle(document.getElementById('tlTrack'));
+  const gap = parseFloat(cs.gap) || 54;
+  TL.step = w + gap;
+  // put the axis exactly under the photo block
+  const shot = first.querySelector('.tl-shot');
+  if (shot){
+    const h = shot.getBoundingClientRect().height;
+    document.getElementById('tlTrack').style.setProperty('--tl-axis', (h + 12) + 'px');
+  }
+  tlFrame();
+}
+
+function tlFrame(){
+  if (!TL.built || TL.open) return;
+  const runway = document.getElementById('tlRunway');
+  const track = document.getElementById('tlTrack');
+  if (!runway || !track) return;
+  const r = runway.getBoundingClientRect();
+  const travel = r.height - window.innerHeight;
+  if (travel <= 0) return;
+  const p = Math.min(1, Math.max(0, -r.top / travel));
+
+  const K = TL.pinned;
+  const a = p * (K - 1);                       // which card is centred
+  const vw = window.innerWidth;
+  const pad = Math.max(20, vw * 0.034);
+  const cardW = TL.step ? TL.step - (parseFloat(getComputedStyle(track).gap) || 54) : 300;
+  const x = (vw / 2) - (cardW / 2) - pad - a * TL.step;
+  track.style.transform = 'translateX(' + x.toFixed(1) + 'px)';
+
+  TL.cards.forEach((c, k) => {
+    if (k >= K) return;
+    c.classList.toggle('in', a >= k - 0.55);
+  });
+
+  const hint = document.getElementById('tlHint');
+  if (hint) hint.style.opacity = p > 0.93 ? '0' : '.45';
+}
+
+function tlOpen(){
+  TL.open = true;
+  const runway = document.getElementById('tlRunway');
+  const track = document.getElementById('tlTrack');
+  runway.classList.add('open');
+  track.style.transform = 'none';
+  TL.cards.forEach(c => { c.style.display = ''; c.classList.add('in'); });
+  const btn = document.getElementById('tlMore');
+  btn.classList.add('gone');
+  const hint = document.getElementById('tlHint');
+  if (hint){ hint.textContent = 'Drag or scroll the line'; hint.style.opacity = '.45'; }
+  tlMeasure();
+  document.getElementById('years').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function tlInit(){
+  tlBuild();
+  document.getElementById('tlMore').addEventListener('click', tlOpen);
+  let ticking = false;
+  addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { tlFrame(); ticking = false; });
+  }, { passive:true });
+  let rt;
+  addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(tlMeasure, 150); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(tlMeasure);
+}
+/* the tweak panel still calls these */
+function arcPaint(){ tlFrame(); }
+function arcMeasure(){ tlMeasure(); }
+
+/* =========================== ANATOMY ===========================
+   The credit stack for a few songs. `lyricist` / `arranger` are filled
+   where the source supports it and left as TBD otherwise — do not invent
+   these, they go on his own site under his name.
+   =============================================================== */
+const ANATOMY = [
+  { ar:'بشرة خير', en:'Boushret Kheir', artist:'Hussain Al Jassmi', artistAr:'حسين الجسمي', year:'2014',
+    lyricist:'أيمن بهجت قمر', lyricistEn:'Ayman Bahgat Qamar', arranger:'توما', arrangerEn:'Toma' },
+  { ar:'خطفوني', en:'Khatfoony', artist:'Amr Diab', artistAr:'عمرو دياب', year:'2025',
+    lyricist:'تامر حسين', lyricistEn:'Tamer Hussein', arranger:'' },
+  { ar:'عايشين', en:'Aayesheen', artist:'Amr Mostafa', artistAr:'عمرو مصطفى', year:'2024',
+    lyricist:'عز الدين', lyricistEn:'Ezz El Din', arranger:'', self:true }
+];
+
+function anatBuild(){
+  const grid = document.getElementById('anatGrid');
+  if (!grid) return;
+  grid.innerHTML = ANATOMY.map(s => {
+    const rows = [
+      { role:'Melody',      who:'عمرو مصطفى', whoEn:'Amr Mostafa', w:100, his:true },
+      { role:'Words',       who:s.lyricist,   whoEn:s.lyricistEn,  w:74 },
+      { role:'Voice',       who:s.artistAr,   whoEn:s.artist,      w:86 },
+      { role:'Arrangement', who:s.arranger,   whoEn:s.arrangerEn || '', w:58 }
+    ];
+    return '<div class="anat-card">' +
+      '<div class="anat-top">' +
+        '<span class="anat-title"><span class="ar">' + s.ar + '</span>' +
+          '<span class="en">' + s.en + '</span></span>' +
+        '<span class="anat-meta">' + s.year + '</span>' +
+      '</div>' +
+      rows.map(r => {
+        const known = !!r.who;
+        return '<div class="layer' + (r.his ? ' his' : '') + (known ? '' : ' tbd') + '" style="--w:' + r.w + '%">' +
+          '<span class="role">' + r.role + '</span>' +
+          '<span class="track"><i></i></span>' +
+          '<span class="who">' + (known
+            ? '<span class="ar">' + r.who + '</span>' + (r.whoEn ? ' · ' + r.whoEn : '')
+            : 'to confirm') + '</span>' +
+        '</div>';
+      }).join('') +
+    '</div>';
+  }).join('');
+
+  document.getElementById('anatFoot').innerHTML =
+    'Across the catalogue the words came from <b>Tamer Hussein</b>, <b>Ayman Bahgat Qamar</b>, ' +
+    '<b>Amir Teima</b>, <b>Mostafa Nasser</b> and others. The voices came from 66 different singers. ' +
+    'The melody line is the one constant — <b>265 times</b>.';
+
+  const sec = document.getElementById('anatomy');
+  new IntersectionObserver((es, o) => {
+    es.forEach(e => { if (e.isIntersecting){ sec.classList.add('in'); o.disconnect(); } });
+  }, { threshold:0.2 }).observe(sec);
+}
+
+/* =========================== ON AIR + TITLE BAND ===========================
+   Both run off the catalogue data, so neither needs new assets. The on-air
+   strip reads the most recent year; the band scrolls real Arabic titles.
+   ========================================================================== */
+function onairInit(){
+  const el = document.getElementById('onairLine');
+  if (!el || typeof CAT === 'undefined') return;
+  const latest = Math.max(...CAT.map(r => r[4] || 0));
+  const recent = CAT.filter(r => r[4] === latest)
+                    .sort((a,b) => (b[5]||'').localeCompare(a[5]||''));
+  const names = [...new Set(recent.map(r => r[2]))].slice(0,3);
+  const top = recent[0];
+  el.innerHTML =
+    '<span><b>' + recent.length + '</b> release' + (recent.length===1?'':'s') +
+      ' in <b>' + latest + '</b></span>' +
+    '<span class="dot">·</span>' +
+    (top && top[1] ? '<span class="ar">' + top[1] + '</span>' : '') +
+    (top ? '<span>for ' + top[2] + '</span>' : '') +
+    (names.length > 1 ? '<span class="dot">·</span><span>also ' +
+      names.slice(1).join(', ') + '</span>' : '');
+}
+
+function bandInit(){
+  const A = document.getElementById('bandA');
+  const B = document.getElementById('bandB');
+  if (!A || !B || typeof CAT === 'undefined') return;
+  const titles = CAT.map(r => r[1]).filter(Boolean);
+  // two different slices so the rows never read as the same list
+  const pick = (start, n) => {
+    const out = [];
+    for (let i = 0; i < n; i++) out.push(titles[(start + i * 7) % titles.length]);
+    return out;
+  };
+  const build = (arr) => {
+    const html = arr.map(t => '<span>' + t + '</span><i></i>').join('');
+    return html + html;              // doubled, so the -50% loop is seamless
+  };
+  A.innerHTML = build(pick(0, 26));
+  B.innerHTML = build(pick(13, 26));
+}
+
+
+/* =========================== SPOTIFY / CHARTS / AWARDS ===========================
+   These three constants are regenerated from amr-mostafa-rights-sheet.xlsx by
+   sheet_to_site.py. Edit the sheet, run the script — do not hand-edit here.
+   ================================================================================ */
+/* @@SITE-DATA-START@@ */
+const SPOTIFY = {};
+const CHARTS = [];
+const AWARDS = [
+  { year:'2008', award:'EMI Ultimate Album of the Year', body:'EMI', category:'Album',
+    work:'Alama Fi Hayatak', result:'Won', verified:false }
+];
+/* @@SITE-DATA-END@@ */
+
+const SPOTIFY_ICON =
+  '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1.5a10.5 10.5 0 1 0 0 21 10.5 10.5 0 0 0 0-21Zm4.82 15.14a.66.66 0 0 1-.9.22c-2.47-1.5-5.58-1.85-9.24-1.01a.66.66 0 1 1-.29-1.28c4-.91 7.44-.52 10.21 1.17.31.19.41.6.22.9Zm1.29-2.86a.82.82 0 0 1-1.13.27c-2.83-1.74-7.14-2.24-10.48-1.23a.82.82 0 1 1-.48-1.57c3.82-1.16 8.57-.6 11.82 1.4.39.24.51.74.27 1.13Zm.11-2.98C14.83 8.8 9.2 8.61 5.94 9.6a.99.99 0 1 1-.57-1.89c3.74-1.14 9.97-.92 13.9 1.41a.99.99 0 0 1-1.05 1.68Z"/></svg>';
+
+function spotifyFor(titleEn, artistEn){
+  const id = SPOTIFY[titleEn + '|' + artistEn];
+  return id
+    ? { url:'https://open.spotify.com/track/' + id, direct:true }
+    : { url:'https://open.spotify.com/search/' + encodeURIComponent(titleEn + ' ' + artistEn), direct:false };
+}
+
+function chartsInit(){
+  const SUPABASE_CFG = { url:'', anonKey:'' };   // paste project URL + anon key to go live
+
+  // artwork already in this file, used until an entry has its own cover_url
+  const COVER_FALLBACK = { 'Khatfoony': (typeof IMAGES !== 'undefined' ? IMAGES[1] : '') };
+
+  const SEED = [
+    {song_title_en:'Khatfoony',song_title_ar:'خطفوني',performer:'Amr Diab ft. Jana Diab',album:'Ebtadena',year:2025,chart_name:'Billboard Arabia Hot 100',chart_tier:'official',peak_position:1,peak_label:'No. 1',chart_date:'2025-07-17',chart_date_precision:'day',note:'Jumped 42 places to No. 1; still charting at No. 78 in 2026',source_name:'Billboard Arabia',source_url:'https://www.billboardarabia.com/%D9%85%D9%88%D8%B3%D9%8A%D9%82%D9%89/%D9%85%D8%B5%D8%B1%D9%8A/%D8%B9%D9%85%D8%B1%D9%88-%D8%AF%D9%8A%D8%A7%D8%A8-%D8%A3%D9%88%D9%84-%D9%81%D9%86%D8%A7%D9%86-%D9%85%D8%B9-20-%D8%A3%D8%BA%D9%86%D9%8A%D8%A9-%D8%B9%D9%84%D9%89-%D9%87%D9%88%D8%AA-100-%D9%88%D8%AE%D8%B7%D9%81%D9%88%D9%86%D9%8A%D9%81%D9%8A-%D8%A7%D9%84%D8%B5%D8%AF%D8%A7%D8%B1%D8%A9-4645',sort_order:1,is_featured:true,movement:42,weeks_on_chart:null,cover_url:null},
+    {song_title_en:'Khatfoony',song_title_ar:'خطفوني',performer:'Amr Diab ft. Jana Diab',album:'Ebtadena',year:2025,chart_name:'Spotify Egypt – Most Streamed',chart_tier:'platform',peak_position:1,peak_label:'No. 1',chart_date:null,chart_date_precision:'day',note:'Also No. 1 on YouTube Trending Egypt',source_name:'Hia Magazine',source_url:'https://www.hiamag.com/%D8%AA%D8%B1%D9%81%D9%8A%D9%87-%D9%88%D9%81%D9%86%D9%88%D9%86/%D8%AA%D8%B1%D9%81%D9%8A%D9%87/1785108',sort_order:2,is_featured:false,movement:null,weeks_on_chart:null,cover_url:null},
+    {song_title_en:'Ebtadena',song_title_ar:'ابتدينا',performer:'Amr Diab',album:'Ebtadena',year:2025,chart_name:'Billboard Arabia Hot 100',chart_tier:'official',peak_position:6,peak_label:'No. 6',chart_date:'2025-07-17',chart_date_precision:'day',note:"Title track; one of six album songs in that week's top 10",source_name:'Billboard Arabia',source_url:'https://www.billboardarabia.com/%D9%85%D9%88%D8%B3%D9%8A%D9%82%D9%89/%D9%85%D9%86%D9%88%D8%B9%D8%A7%D8%AA/%D9%85%D9%86-%D9%85%D9%83%D8%A7%D9%86%D9%83-%D8%A5%D9%84%D9%89-%D8%A7%D8%A8%D8%AA%D8%AF%D9%8A%D9%86%D8%A7-%D8%A3%D9%84%D8%A8%D9%88%D9%85%D8%A7%D8%AA-%D9%88%D8%B5%D9%84%D8%AA-%D9%83%D9%84-%D8%A3%D8%BA%D8%A7%D9%86%D9%8A%D9%87%D8%A7-%D8%A5%D9%84%D9%89-%D9%87%D9%88%D8%AA-100-5828',sort_order:3,is_featured:true,movement:null,weeks_on_chart:null,cover_url:null},
+    {song_title_en:'Sammaouny (album, 7 Amr Mostafa compositions)',song_title_ar:'سمعوني',performer:'Mohamed Hamaki',album:'Sammaouny',year:2026,chart_name:'Billboard Arabia Hot 100',chart_tier:'official',peak_position:null,peak_label:'All 18 tracks charted',chart_date:'2026-06-01',chart_date_precision:'month',note:"Qalo Anni Eh, Betes'alouni, Helly Helly, Mesheity, Sammaouny, Habbeitek Be Hayati, Khalina",source_name:'Billboard Arabia',source_url:'https://www.billboardarabia.com/%D9%85%D9%88%D8%B3%D9%8A%D9%82%D9%89/%D9%85%D8%B5%D8%B1%D9%8A/%D9%85%D8%AD%D9%85%D8%AF-%D8%AD%D9%85%D8%A7%D9%82%D9%8A-%D9%8A%D9%88%D8%A7%D8%B5%D9%84-%D8%B5%D8%AF%D8%A7%D8%B1%D8%A9-%D9%82%D8%A7%D8%A6%D9%85%D8%A9-100-%D9%81%D9%86%D8%A7%D9%86-%D9%84%D9%84%D8%A3%D8%B3%D8%A8%D9%88%D8%B9-%D8%A7%D9%84%D8%AB%D8%A7%D9%84%D8%AB-8280',sort_order:4,is_featured:true,movement:null,weeks_on_chart:null,cover_url:null},
+    {song_title_en:'Sammaouny (album)',song_title_ar:'سمعوني',performer:'Mohamed Hamaki',album:'Sammaouny',year:2026,chart_name:'Billboard Arabia Artist 100',chart_tier:'official',peak_position:1,peak_label:'Drove Hamaki to No. 1 for 3 weeks',chart_date:'2026-06-01',chart_date_precision:'month',note:"Ended Amr Diab's 65-week run at No. 1",source_name:'Billboard Arabia',source_url:'https://www.billboardarabia.com/%D9%85%D9%88%D8%B3%D9%8A%D9%82%D9%89/%D9%85%D8%B5%D8%B1%D9%8A/%D9%85%D8%AD%D9%85%D8%AF-%D8%AD%D9%85%D8%A7%D9%82%D9%8A-%D9%8A%D9%88%D8%A7%D8%B5%D9%84-%D8%B5%D8%AF%D8%A7%D8%B1%D8%A9-%D9%82%D8%A7%D8%A6%D9%85%D8%A9-100-%D9%81%D9%86%D8%A7%D9%86-%D9%84%D9%84%D8%A3%D8%B3%D8%A8%D9%88%D8%B9-%D8%A7%D9%84%D8%AB%D8%A7%D9%84%D8%AB-8280',sort_order:5,is_featured:false,movement:null,weeks_on_chart:null,cover_url:null},
+    {song_title_en:'Mesheity',song_title_ar:'مشيتي',performer:'Mohamed Hamaki',album:'Sammaouny',year:2026,chart_name:'Billboard Arabia Hot 100',chart_tier:'official',peak_position:30,peak_label:'No. 30',chart_date:'2026-06-01',chart_date_precision:'month',note:"Position in the album's third week",source_name:'Billboard Arabia',source_url:'https://www.billboardarabia.com/%D9%85%D9%88%D8%B3%D9%8A%D9%82%D9%89/%D9%85%D8%B5%D8%B1%D9%8A/%D9%85%D8%AD%D9%85%D8%AF-%D8%AD%D9%85%D8%A7%D9%82%D9%8A-%D9%8A%D9%88%D8%A7%D8%B5%D9%84-%D8%B5%D8%AF%D8%A7%D8%B1%D8%A9-%D9%82%D8%A7%D8%A6%D9%85%D8%A9-100-%D9%81%D9%86%D8%A7%D9%86-%D9%84%D9%84%D8%A3%D8%B3%D8%A8%D9%88%D8%B9-%D8%A7%D9%84%D8%AB%D8%A7%D9%84%D8%AB-8280',sort_order:6,is_featured:false,movement:null,weeks_on_chart:null,cover_url:null},
+    {song_title_en:'Qalo Anni Eh',song_title_ar:'قالوا عني إيه',performer:'Mohamed Hamaki',album:'Sammaouny',year:2026,chart_name:'YouTube Trending Egypt',chart_tier:'platform',peak_position:1,peak_label:'No. 1',chart_date:'2026-05-01',chart_date_precision:'month',note:null,source_name:'Mobtada',source_url:'https://www.mobtada.com/culture/1617231',sort_order:7,is_featured:false,movement:null,weeks_on_chart:null,cover_url:null},
+    {song_title_en:'Şıkır Şıkır',song_title_ar:'Şıkır Şıkır',performer:'Mustafa Sandal & Gülben Ergen',album:null,year:2011,chart_name:'Turkey Digital Sales (year-end)',chart_tier:'sales',peak_position:1,peak_label:'Best-selling digital song of 2011',chart_date:null,chart_date_precision:'day',note:'133,253 downloads; MÜYAP Digital Sales Award, Kral Music Awards 2012',source_name:'Wikipedia',source_url:'https://en.wikipedia.org/wiki/Amr_Mostafa',sort_order:8,is_featured:false,movement:null,weeks_on_chart:null,cover_url:null},
+    {song_title_en:'Boushret Kheir',song_title_ar:'بشرة خير',performer:'Hussain Al Jassmi',album:null,year:2015,chart_name:'YouTube – Most-viewed videos, Arab world',chart_tier:'platform',peak_position:1,peak_label:'Most-viewed video in the Arab world',chart_date:null,chart_date_precision:'day',note:"Named the most-viewed video in the Arab world by YouTube's Middle East video partnerships lead, at more than 75 million views. Released May 2014.",source_name:'Al Etihad',source_url:'https://www.aletihad.ae/article/27541/2015/75-%D9%85%D9%84%D9%8A%D9%88%D9%86-%D9%85%D8%B4%D8%A7%D9%87%D8%AF%D8%A9-%D8%AA%D8%AC%D8%B9%D9%84-%C2%AB%D8%A8%D8%B4%D8%B1%D8%A9-%D8%AE%D9%8A%D8%B1%C2%BB-%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%82%D8%A7%D8%B7%D8%B9-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88-%D8%B4%D8%B9%D8%A8%D9%8A%D8%A9-%D9%81%D9%8A-%D8%A7%D9%84%D9%88%D8%B7%D9%86-%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A',sort_order:9,is_featured:false,movement:null,weeks_on_chart:null,cover_url:null}
+  ];
+
+  const esc = v => String(v == null ? '' : v)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  const safeUrl = u => /^https?:\/\//i.test(u || '') ? u : '#';
+  const hasArabic = t => /[\u0600-\u06FF]/.test(t || '');
+  const TIER = { official:'Official chart', platform:'Platform chart', sales:'Sales' };
+  const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const fmtDate = e => {
+    if (!e.chart_date) return String(e.year);
+    const [y,m,d] = String(e.chart_date).slice(0,10).split('-').map(Number);
+    return e.chart_date_precision === 'year' ? String(y)
+         : e.chart_date_precision === 'month' ? MON[m-1] + ' ' + y : d + ' ' + MON[m-1] + ' ' + y;
+  };
+  const sortEntries = l => l.slice().sort((a,b) => (b.year-a.year) ||
+    ((a.peak_position ?? 1e9) - (b.peak_position ?? 1e9)) || ((a.sort_order||0) - (b.sort_order||0)));
+  const coverOf = e => (/^https?:\/\//i.test(e.cover_url || '') ? e.cover_url : '') || COVER_FALLBACK[e.song_title_en] || '';
+  const initial = e => (hasArabic(e.song_title_ar) ? e.song_title_ar : e.song_title_en).trim().charAt(0);
+  const art = (e, cls) => {
+    const c = coverOf(e);
+    return c ? '<img class="' + cls + '" src="' + esc(c) + '" alt="Cover art: ' + esc(e.song_title_en) + '" loading="lazy">'
+             : '<span class="' + cls + ' mono" aria-hidden="true">' + esc(initial(e)) + '</span>';
+  };
+  const src = e => '<a class="cx-src" href="' + esc(safeUrl(e.source_url)) + '" target="_blank" rel="noopener noreferrer"' +
+    ' aria-label="Source: ' + esc(e.source_name) + ' (opens in a new tab)">Source ↗</a>';
+  const move = e => {
+    const m = e.movement;
+    if (m == null) return '<span class="cx-move none" aria-label="Movement not reported">—</span>';
+    if (m > 0) return '<span class="cx-move up" aria-label="Up ' + m + ' places">▲ ' + m + '</span>';
+    if (m < 0) return '<span class="cx-move down" aria-label="Down ' + (-m) + ' places">▼ ' + (-m) + '</span>';
+    return '<span class="cx-move none">=</span>';
+  };
+  // No. 1 singles: No. 1 on an official or sales SONG chart (not platform trending, not an artist chart)
+  function stats(list){
+    const ones = new Set(list.filter(e => e.peak_position === 1 && e.chart_tier !== 'platform' &&
+      !/artist/i.test(e.chart_name)).map(e => e.song_title_en));
+    const bb = list.filter(e => /^billboard arabia/i.test(e.chart_name)).length;
+    const artists = new Set();
+    list.forEach(e => (e.performer||'').split(/\s+(?:ft\.?|feat\.?)\s+|\s*&\s*|\s*,\s*/i)
+      .map(x => x.trim()).filter(Boolean).forEach(x => artists.add(x)));
+    return [[ones.size,'No. 1 singles'],[bb,'Billboard Arabia entries'],[artists.size,'Artists']];
+  }
+
+  let DATA = sortEntries(SEED), filter = 'all';
+
+  function renderStats(){
+    document.getElementById('cxStats').innerHTML = stats(DATA).map(([n,l]) =>
+      '<li><b class="cu" data-to="' + n + '">' + n + '</b><span>' + l + '</span></li>').join('');
+  }
+
+  function renderHero(){
+    const el = document.getElementById('cxHero');
+    const pick = DATA.filter(e => e.is_featured && e.chart_tier === 'official' && e.peak_position)
+                     .sort((a,b) => a.peak_position - b.peak_position || (a.sort_order||0) - (b.sort_order||0))[0];
+    if (!pick){ el.style.display = 'none'; return; }
+    el.style.display = '';
+    const chips = [];
+    if (pick.movement > 0) chips.push('<span class="cx-chip up">▲ ' + pick.movement + ' places to No. ' + pick.peak_position + '</span>');
+    if (pick.weeks_on_chart) chips.push('<span class="cx-chip">' + pick.weeks_on_chart + ' weeks on chart</span>');
+    chips.push('<span class="cx-chip">' + esc(fmtDate(pick)) + '</span>');
+    el.innerHTML =
+      '<figure class="cx-plq cx-rise">' +
+        '<div class="cx-plq-frame"><div class="cx-plq-mat">' +
+          '<div class="cx-plq-art"><div class="cx-plq-disc" aria-hidden="true"></div>' + art(pick, 'cx-plq-cover') + '</div>' +
+          '<div class="cx-plq-plate">' +
+            '<div class="cx-plq-info"><span class="c">' + esc(pick.chart_name) + '</span>' +
+              '<span class="t">' + esc(pick.song_title_en) + '</span>' +
+              '<span class="a">' + esc(pick.performer) + ' · Composed by Amr Mostafa</span></div>' +
+            '<div class="cx-plq-rank"><span><span class="h">#</span><span class="cu" data-to="' + pick.peak_position + '">' +
+              pick.peak_position + '</span></span></div>' +
+          '</div>' +
+          '<div class="cx-plq-foot"><span>' + esc(fmtDate(pick)) + '</span><span>' + esc(pick.album || '') + '</span></div>' +
+        '</div></div>' +
+        '<figcaption class="sr-only">' + esc(pick.song_title_en) + ', number ' + pick.peak_position + ' on the ' + esc(pick.chart_name) + '</figcaption>' +
+      '</figure>' +
+      '<div class="cx-story cx-rise">' +
+        '<p class="eyebrow2">The number one</p>' +
+        '<h3>' + esc(pick.song_title_en) + (hasArabic(pick.song_title_ar)
+          ? '<span class="ar" lang="ar" dir="rtl">' + esc(pick.song_title_ar) + '</span>' : '') + '</h3>' +
+        '<p class="by">' + esc(pick.performer) + ' <span>· melody by Amr Mostafa</span></p>' +
+        '<div class="cx-chips">' + chips.join('') + '</div>' +
+        (pick.note ? '<p class="note">' + esc(pick.note) + '</p>' : '') +
+        '<p class="note">' + src(pick) + '</p>' +
+      '</div>';
+  }
+
+  const matches = e => filter === 'billboard' ? /^billboard arabia/i.test(e.chart_name)
+                     : filter === 'platform' ? e.chart_tier === 'platform'
+                     : filter === 'sales' ? e.chart_tier === 'sales' : true;
+
+  function renderChart(){
+    const body = document.getElementById('cxBody');
+    const rows = DATA.filter(matches);
+    document.querySelector('.cx-table').classList.toggle('no-wks', !DATA.some(e => e.weeks_on_chart));
+    document.getElementById('cxCount').textContent = 'Showing ' + rows.length + ' of ' + DATA.length;
+    if (!rows.length){ body.innerHTML = '<tr class="cx-empty"><td colspan="9">No entries in this category yet.</td></tr>'; return; }
+    body.innerHTML = rows.map((e, i) => {
+      const id = 'cxn-' + i, note = !!e.note;
+      const rank = e.peak_position
+        ? '<td class="cx-rank' + (e.peak_position === 1 ? ' one' : '') + '"><span class="h" aria-hidden="true">#</span>' +
+          e.peak_position + '<span class="sr-only"> peak position</span></td>'
+        : '<td class="cx-rank"><span class="cx-rank-text">' + esc(e.peak_label) + '</span></td>';
+      const lbl = e.peak_position && e.peak_label && e.peak_label !== 'No. ' + e.peak_position
+        ? '<span class="cx-label">' + esc(e.peak_label) + '</span>' : '';
+      return '<tr class="cx-row t-' + e.chart_tier + (note ? ' has-note' : '') + '" data-key="' + DATA.indexOf(e) +
+             '" style="--i:' + i + '">' +
+          rank +
+          '<td class="cx-move-cell">' + move(e) + '</td>' +
+          '<td class="cx-art">' + art(e, '') + '</td>' +
+          '<td class="cx-t"><span class="en">' + esc(e.song_title_en) + '</span>' +
+            (hasArabic(e.song_title_ar) ? '<span class="ar" lang="ar" dir="rtl">' + esc(e.song_title_ar) + '</span>' : '') +
+            '<span class="who">' + esc(e.performer) + '</span></td>' +
+          '<td class="cx-c"><span class="nm">' + esc(e.chart_name) + '</span>' +
+            '<span class="cx-tier ' + e.chart_tier + '">' + TIER[e.chart_tier] + '</span>' + lbl + '</td>' +
+          '<td class="cx-d">' + esc(fmtDate(e)) + '</td>' +
+          '<td class="cx-wk cx-w">' + (e.weeks_on_chart ? e.weeks_on_chart + '<small>WKS</small>' : '<span class="cx-move none">—</span>') + '</td>' +
+          '<td class="cx-s">' + src(e) + '</td>' +
+          '<td class="cx-g">' + (note ? '<button type="button" class="cx-tog" aria-expanded="false" aria-controls="' + id +
+            '" aria-label="Show note for ' + esc(e.song_title_en) + '"></button>' : '') + '</td>' +
+        '</tr>' +
+        (note ? '<tr class="cx-note" id="' + id + '" hidden><td colspan="9"><div class="inner">' + esc(e.note) + '</div></td></tr>' : '');
+    }).join('');
+  }
+
+  function toggle(btn){
+    const open = btn.getAttribute('aria-expanded') !== 'true';
+    btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-label', (open ? 'Hide' : 'Show') + btn.getAttribute('aria-label').replace(/^(Show|Hide)/, ''));
+    document.getElementById(btn.getAttribute('aria-controls')).hidden = !open;
+  }
+
+  function countUp(root){
+    if (REDUCED) return;
+    root.querySelectorAll('.cu').forEach(el => {
+      const to = +el.dataset.to; if (!to) return;
+      const t0 = performance.now(), dur = to === 1 ? 650 : 1100;
+      el.textContent = '0';
+      const tick = now => { const p = Math.min(1, (now - t0) / dur);
+        el.textContent = String(Math.round(to * (1 - Math.pow(1 - p, 3)))); if (p < 1) requestAnimationFrame(tick); };
+      requestAnimationFrame(tick);
+    });
+  }
+
+  function animateIn(){
+    const stats = document.getElementById('cxStats');
+    const rise = [...document.querySelectorAll('#cxHero .cx-rise')];
+    if (REDUCED){ rise.forEach(r => r.classList.add('in')); return; }
+    const io = new IntersectionObserver((es, o) => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      if (e.target === stats) countUp(stats);
+      else { const i = rise.indexOf(e.target);
+        setTimeout(() => { e.target.classList.add('in'); countUp(e.target); }, i * 160); }
+      o.unobserve(e.target);
+    }), { threshold:0.25 });
+    io.observe(stats); rise.forEach(r => io.observe(r));
+  }
+
+
+  /* ================= life: ticker, ladder, ambient colour, plaque tilt ================= */
+  const logX = r => (1 - Math.log10(Math.max(1, Math.min(100, r))) / 2) * 100;  // #1 right, #100 left
+  const TIER_TINT = { official:'rgb(200,70,63)', platform:'rgb(214,196,160)', sales:'rgb(214,160,90)' };
+  const cleanTitle = t => String(t || '').replace(/\s*\(.*?\)\s*/g, ' ').trim();
+
+  function renderTicker(){
+    const el = document.getElementById('cxTicker'); if (!el) return;
+    const items = DATA.filter(e => e.peak_position).map(e =>
+      '<span class="cx-tk-item"><b>#' + e.peak_position + '</b>' + esc(cleanTitle(e.song_title_en)).toUpperCase() +
+      ' <em>· ' + esc(e.performer) + '</em>' + (e.movement > 0 ? ' <span class="up">▲' + e.movement + '</span>' : '') +
+      '<small>' + esc(e.chart_name) + '</small></span>');
+    if (!items.length){ el.style.display = 'none'; return; }
+    const run = items.join('<span class="cx-tk-dot"></span>') + '<span class="cx-tk-dot"></span>';
+    el.innerHTML = '<div class="cx-tk-track"><div class="cx-tk-run">' + run + '</div><div class="cx-tk-run">' + run + '</div></div>';
+  }
+
+  function renderLadder(){
+    const el = document.getElementById('cxLadder'); if (!el) return;
+    const ranked = DATA.map((e, key) => ({ e, key })).filter(o => o.e.peak_position);
+    if (!ranked.length){ el.style.display = 'none'; return; }
+    const stack = {};
+    const dots = ranked.map(({ e, key }, n) => {
+      const lv = (stack[e.peak_position] = (stack[e.peak_position] || 0) + 1) - 1;
+      const climb = e.movement > 0 ? e.peak_position + e.movement : null;
+      return { e, key, lv, x: logX(e.peak_position), climb, sx: climb ? logX(climb) : null, d: (n * 0.07).toFixed(2) };
+    });
+    const ticks = [100, 50, 20, 10, 5, 2, 1];
+    const climbers = dots.filter(d => d.climb);
+    el.innerHTML =
+      '<div class="cx-lad-head"><h3 id="cxLadTitle">Where they landed</h3>' +
+        '<p>Peak positions, 100 → 1. Hover a point, or click to jump to it.</p></div>' +
+      '<div class="cx-lad-field">' +
+        '<div class="cx-lad-axis"></div>' +
+        ticks.map(t => '<span class="cx-lad-tick' + (t === 1 ? ' top' : '') + '" style="left:' + logX(t) + '%">' +
+          (t === 1 ? '#1' : t) + '</span>').join('') +
+        '<svg class="cx-lad-svg" preserveAspectRatio="none" aria-hidden="true"></svg>' +
+        climbers.map(d => '<span class="cx-climb-lbl" style="left:' + ((d.sx + d.x) / 2) + '%;top:14%">▲ ' +
+          d.e.movement + ' places</span>').join('') +
+        dots.map(d => {
+          const tip = cleanTitle(d.e.song_title_en) + ' — ' + (d.e.peak_label || ('#' + d.e.peak_position)) + ' · ' + d.e.chart_name;
+          return '<button type="button" class="cx-dot ' + d.e.chart_tier + (d.x > 80 ? ' r' : '') + '" data-key="' + d.key + '"' +
+            ' data-tip="' + esc(tip) + '" aria-label="' + esc(tip) + '"' +
+            ' data-x="' + d.x + '" data-lv="' + d.lv + '"' +
+            ' style="--x:' + (d.climb ? d.sx : d.x) + '%;--lv:' + (d.climb ? 0 : d.lv) + ';--d:' + d.d + 's"></button>';
+        }).join('') +
+      '</div>';
+    LADDER_CLIMBERS = climbers;
+    drawArcs();
+    dimLadder();
+    if (el.classList.contains('in')) settleLadder();
+  }
+
+  // arcs are drawn in real pixels so each trail ends exactly on its dot:
+  // dot centre = 38px (bottom) + 7.5px (radius) above the field; the svg starts 30px up
+  let LADDER_CLIMBERS = [];
+  function drawArcs(){
+    const svg = document.querySelector('#cxLadder .cx-lad-svg'); if (!svg) return;
+    const H = svg.getBoundingClientRect().height || 130;
+    svg.setAttribute('viewBox', '0 0 1000 ' + H);
+    const cy = lv => H - (8 + 7.5 + lv * 22);
+    svg.innerHTML = LADDER_CLIMBERS.map(d =>
+      '<path d="M' + (d.sx * 10) + ' ' + cy(0) + ' Q ' + ((d.sx + d.x) * 5) + ' ' + (-H * 0.3) + ' ' +
+      (d.x * 10) + ' ' + cy(d.lv) + '"/>').join('');
+  }
+  let arcT; addEventListener('resize', () => { clearTimeout(arcT); arcT = setTimeout(drawArcs, 150); });
+
+  // climbers start where they were and travel to their peak
+  function settleLadder(){
+    const el = document.getElementById('cxLadder'); if (!el) return;
+    el.querySelectorAll('.cx-dot').forEach(d => {
+      d.style.setProperty('--x', d.dataset.x + '%');
+      d.style.setProperty('--lv', d.dataset.lv);
+    });
+    el.classList.add('climbed');
+  }
+
+  function dimLadder(){
+    document.querySelectorAll('#cxLadder .cx-dot').forEach(d =>
+      d.classList.toggle('dim', !matches(DATA[+d.dataset.key])));
+  }
+
+  // average colour of a cover, so the glow takes on the song's own palette
+  const colourCache = new Map();
+  function coverColour(e){
+    return new Promise(resolve => {
+      const src = coverOf(e);
+      if (!src) return resolve(null);
+      if (colourCache.has(src)) return resolve(colourCache.get(src));
+      const img = new Image();
+      img.onload = () => {
+        try {
+          const c = document.createElement('canvas'); c.width = c.height = 14;
+          const x = c.getContext('2d'); x.drawImage(img, 0, 0, 14, 14);
+          const px = x.getImageData(0, 0, 14, 14).data;
+          let r = 0, g = 0, b = 0, n = 0;
+          for (let i = 0; i < px.length; i += 4){
+            const l = (px[i] + px[i+1] + px[i+2]) / 3;
+            if (l < 35 || l > 230) continue;
+            r += px[i]; g += px[i+1]; b += px[i+2]; n++;
+          }
+          const col = n ? 'rgb(' + Math.round(r/n) + ',' + Math.round(g/n) + ',' + Math.round(b/n) + ')' : null;
+          colourCache.set(src, col); resolve(col);
+        } catch (_) { colourCache.set(src, null); resolve(null); }   // cross-origin covers can't be read
+      };
+      img.onerror = () => resolve(null);
+      img.src = src;
+    });
+  }
+
+  function bindLife(){
+    // plaque tilt (re-bound whenever the hero re-renders)
+    const plq = document.querySelector('#cxHero .cx-plq');
+    const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (plq && !REDUCED && fine){
+      const frame = plq.querySelector('.cx-plq-frame');
+      plq.addEventListener('pointermove', ev => {
+        const r = plq.getBoundingClientRect();
+        const px = (ev.clientX - r.left) / r.width - .5, py = (ev.clientY - r.top) / r.height - .5;
+        frame.style.setProperty('--rx', (-py * 9).toFixed(2) + 'deg');
+        frame.style.setProperty('--ry', (px * 11).toFixed(2) + 'deg');
+        frame.style.setProperty('--gx', ((px + .5) * 100).toFixed(1) + '%');
+        frame.style.setProperty('--gy', ((py + .5) * 100).toFixed(1) + '%');
+      });
+      plq.addEventListener('pointerleave', () => {
+        frame.style.setProperty('--rx', '0deg'); frame.style.setProperty('--ry', '0deg');
+      });
+    }
+    const wrap = document.querySelector('.cx-wrap'), lad = document.getElementById('cxLadder');
+    if (REDUCED){ lad && lad.classList.add('in'); settleLadder(); return; }
+    if (wrap && !wrap.classList.contains('live')) wrap.classList.add('pre');
+    const io = new IntersectionObserver((es, o) => es.forEach(en => {
+      if (!en.isIntersecting) return;
+      if (en.target === wrap){ wrap.classList.remove('pre'); wrap.classList.add('live'); }
+      if (en.target === lad){ lad.classList.add('in'); setTimeout(settleLadder, 650); }
+      o.unobserve(en.target);
+    }), { threshold:0.3 });
+    if (wrap && !wrap.classList.contains('live')) io.observe(wrap);
+    if (lad && !lad.classList.contains('in')) io.observe(lad);
+  }
+
+  function renderAll(){ renderStats(); renderTicker(); renderHero(); renderLadder(); renderChart(); animateIn(); bindLife(); }
+
+  document.getElementById('cxFilters').addEventListener('click', ev => {
+    const b = ev.target.closest('button[data-f]'); if (!b) return;
+    filter = b.dataset.f;
+    document.querySelectorAll('#cxFilters button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    renderChart();
+    dimLadder();
+  });
+
+  // ---- linking: row <-> ladder dot, plus the travelling glow (delegated, bound once)
+  const section = document.getElementById('charts');
+  const amb = document.getElementById('cxAmb');
+  function light(key, on, anchor){
+    document.querySelectorAll('#charts [data-key="' + key + '"]').forEach(n => n.classList.toggle('hl', on));
+    if (!amb) return;
+    if (!on){ amb.classList.remove('on'); return; }
+    const e = DATA[key]; if (!e || !anchor) return;
+    const sr = section.getBoundingClientRect(), ar = anchor.getBoundingClientRect();
+    amb.style.top = (ar.top - sr.top + ar.height / 2) + 'px';
+    amb.style.left = (ar.left - sr.left + Math.min(ar.width, 560) / 2) + 'px';
+    amb.style.setProperty('--amb', TIER_TINT[e.chart_tier]);
+    amb.classList.add('on');
+    coverColour(e).then(c => { if (c) amb.style.setProperty('--amb', c); });
+  }
+  section.addEventListener('pointerover', ev => {
+    const t = ev.target.closest('[data-key]'); if (t) light(t.dataset.key, true, t);
+  });
+  section.addEventListener('pointerout', ev => {
+    const t = ev.target.closest('[data-key]');
+    if (t && !(ev.relatedTarget && t.contains(ev.relatedTarget))) light(t.dataset.key, false, t);
+  });
+  section.addEventListener('focusin', ev => {
+    const t = ev.target.closest('.cx-dot'); if (t) light(t.dataset.key, true, t);
+  });
+  section.addEventListener('focusout', ev => {
+    const t = ev.target.closest('.cx-dot'); if (t) light(t.dataset.key, false, t);
+  });
+  // click a point on the ladder -> jump to its row and open the note
+  section.addEventListener('click', ev => {
+    const dot = ev.target.closest('.cx-dot'); if (!dot) return;
+    const key = dot.dataset.key;
+    let row = document.querySelector('.cx-row[data-key="' + key + '"]');
+    if (!row){ document.querySelector('#cxFilters button[data-f="all"]').click();
+               row = document.querySelector('.cx-row[data-key="' + key + '"]'); }
+    if (!row) return;
+    row.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block:'center' });
+    const tog = row.querySelector('.cx-tog');
+    if (tog && tog.getAttribute('aria-expanded') !== 'true') toggle(tog);
+  });
+  document.getElementById('cxBody').addEventListener('click', ev => {
+    if (ev.target.closest('a')) return;
+    const row = ev.target.closest('tr.has-note');
+    const btn = ev.target.closest('.cx-tog') || (row && row.querySelector('.cx-tog'));
+    if (btn) toggle(btn);
+  });
+
+  renderAll();
+
+  if (SUPABASE_CFG.url && SUPABASE_CFG.anonKey){
+    fetch(SUPABASE_CFG.url.replace(/\/$/,'') +
+      '/rest/v1/chart_entries?select=*&order=year.desc,peak_position.asc.nullslast,sort_order.asc',
+      { headers:{ apikey:SUPABASE_CFG.anonKey, Authorization:'Bearer ' + SUPABASE_CFG.anonKey } })
+      .then(r => r.ok ? r.json() : Promise.reject(r.status))
+      .then(rows => { if (Array.isArray(rows) && rows.length){ DATA = sortEntries(rows); renderAll(); } })
+      .catch(err => console.error('[charts] Supabase unavailable, showing seed:', err));
+  }
+}
+
+function awardsInit(){
+  const wall = document.getElementById('awardsWall');
+  if (!wall) return;
+  const items = AWARDS.slice().sort((a,b) => String(b.year).localeCompare(String(a.year)));
+  const reserve = Math.max(0, 3 - items.length);
+
+  const esc = s => String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  const R = 84;                                   // ring sits on the label's outer band
+  const circ = (2 * Math.PI * R).toFixed(1);
+  const string =
+    '<svg class="string" viewBox="0 0 100 34" preserveAspectRatio="none">' +
+    '<line x1="50" y1="2" x2="10" y2="34"/><line x1="50" y1="2" x2="90" y2="34"/></svg>';
+
+  const record = (a, i) => {
+    const won = (a.result || '').toLowerCase() === 'won';
+    const ring = (esc(a.award) + ' · ' + esc(a.body) + ' · ').toUpperCase();
+    return '<figure class="plaque ' + (won ? 'won' : 'nom') + '">' +
+      '<span class="nail"></span>' + string +
+      '<div class="frame">' +
+        '<div class="disc-wrap">' +
+          '<div class="disc">' +
+            '<div class="label">' +
+              '<svg viewBox="0 0 200 200"><defs><path id="aw' + i + '" ' +
+                'd="M100,100 m-' + R + ',0 a' + R + ',' + R + ' 0 1,1 ' + (R*2) + ',0 a' + R + ',' + R + ' 0 1,1 -' + (R*2) + ',0"/></defs>' +
+                '<text><textPath href="#aw' + i + '" textLength="' + circ + '" lengthAdjust="spacing">' +
+                ring + '</textPath></text></svg>' +
+              '<span class="yr">' + esc(a.year) + '</span>' +
+              '<span class="hole"></span>' +
+              '<span class="res">' + (won ? 'Winner' : esc(a.result || 'Nominee')) + '</span>' +
+            '</div>' +
+          '</div>' +
+          '<div class="sheen"></div>' +
+        '</div>' +
+        '<figcaption class="plate">' +
+          '<h3>' + esc(a.award) + '</h3>' +
+          '<span class="by">' + [a.body, a.category].filter(Boolean).map(esc).join(' · ') + '</span>' +
+          (a.work ? '<span class="for">for ' + esc(a.work) + '</span>' : '') +
+          (a.verified ? '' : '<span class="unv">Pending confirmation</span>') +
+        '</figcaption>' +
+      '</div>' +
+    '</figure>';
+  };
+  const reserved = () =>
+    '<figure class="plaque empty"><span class="nail"></span>' + string +
+    '<div class="frame"><div class="disc-wrap"><div class="disc"></div></div>' +
+    '<figcaption class="plate"><h3>Reserved</h3><span class="by">For the next one</span></figcaption>' +
+    '</div></figure>';
+
+  wall.innerHTML = items.map(record).join('') + Array.from({length:reserve}, reserved).join('');
+
+  const plaques = [...wall.querySelectorAll('.plaque')];
+  if (REDUCED){ plaques.forEach(p => p.classList.add('hung')); return; }
+  new IntersectionObserver((es, o) => {
+    es.forEach(e => {
+      if (!e.isIntersecting) return;
+      plaques.forEach((p, i) => setTimeout(() => p.classList.add('hung'), i * 140));
+      o.disconnect();
+    });
+  }, { threshold:0.15 }).observe(wall);
+}
+
+
+/* =========================== LIFE PASS =========================== */
+function countUpInit(){
+  const nums = [...document.querySelectorAll('.stats .n')];
+  if (!nums.length) return;
+  const run = el => {
+    const node = [...el.childNodes].find(n => n.nodeType === 3 && /\d/.test(n.textContent));
+    if (!node) return;
+    const target = parseInt(node.textContent, 10);
+    if (!target || REDUCED) return;
+    const t0 = performance.now(), dur = 1300;
+    const tick = now => {
+      const p = Math.min(1, (now - t0) / dur);
+      node.textContent = String(Math.round(target * (1 - Math.pow(1 - p, 3))));
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    node.textContent = '0';
+    requestAnimationFrame(tick);
+  };
+  const io = new IntersectionObserver((es, o) => {
+    es.forEach(e => { if (e.isIntersecting){ run(e.target); o.unobserve(e.target); } });
+  }, { threshold:0.6 });
+  nums.forEach(n => io.observe(n));
+}
+
+function glowInit(){
+  if (REDUCED || matchMedia('(hover: none)').matches) return;
+  const g = document.createElement('div');
+  g.className = 'glow';
+  document.body.appendChild(g);
+  let tx = innerWidth / 2, ty = innerHeight / 2, x = tx, y = ty, raf = null;
+  const step = () => {
+    x += (tx - x) * 0.12; y += (ty - y) * 0.12;
+    g.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0)';
+    raf = (Math.abs(tx - x) + Math.abs(ty - y) > 0.4) ? requestAnimationFrame(step) : null;
+  };
+  addEventListener('mousemove', e => {
+    tx = e.clientX; ty = e.clientY;
+    g.classList.add('on');
+    if (!raf) raf = requestAnimationFrame(step);
+  }, { passive:true });
+  document.addEventListener('mouseleave', () => g.classList.remove('on'));
+}
+
+/* =========================== NAV =========================== */
+const burger = document.getElementById('burger');
+burger.addEventListener('click',()=>{
+  const open = document.body.classList.toggle('nav-open');
+  burger.setAttribute('aria-expanded', open);
+});
+
+/* =========================== TWEAK PANEL =========================== */
+const FONTS = {
+  serif:['Fraunces','Playfair Display','Instrument Serif','DM Serif Display',
+         'Cormorant Garamond','Libre Baskerville','Bodoni Moda','Newsreader',
+         'Lora','Spectral','EB Garamond','Crimson Pro'],
+  sans:['Inter','Space Grotesk','DM Sans','IBM Plex Sans','Manrope',
+        'Work Sans','Archivo','Outfit','Sora','Figtree'],
+  arabic:['Reem Kufi','IBM Plex Sans Arabic','Cairo','Tajawal','Almarai','Rubik',
+          'Noto Kufi Arabic','Amiri','Aref Ruqaa','Marhey']
+};
+const FALLBACK = { serif:'Georgia, serif', sans:'sans-serif', arabic:'"Segoe UI", sans-serif' };
+
+const DEFAULTS = {
+  fSerif:'Fraunces', fSans:'Inter', fArabic:'Reem Kufi',
+  h1Size:5.4, h1Weight:300, h1Track:-0.018, h1Lead:1.02,
+  wmMode:'img', wmSize:34,
+  tEyebrow:'<span class="ar">ملحّن</span> <span class="sep">·</span> Composer <span class="sep">·</span> Producer',
+  tHeadline:'It starts as\na <em>hum</em><span class="amp">.</span>',
+  tSub:"The words are someone else's. The voice is someone else's. <b>The melody is mine</b> — 265 times over.",
+  tCta:'Hear what you already know', tNavPill:'Start a project',
+  tM1k:'Melodies', tM1v:'265 songs <span class="accent">·</span> 66 voices',
+  tM2k:'Based in', tM2v:'Cairo, Egypt',
+  tNav:'Work, Years, Catalogue, Collaborators, Contact',
+  tQuote:'&ldquo;I do not write songs. I <strong>hum something</strong> until it will not leave me alone — then I hand it to the right voice.&rdquo;',
+  tRvKicker:'You already know these',
+  tRvHead:'You know the song.\nYou know the voice.\n<em>Now meet the melody.</em>',
+  tRvSub:'Every one of these started as a hum in a room in Cairo. Someone else wrote the words. Someone else sang them.',
+  rvSize:360, rvDwell:3.4, rvStep:1.1,
+  arcStyle:'polaroid', arcScatter:1, arcRot:1,
+  cBg:'#0E0C0A', cLift:'#211C16', cInk:'#F3EDE0', cMut:'#A69C8A', cRed:'#9C2B2B',
+  sVig:0.44, sGrain:0.026, sTally:0.2,
+  cSize:560, cRad:1300, cSpd:0.08, cDir:'1', cRingY:-58,
+  cCovR:18, cSat:1, cBri:1, cSep:0,
+  fgS:78, fgX:0, fgY:9, fdS:66, fdE:92, flr:0.62
+};
+let S = Object.assign({}, DEFAULTS);
+const $ = id => document.getElementById(id);
+const root = document.documentElement;
+
+function loadFont(kind,name){
+  $('font-' + kind + '-link').href =
+    'https://fonts.googleapis.com/css2?family=' + name.replace(/ /g,'+') +
+    ':wght@300;400;500;600&display=swap';
+}
+
+function apply(){
+  loadFont('serif',S.fSerif); loadFont('sans',S.fSans); loadFont('arabic',S.fArabic);
+  root.style.setProperty('--serif','"'+S.fSerif+'", '+FALLBACK.serif);
+  root.style.setProperty('--sans','"'+S.fSans+'", '+FALLBACK.sans);
+  root.style.setProperty('--arabic','"'+S.fArabic+'", '+FALLBACK.arabic);
+  root.style.setProperty('--h1-size',S.h1Size+'vw');
+  root.style.setProperty('--h1-weight',S.h1Weight);
+  root.style.setProperty('--h1-track',S.h1Track+'em');
+  root.style.setProperty('--h1-leading',S.h1Lead);
+  root.style.setProperty('--wm-size',S.wmSize+'px');
+  root.style.setProperty('--bg',S.cBg);
+  root.style.setProperty('--bg-lift',S.cLift);
+  root.style.setProperty('--ink',S.cInk);
+  root.style.setProperty('--mut',S.cMut);
+  root.style.setProperty('--red',S.cRed);
+  root.style.setProperty('--vignette',S.sVig);
+  root.style.setProperty('--grain-op',S.sGrain);
+  root.style.setProperty('--tally-op',S.sTally);
+  root.style.setProperty('--cov-radius',S.cCovR+'px');
+  root.style.setProperty('--cov-sat',S.cSat);
+  root.style.setProperty('--cov-bright',S.cBri);
+  root.style.setProperty('--cov-sepia',S.cSep);
+  root.style.setProperty('--ring-y',S.cRingY+'%');
+  root.style.setProperty('--fg-size',S.fgS+'vh');
+  root.style.setProperty('--fg-x',S.fgX+'px');
+  root.style.setProperty('--fg-y',S.fgY+'vh');
+  root.style.setProperty('--fade-start',S.fdS+'%');
+  root.style.setProperty('--fade-end',S.fdE+'%');
+  root.style.setProperty('--floor-op',S.flr);
+
+  $('eyebrow').innerHTML = S.tEyebrow;
+  $('headline').innerHTML = S.tHeadline.replace(/\n/g,'<br>');
+  $('sub').innerHTML = S.tSub;
+  $('ctaLabel').textContent = S.tCta;
+  $('navPillLabel').textContent = S.tNavPill;
+  $('meta1k').innerHTML = S.tM1k; $('meta1v').innerHTML = S.tM1v;
+  $('meta2k').innerHTML = S.tM2k; $('meta2v').innerHTML = S.tM2v;
+  $('quoteText').innerHTML = S.tQuote;
+  $('navlinks').innerHTML = S.tNav.split(',').map(s=>{
+    const t = s.trim();
+    const href = t.toLowerCase() === 'work' ? 'reveal' : t.toLowerCase().replace(/[^a-z]/g,'');
+    return '<li><a href="#'+href+'">'+t+'</a></li>';
+  }).join('');
+  $('wordmarkImg').style.display  = S.wmMode === 'img'  ? 'block' : 'none';
+  $('wordmarkText').style.display = S.wmMode === 'text' ? 'inline' : 'none';
+
+  document.querySelector('.rv-head .kicker').innerHTML =
+    '<span class="dot"></span> ' + S.tRvKicker;
+  document.querySelector('.rv-head h2').innerHTML = S.tRvHead.replace(/\n/g,'<br>');
+  document.querySelector('.rv-head p:last-of-type').innerHTML = S.tRvSub;
+
+  if (carouselAPI){
+    carouselAPI.setSize(+S.cSize,false);
+    carouselAPI.setRadius(+S.cRad);
+    carouselAPI.setSpeed(+S.cSpd);
+    carouselAPI.setDirection(+S.cDir);
+  }
+
+  if (RV.built){
+    const resize = (+S.rvSize !== RV.size);
+    RV.size = +S.rvSize; RV.dwell = +S.rvDwell; RV.step = +S.rvStep;
+    if (resize) rvLayout();
+    if (RV.playing) rvPlay();
+  } else {
+    RV.size = +S.rvSize; RV.dwell = +S.rvDwell; RV.step = +S.rvStep;
+  }
+
+  document.body.classList.toggle('frames-polaroid', S.arcStyle === 'polaroid');
+  document.body.classList.toggle('frames-print',    S.arcStyle === 'print');
+  const tlTrackEl = document.getElementById('tlTrack');
+  if (tlTrackEl){
+    tlTrackEl.style.setProperty('--tl-tilt', S.arcRot);
+    tlTrackEl.style.setProperty('--tl-gap', (20 + (+S.arcScatter) * 34) + 'px');
+  }
+  if (typeof TL !== 'undefined' && TL.built) tlMeasure();
+
+  const set = (id,v)=>{ const e = $(id); if (e) e.textContent = v; };
+  set('vH1',S.h1Size+'vw'); set('vH1w',S.h1Weight);
+  set('vH1t',S.h1Track+'em'); set('vH1l',S.h1Lead); set('vWm',S.wmSize+'px');
+  set('vVig',S.sVig); set('vGrain',S.sGrain); set('vTally',S.sTally);
+  set('vSize',S.cSize+'px'); set('vRad',S.cRad+'px'); set('vSpd',S.cSpd);
+  set('vRingY',S.cRingY+'%'); set('vCovR',S.cCovR+'px'); set('vSat',S.cSat);
+  set('vBri',S.cBri); set('vSep',S.cSep);
+  set('vFgS',S.fgS+'vh'); set('vFgX',S.fgX+'px'); set('vFgY',S.fgY+'vh');
+  set('vFdS',S.fdS+'%'); set('vFdE',S.fdE+'%'); set('vFlr',S.flr);
+  set('vArcS',S.arcScatter); set('vArcR',S.arcRot);
+  set('vRvS',S.rvSize+'px'); set('vRvD',S.rvDwell+'s'); set('vRvT',S.rvStep+'s');
+
+  try { localStorage.setItem('amrSite2',JSON.stringify(S)); } catch(e){}
+}
+
+const CONTROLS = Object.keys(DEFAULTS);
+function bindControls(){
+  ['fSerif','fSans','fArabic'].forEach(id=>{
+    const kind = id.slice(1).toLowerCase(), sel = $(id);
+    FONTS[kind].forEach(n=>{
+      const o = document.createElement('option');
+      o.value = n; o.textContent = n; sel.appendChild(o);
+    });
+  });
+  CONTROLS.forEach(k=>{
+    const el = $(k); if (!el) return;
+    const ev = (el.type === 'range' || el.type === 'color') ? 'input' : 'change';
+    el.addEventListener(ev,()=>{ S[k] = el.value; apply(); });
+    if (el.tagName === 'TEXTAREA' || el.type === 'text')
+      el.addEventListener('input',()=>{ S[k] = el.value; apply(); });
+  });
+  $('btnSquare').addEventListener('click',()=>{
+    if (!carouselAPI) return;
+    S.cRad = Math.round(carouselAPI.radiusForSquare(+S.cSize));
+    $('cRad').value = S.cRad; apply();
+  });
+  $('btnRvToggle').addEventListener('click',()=>{ RV.playing ? rvPause() : rvPlay(); });
+  $('btnArcReplay').addEventListener('click',()=>{
+    document.getElementById('years').scrollIntoView({behavior:'smooth',block:'start'});
+  });
+  $('btnReset').addEventListener('click',()=>{
+    S = Object.assign({},DEFAULTS);
+    try { localStorage.removeItem('amrSite2'); } catch(e){}
+    pushToControls(); apply();
+  });
+  $('btnExport').addEventListener('click',exportCode);
+}
+function pushToControls(){
+  CONTROLS.forEach(k=>{ const el = $(k); if (el) el.value = S[k]; });
+}
+
+function exportCode(){
+  const css =
+`:root{
+  --bg:${S.cBg}; --bg-lift:${S.cLift}; --ink:${S.cInk}; --mut:${S.cMut}; --red:${S.cRed};
+  --serif:"${S.fSerif}",Georgia,serif;
+  --sans:"${S.fSans}",sans-serif;
+  --arabic:"${S.fArabic}",sans-serif;
+  --h1-size:${S.h1Size}vw; --h1-weight:${S.h1Weight};
+  --h1-track:${S.h1Track}em; --h1-leading:${S.h1Lead};
+  --grain-op:${S.sGrain}; --vignette:${S.sVig}; --tally-op:${S.sTally};
+  --cov-sat:${S.cSat}; --cov-bright:${S.cBri}; --cov-sepia:${S.cSep};
+  --cov-radius:${S.cCovR}px; --ring-y:${S.cRingY}%;
+  --fg-size:${S.fgS}vh; --fg-x:${S.fgX}px; --fg-y:${S.fgY}vh;
+  --fade-start:${S.fdS}%; --fade-end:${S.fdE}%; --floor-op:${S.flr};
+}
+
+/* fonts: update the three <link> tags to  ${S.fSerif} · ${S.fSans} · ${S.fArabic} */
+
+/* hero carouselConfig:  slideHeight:${S.cSize}, radius:${S.cRad},
+                         rotationSpeed:${S.cSpd}, rotationDirection:${S.cDir} */
+
+/* reveal RV:  size:${S.rvSize}, dwell:${S.rvDwell}, step:${S.rvStep} */
+
+/* ---- copy ----
+eyebrow:      ${S.tEyebrow}
+headline:     ${S.tHeadline.replace(/\n/g,' / ')}
+sub:          ${S.tSub}
+cta:          ${S.tCta}
+nav pill:     ${S.tNavPill}
+meta 1:       ${S.tM1k} / ${S.tM1v}
+meta 2:       ${S.tM2k} / ${S.tM2v}
+nav:          ${S.tNav}
+quote:        ${S.tQuote}
+rv kicker:    ${S.tRvKicker}
+rv heading:   ${S.tRvHead.replace(/\n/g,' / ')}
+rv standfirst:${S.tRvSub}
+*/`;
+  const out = $('exportOut');
+  out.value = css; out.select();
+  try { document.execCommand('copy'); } catch(e){}
+}
+
+function togglePanel(force){
+  const p = $('panel');
+  p.classList.toggle('open', force !== undefined ? force : !p.classList.contains('open'));
+}
+$('tweakDot').addEventListener('click',()=>togglePanel());
+$('panelClose').addEventListener('click',()=>togglePanel(false));
+document.addEventListener('keydown',e=>{
+  const t = e.target.tagName;
+  if (t === 'INPUT' || t === 'TEXTAREA' || t === 'SELECT') return;
+  if (e.key === '`'){ e.preventDefault(); togglePanel(); }
+  if (e.key === 'Escape') togglePanel(false);
+  if (e.key === 'ArrowRight'){ rvNext(); rvPause(); }
+  if (e.key === 'ArrowLeft'){ rvPrev(); rvPause(); }
+});
+
+/* =========================== BOOT =========================== */
+document.addEventListener('DOMContentLoaded',function(){
+  const fg = $('foreground');
+  fg.src = FG_IMAGE;
+  setTimeout(()=>{ fg.style.opacity = '1'; },120);
+
+  if (typeof gsap === 'undefined'){
+    console.error('GSAP did not load — hero motion disabled; rest of page unaffected');
+  } else {
+    try { initCarousel(); }
+    catch (err) { console.error('[carousel] failed:', err && err.message); }
+  }
+
+  try {
+    const saved = localStorage.getItem('amrSite2');
+    if (saved) S = Object.assign({},DEFAULTS,JSON.parse(saved));
+  } catch(e){}
+
+  RV.size = +S.rvSize; RV.dwell = +S.rvDwell; RV.step = +S.rvStep;
+
+  // each step is isolated: if one throws, everything below it still builds
+  const boot = (name, fn) => {
+    try { fn(); }
+    catch (err) { console.error('[' + name + '] failed:', err && err.message); }
+  };
+  boot('reveal',        initReveal);
+  boot('catalogue',     catInit);
+  boot('collaborators', collabInit);
+  boot('timeline',      tlInit);
+  boot('anatomy',       anatBuild);
+  boot('onair',         onairInit);
+  boot('band',          bandInit);
+  boot('charts',        chartsInit);
+  boot('awards',        awardsInit);
+  boot('rail',          railInit);
+  boot('countup',       countUpInit);
+  boot('glow',          glowInit);
+  boot('panel', () => { bindControls(); pushToControls(); apply(); });
+});
+</script>
+</body>
+</html>
